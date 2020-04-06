@@ -23,13 +23,15 @@ function App() {
     const data  = await response1.json();
 
     //set json object into moviesList array
-    setMovieList  ([...movieList, data.results]);
-
+    setMovieList  (data.results);
 
   };
-    console.log(movieList);
+  console.log(movieList);
+
+  //set search while  typing
   const handleChange =  (e) =>{
       setSearch(e.target.value);
+
   };
 
   return (
@@ -42,6 +44,7 @@ function App() {
             />
             <List
               movieList={movieList}
+
             />
     </div>
   );

@@ -3,18 +3,21 @@ import Card from "./Card.js"
 
 
 function List(props) {
-  
+
         return(
 
-            <div  className={'card'}>
+            <div  className={'list'}>
                     {
                         props.movieList.map((movie, i) =>{
+                            
                             return <Card
-                                key={movie.id}
+
+                                key={i}
                                 image={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
                                 title={movie.original_title}
                                 description={movie.overview}
                             />
+
                         })
                     }
             </div>

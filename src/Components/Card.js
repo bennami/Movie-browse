@@ -3,7 +3,7 @@ import React from "react";
 
 const Card  = (props) =>{
     return(
-        <div className={'container'} key={props.key}>
+        <div className={'card'} >
             {
                 props.img == null ?  <img src="" alt="no img"/> : <img src={props.image} alt="name img"/>
             }
