@@ -13,7 +13,7 @@ function List(props) {
                             return <Card
 
                                 key={i}
-                                image={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
+                                img={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
                                 title={movie.original_title}
                                 description={movie.overview}
                             />
