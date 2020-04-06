@@ -1,14 +1,23 @@
+body{
+    background-color: #2c2c2c;
+}
 .card{
   display: flex;
   text-align: center;
+  flex-direction: column;
+  box-shadow:  0 0 13px -1px rgba(0,0,0,0.75);
+  border-radius: 7px;
+  background-color: black;
+  color: whitesmoke;
+}
 
-
-  background-color: #cffffe;
+.card img{
+    border-radius: 7px 7px 0 0;
 }
 
 .nav{
-
-    background-color: #1c005d;
+    box-shadow:  0 0 13px -1px rgba(0,0,0,0.75);
+    background-color: #000000;
     color: whitesmoke;
     padding: 3vh;
 }
@@ -22,19 +31,29 @@
 
 .search input{
     border: none;
-    border-bottom: #1c005d 1px solid;
-    padding: 1vh;
+    padding: 2vh;
+    background-color: black;
+    font-size: large;
+    color: whitesmoke;
+    margin-bottom: 3vh;
+    border-radius: 20px;
+    padding-left: 5vh;
 }
 
 .search button{
-    border-radius: 5px;
-    background-color: darkslateblue;
+    border-radius: 20px;
+    background-color: #4b0014;
     border: none;
-    border-bottom: #1c005d 1px solid;
-    padding: 1vh;
+    padding: 2vh;
     color: whitesmoke;
     margin-left: 2vh;
     cursor: pointer;
+    font-size: large;
+    font-weight: bolder;
+}
+button:hover{
+
+    background-color: #a6001c;
 }
 
 .list{
@@ -42,6 +61,7 @@
     grid-gap: 2rem;
     grid-template-columns: repeat(5,1fr);
     margin: 2vh auto;
+    width: 90%;
 
 }
 

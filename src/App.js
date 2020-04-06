@@ -14,7 +14,7 @@ function App() {
   const  [movieList,  setMovieList]  = useState([]);
 
 
-  const API = async (e) => {
+  const searchItem = async (e) => {
     e.preventDefault();
 
     //fetch stream of data
@@ -22,8 +22,8 @@ function App() {
     //convert to json
     const data  = await response1.json();
 
-    //set json object into moviesList array
-    setMovieList  (data.results);
+    //set json object into moviesList array, every time there is a new search this will refresh itself
+    setMovieList(data.results);
 
   };
   console.log(movieList);
@@ -34,17 +34,17 @@ function App() {
 
   };
 
+
+
   return (
         <div className="App">
             <Nav/>
             <Search
-              handleSubmit={API}
+              handleSubmit={searchItem}
               handleChange={handleChange}
-
             />
             <List
               movieList={movieList}
-
             />
     </div>
   );
