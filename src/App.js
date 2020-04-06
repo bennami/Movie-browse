@@ -35,14 +35,13 @@ console.log(allData);*/
      setMovieList  (...movieList,data.results);
      console.log(movieList);
 
-     setImgSrc(  `http://image.tmdb.org/t/p/w185/${movieList.poster_path}`)
-
+        setImgSrc(  `http://image.tmdb.org/t/p/w185/${movieList[2].poster_path}`)
+console.log(imgSrc)
   };
 
   const handleChange =  (e) =>{
-      e.preventDefault();
       setSearch(e.target.value);
-      console.log(e.target.value)
+
   };
 
 
@@ -52,10 +51,10 @@ console.log(allData);*/
         <Nav/>
       <Search
           handleSubmit={API}
-          onChange={handleChange}
+          handleChange={handleChange}
 
       />
-      <button onClick={API}>API CALL</button>
+
       <Card
       movieList={movieList}
       src={imgSrc}
