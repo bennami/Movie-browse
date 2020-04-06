@@ -1,27 +1,25 @@
 import React from "react";
 import Card from "./Card.js"
 
-
 function List(props) {
 
-        return(
+     return(
 
-            <div  className={'list'}>
-                    {
-                        props.movieList.map((movie, i) =>{
+         <div  className={'list'}>
+               {
+                  props.movieList.map((movie, i) =>{
                             
-                            return <Card
-
+                     return <Card
                                 key={i}
                                 img={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
                                 title={movie.original_title}
                                 description={movie.overview}
                             />
 
-                        })
-                    }
-            </div>
-        )
+                  })
+               }
+         </div>
+     )
 }
 
 export default List;

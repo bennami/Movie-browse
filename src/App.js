@@ -1,19 +1,27 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import List from "./Components/List";
 import Search from "./Components/search";
 import Nav from "./Components/nav";
 import './App.css';
 
-
-
 function App() {
   //const apiKey =  process.env.REACT_APP_API;
-  //const [imgSrc, setImgSrc] = useState();
-  //const [movieId, setMovieId]  =useState('');
   const [search, setSearch]  = useState('');
   const  [movieList,  setMovieList]  = useState([]);
+  const [popularMovies, setPopular] =useState([]);
 
 
+  //on load, load List with popular movies
+  useEffect(() => {
+        async function fetchData() {
+            const response = await fetch (`https://api.themoviedb.org/3/movie/popular?api_key=67b347978ffe14fc5d6f8a664a1829f2&language=en-US&page=1`);
+            const popular = await response.json();
+            setPopular(popular.results);
+        }
+        fetchData();
+  }, []);
+
+  //when user searches for a movie, fetch data and set movieList
   const searchItem = async (e) => {
     e.preventDefault();
 
@@ -26,26 +34,23 @@ function App() {
     setMovieList(data.results);
 
   };
-  console.log(movieList);
 
   //set search while  typing
   const handleChange =  (e) =>{
       setSearch(e.target.value);
-
   };
 
-
-
   return (
-        <div className="App">
-            <Nav/>
-            <Search
-              handleSubmit={searchItem}
-              handleChange={handleChange}
-            />
-            <List
-              movieList={movieList}
-            />
+    <div className="App">
+         <Nav/>
+         <Search
+             handleSubmit={searchItem}
+             handleChange={handleChange}
+         />
+         <List
+            movieList={movieList}
+         />
+         <List movieList= {popularMovies}/>
     </div>
   );
 }
