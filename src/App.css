@@ -1,0 +1,39 @@
+.card{
+  display: flex;
+  width: 20vw;
+  margin: 0.5rem;
+  flex-wrap: wrap;
+  flex-direction: column;
+  background-color: #cffffe;
+}
+
+.nav{
+
+    background-color: #1c005d;
+    color: whitesmoke;
+    padding: 3vh;
+}
+
+.search{
+
+    display: flex;
+    margin: 2vh auto;
+    justify-content: center;
+}
+
+.search input{
+    border: none;
+    border-bottom: #1c005d 1px solid;
+    padding: 1vh;
+}
+
+.search button{
+    border-radius: 5px;
+    background-color: darkslateblue;
+    border: none;
+    border-bottom: #1c005d 1px solid;
+    padding: 1vh;
+    color: whitesmoke;
+    margin-left: 2vh;
+    cursor: pointer;
+}
