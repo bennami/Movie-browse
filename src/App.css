@@ -9,10 +9,13 @@ body{
   border-radius: 7px;
   background-color: black;
   color: whitesmoke;
+    width: 100%;
+
 }
 
 .card img{
     border-radius: 7px 7px 0 0;
+    width: auto;
 }
 
 .nav{
@@ -69,6 +72,21 @@ button:hover{
     grid-template-columns: repeat(5,1fr);
     margin: 2vh auto;
     width: 90%;
+   /* grid-auto-rows:minmax(200px,auto);*/
 
 }
+
+@media only screen and (max-width: 1200px) {
+    .list{
+        grid-template-columns: repeat(3,1fr);
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    .list{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
 
