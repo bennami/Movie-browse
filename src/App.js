@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import List from "./Components/List";
 import Search from "./Components/search";
 import Nav from "./Components/nav";
+import {BrowserRouter as Router,Switch, Route} from 'react-router-dom'
 import './App.css';
 
 function App() {
@@ -41,17 +42,20 @@ function App() {
   };
 
   return (
+      <Router>
     <div className="App">
          <Nav/>
          <Search
              handleSubmit={searchItem}
              handleChange={handleChange}
          />
-         <List
-            movieList={movieList}
-         />
+
+        {/* <Route path="/search"  exact  compoonent={List}/>*/}
+         <List movieList={movieList}/>
+         <h1>Popular movies</h1>
          <List movieList= {popularMovies}/>
     </div>
+      </Router>
   );
 }
 
