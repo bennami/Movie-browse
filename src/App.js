@@ -9,7 +9,7 @@ function App() {
   //const apiKey =  process.env.REACT_APP_API;
   const [search, setSearch]  = useState('');
   const  [movieList,  setMovieList]  = useState([]);
-  const [popularMovies, setPopular] =useState([]);
+  const [popularMovies, setPopular] = useState([]);
 
 
   //on load, load List with popular movies
@@ -38,11 +38,12 @@ function App() {
 
   //set search while  typing
   const handleChange =  (e) =>{
+      console.log(e.target.value);
       setSearch(e.target.value);
   };
 
   return (
-      <Router>
+
     <div className="App">
          <Nav/>
          <Search
@@ -55,7 +56,7 @@ function App() {
          <h1>Popular movies</h1>
          <List movieList= {popularMovies}/>
     </div>
-      </Router>
+
   );
 }
 
