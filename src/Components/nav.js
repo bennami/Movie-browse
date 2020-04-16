@@ -1,4 +1,6 @@
 import React from "react";
+import {Link} from "react-router-dom";
+
 
 function Nav() {
 return(
@@ -7,8 +9,9 @@ return(
          <img src="//www.themoviedb.org/assets/1/v4/logos/primary-green-d70eebe18a5eb5b166d5c1ef0796715b8d1a2cbc698f96d311d62f894ae87085.svg" alt=""/>
         <div className="navlist">
          <ul>
-             <li><a href="">popular</a></li>
-             <li><a href="">top 5</a></li>
+             <li><Link to={'/'}>home</Link></li>
+             <li><Link to={'/popular'}>popular</Link></li>
+             <li><Link to={'/top 10'}>top 10</Link></li>
          </ul>
         </div>
      </nav>
