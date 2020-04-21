@@ -4,6 +4,7 @@ import SearchBar from "../Components/searchbar";
 function Popular(props) {
 
     const [popularMovies, setPopular] = useState([]);
+
     //on load, load List with popular movies
     useEffect(() => {
         async function fetchData() {
@@ -14,9 +15,9 @@ function Popular(props) {
         fetchData();
     }, []);
 
-    return(
-        <div  className={'popular-container'}>
 
+    return(
+        <div className={'popular-container'}>
         <h1>Popular movies</h1>
         <List movieList={popularMovies}/>
         </div>

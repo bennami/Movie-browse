@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import List from "../Components/List";
-import SearchBar from "../Components/searchbar";
+import {useParams} from "react-router-dom";
+import {useLocation,useHistory} from "react-router-dom";
 function Search(){
 
     const  [movieList,  setMovieList]  = useState([]);
@@ -8,6 +9,7 @@ function Search(){
 
     //when user searches for a movie, fetch data and set movieList
     const searchItem = async (e) => {
+        console.log("hey");
         e.preventDefault();
 
         //fetch stream of data
@@ -18,6 +20,7 @@ function Search(){
         //set json object into moviesList array, every time there is a new search this will refresh itself
         setMovieList(data.results);
 
+
     };
 
     //set search while  typing
@@ -26,15 +29,13 @@ function Search(){
         setSearch(e.target.value);
     };
 
-
+const location = useLocation();
+console.log(location);
     return(
-        <div  className={'search'}>
-            <SearchBar
-                handleSubmit={searchItem}
-                handleChange={handleChange}
-            />
+        <div>
+            <h1>{search}</h1>
             <List movieList={movieList}/>
-            <h1>HELLO</h1>
+
         </div>
     )
 
