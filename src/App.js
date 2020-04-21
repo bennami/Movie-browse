@@ -21,7 +21,7 @@ function App() {
           alert("please enter a movie title")
       }else{
           //fetch stream of data
-          const response1 = await fetch(`/3/search/movie/?api_key=67b347978ffe14fc5d6f8a664a1829f2&query=${search}`);
+          const response1 = await fetch(`https://api.themoviedb.org/3/search/movie/?api_key=67b347978ffe14fc5d6f8a664a1829f2&query=${search}`);
           //convert to json
           const data  = await response1.json();
 

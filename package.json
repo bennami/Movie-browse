@@ -2,7 +2,6 @@
   "homepage": "https://bennami.github.io/Movie-browse/",
   "name": "netflix-react",
   "version": "0.1.0",
-  "proxy": "https://api.themoviedb.org",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
