@@ -4,9 +4,12 @@
     box-sizing: border-box;
 }
 
-h1  {
-    padding-bottom: 5vh;
+h1,h3  {
+
+    padding: 5vh ;
     display: block;
+    margin: auto;
+    text-align: center;
 }
 
 body{
@@ -29,11 +32,12 @@ body h1{
   color: whitesmoke;
   align-content: flex-end;
   text-shadow: 1px 1px 2px #000000;
-  width: 100%;
-  height: 400px;
+  width: 200px;
+  height: 300px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  margin-top: 0.4rem;
 }
 
 .nav{
@@ -73,17 +77,22 @@ a{
 }
 
 .search{
+
     display: flex;
-    margin: 2vh auto;
+
     justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0.8rem;
+    right: 5rem;
+    font-size: smaller;
 }
 
 .search input{
     border: none;
     padding: 2vh;
-    background-color: black;
-    font-size: large;
-    color: whitesmoke;
+    background-color: whitesmoke;
+    color: gray;
     margin-bottom: 3vh;
     border-radius: 20px;
 }
@@ -93,20 +102,26 @@ a{
     background-color: #19ff94;
     border: none;
     padding: 1.5vh;
-    color: #3e1f5d;
+    color: #0b0040;
     margin-left: 2vh;
     cursor: pointer;
-    font-size: large;
+    font-size: 1rem;
     font-weight: bolder;
+}
+.search button a{
+    color: #0b0040;
 }
 
 .list{
     display: grid;
-    grid-gap: 3rem;
-    grid-template-columns: repeat( auto-fit,minmax(220px,1fr));
+    grid-gap:0.5rem;
+    grid-template-columns: repeat( auto-fit,minmax(200px,1fr));
     margin:1rem auto;
-    width: 90% ;
+    width: 80% ;
     justify-items: center;
+    justify-content: center;
+    align-items: center;
+
 }
 
 
