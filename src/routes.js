@@ -7,9 +7,9 @@ const Routes = () =>{
     return(
         <Switch>
             <Route exact path="/" component={Popular}/>
-            <Route exact path="/popular"/>
+            <Route exact path="/popular" component={Popular}/>
             <Route exact path="/top5"/>
-            <Route exact path="/search/:search" component={Search}/>
+            <Route exact path="/search/:name" component={Search}/>
         </Switch>
 
     )

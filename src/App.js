@@ -47,7 +47,7 @@ console.log(history);
 
           //set json object into moviesList array, every time there is a new search this will refresh itself
           setMovieList(data.results);
-         history.push(`/search/${movieList}`);
+         history.push(`/search/${search}`);
           setSubmit(true);
       }
 
@@ -67,7 +67,7 @@ console.log(history);
                   handleSubmit={searchItem}
                   handleChange={handleChange}
               />
-              <Search movieList={isSubmitSearch? movieList: popularMovies}/>
+             {/* <Search movieList={isSubmitSearch? movieList: popularMovies}/>*/}
               <Routes/>
           </div>
       )

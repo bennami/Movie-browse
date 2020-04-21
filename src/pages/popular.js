@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import List from "../Components/List";
-import SearchBar from "../Components/searchbar";
-function Popular(props) {
+
+function Popular() {
 
     const [popularMovies, setPopular] = useState([]);
 

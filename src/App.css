@@ -5,7 +5,7 @@
 }
 
 h1  {
-    padding-bottom: 3vh;
+    padding-bottom: 5vh;
     display: block;
 }
 
@@ -104,7 +104,7 @@ a{
     display: grid;
     grid-gap: 3rem;
     grid-template-columns: repeat( auto-fit,minmax(220px,1fr));
-    margin: auto;
+    margin:1rem auto;
     width: 90% ;
     justify-items: center;
 }
