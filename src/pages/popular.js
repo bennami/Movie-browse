@@ -8,7 +8,7 @@ function Popular() {
     //on load, load List with popular movies
     useEffect(() => {
         async function fetchData() {
-            const response = await fetch (`//api.themoviedb.org/3/movie/popular?api_key=67b347978ffe14fc5d6f8a664a1829f2&language=en-US&page=1`);
+            const response = await fetch (`https://api.themoviedb.org/3/movie/popular?api_key=67b347978ffe14fc5d6f8a664a1829f2&language=en-US&page=1`);
             const popular = await response.json();
             setPopular(popular.results);
         }
