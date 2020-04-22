@@ -7,11 +7,12 @@ function Search(){
     const  [movieList,  setMovieList]  = useState(['hey']);
     const [search, setSearch]  = useState('');
     const {name}= useParams();
-
+    const proxy = "https://cors-anywhere.herokuapp.com/";
     useEffect(() => {
         async function fetchData() {
             //fetch stream of data
-            const response1 = await fetch(`https://api.themoviedb.org/3/search/movie/?api_key=67b347978ffe14fc5d6f8a664a1829f2&query=${name}`);
+            const response1 = await fetch(`${proxy}https://api.themoviedb.org/3/search/movie/?api_key=67b347978ffe14fc5d6f8a664a1829f2&query=${name}`);
+
             //convert to json
             const data  = await response1.json();
             //set json object into moviesList array, every time there is a new search this will refresh itself
