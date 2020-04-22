@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import SearchBar from "./Components/searchbar";
 import Nav from "./Components/nav";
 import Routes from "./routes";
-import {useHistory} from "react-router-dom";
+import {useHistory,HashRouter} from "react-router-dom";
 import './App.css';
 
 
@@ -45,7 +45,9 @@ function App() {
                   handleSubmit={searchItem}
                   handleChange={handleChange}
               />
+
               <Routes/>
+
           </div>
       )
 

@@ -6,12 +6,14 @@ import Popular from "../src/pages/popular"
 const Routes = () =>{
     return(
         <Switch>
-            <Route  path="/" component={Popular}/>
-            <Route path="/popular" component={Popular}/>
-            <Route  path="/Movie-browse" component={Popular}/>
-            <Route  path="/top5"/>
-            <Route  path="/search/:name" component={Search}/>
-            <Route path="/search/:name" component={Search}/>
+
+            <Route exact path="/" component={Popular}/>
+            <Route exact path="/popular" component={Popular}/>
+            <Route exact path="/Movie-browse" component={Popular}/>
+            <Route exact path="/top5"/>
+            <Route exact path="/search/:name" component={Search}/>
+
+
         </Switch>
 
     )
