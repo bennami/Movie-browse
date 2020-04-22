@@ -8,6 +8,7 @@ function Search(){
     const [search, setSearch]  = useState('');
     const {name}= useParams();
     const proxy = "https://cors-anywhere.herokuapp.com/";
+
     useEffect(() => {
         async function fetchData() {
             //fetch stream of data

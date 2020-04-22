@@ -11,7 +11,7 @@ function App() {
   const [search, setSearch]  = useState('');
   const  [movieList,  setMovieList]  = useState([]);
 
-
+    const proxy = "https://cors-anywhere.herokuapp.com/";
   const history=useHistory();
   //when user searches for a movie, fetch data and set movieList
   const searchItem = async (e) => {
@@ -21,11 +21,10 @@ function App() {
           alert("please enter a movie title")
       }else{
           //fetch stream of data
-          const response1 = await fetch(`https://api.themoviedb.org/3/search/movie/?api_key=67b347978ffe14fc5d6f8a664a1829f2&query=${search}`);
+          const response1 = await fetch(`${proxy}https://api.themoviedb.org/3/search/movie/?api_key=67b347978ffe14fc5d6f8a664a1829f2&query=${search}`);
           //convert to json
           const data  = await response1.json();
 
-          //set json object into moviesList array, every time there is a new search this will refresh itself
           setMovieList(data.results);
           history.push(`/search/${search}`);
       }

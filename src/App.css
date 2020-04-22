@@ -78,9 +78,7 @@ a{
 }
 
 .search{
-
     display: flex;
-
     justify-content: center;
     align-items: center;
     position: absolute;
@@ -115,10 +113,10 @@ a{
 
 .list{
     display: grid;
-    grid-gap:0.5rem;
-    grid-template-columns: repeat( auto-fit,minmax(200px,1fr));
-    margin:1rem auto;
-    width: 80% ;
+    grid-gap:1rem;
+    grid-template-columns: repeat( auto-fit,minmax(200px,200px));
+    margin: auto;
+    width: 95% ;
     justify-items: center;
     justify-content: center;
     align-items: center;
@@ -139,8 +137,13 @@ a{
     .search{
         right:-320px;
     }
-
-
+.list{
+    grid-template-columns: repeat( auto-fit,minmax(150px,0fr));
+}
+.card{
+    width: 150px;
+    height: 250px;
+}
 }
 
 

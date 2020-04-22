@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 
 
 function Nav() {
+
 return(
     <div>
      <nav className={'nav'}>
