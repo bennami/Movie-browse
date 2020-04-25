@@ -12,6 +12,7 @@ function Search() {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState();
+    const [pagesLink, setPagesLink] =useState(0);
 
     const proxy = "https://cors-anywhere.herokuapp.com/";
 
@@ -37,18 +38,7 @@ function Search() {
         setCurrentPage(currentPage);
     };
 
-    const Next = ()=>{
-        if(currentPage < totalPages){
-            setCurrentPage(currentPage+1)
-        }
-    };
-    const Previous = ()=>{
-        if(currentPage > 1){
-            setCurrentPage(currentPage-1)
-        }else{
-            setCurrentPage(currentPage)
-        }
-    };
+
 
     return(
 
@@ -56,9 +46,9 @@ function Search() {
             <h3>Results for: {search}</h3>
             <List movieList={movieList}/>
             <div className={"pagination-with-btn"}>
-            <button onClick={Previous}>previous</button>
-            {totalResults > 20 ? <Pagination pages={totalPages} nextPage={nextPage} currentPage={currentPage}/> : ""}
-            <button onClick={Next}>next</button>
+
+            {totalResults > 20 ? <Pagination pagesLink={pagesLink} pages={totalPages} currentpages={currentPage}  nextPage={nextPage} currentPage={currentPage}/> : ""}
+
             </div>
         </div>
     )

@@ -203,7 +203,14 @@ section a:nth-of-type(2){
 .pagination li{
     list-style-type: none;
     cursor: pointer;
+    padding: 0.5rem;
 
+}
+
+li:hover{
+    color: #19ff94;
+    font-size: larger;
+    font-weight: bolder;
 }
 
 .active{
