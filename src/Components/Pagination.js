@@ -5,14 +5,17 @@ function Pagination(props) {
 
     for(let i =1; i <= props.pages; i++){
         let active = props.currentPage === i ? 'active': '';
-        pageLinks.push(<li className={` ${active}`} key={i} onClick={()=>{props.nextPage(i)}}>{i}</li>)
+
+            pageLinks.push(<li className={` ${active}`} key={i} onClick={()=>{props.nextPage(i)}}>{i}</li>)
+
+
     }
 
     return(
         <div className={"container"}>
             <div className="row">
                 <ul className={"pagination"}>
-                    { pageLinks}
+                    {pageLinks.slice(0,10)}
                 </ul>
             </div>
 

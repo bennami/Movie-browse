@@ -202,5 +202,39 @@ section a:nth-of-type(2){
 }
 .pagination li{
     list-style-type: none;
+    cursor: pointer;
+
+}
+
+.active{
+    color: #19ff94;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.pagination-with-btn{
+    display: flex;
+    justify-content: space-around;
+    width: 40%;
+    margin: 1rem auto;
+    align-self: center;
+}
+button{
+    border-radius: 5px;
+    border: none;
+    padding: 1vh;
+    color: #19ff94;
+    margin-left: 2vh;
+    cursor: pointer;
+    font-size: 1rem;
+    background-color: transparent;
+    height: 30px;
+
+    align-self: center;
+}
+
+button:hover{
+    background-color: #19ff94;
+    color: #0b0040;
 
 }

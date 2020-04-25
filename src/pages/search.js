@@ -37,13 +37,29 @@ function Search() {
         setCurrentPage(currentPage);
     };
 
+    const Next = ()=>{
+        if(currentPage < totalPages){
+            setCurrentPage(currentPage+1)
+        }
+    };
+    const Previous = ()=>{
+        if(currentPage > 1){
+            setCurrentPage(currentPage-1)
+        }else{
+            setCurrentPage(currentPage)
+        }
+    };
 
     return(
 
         <div>
             <h3>Results for: {search}</h3>
             <List movieList={movieList}/>
+            <div className={"pagination-with-btn"}>
+            <button onClick={Previous}>previous</button>
             {totalResults > 20 ? <Pagination pages={totalPages} nextPage={nextPage} currentPage={currentPage}/> : ""}
+            <button onClick={Next}>next</button>
+            </div>
         </div>
     )
 }
