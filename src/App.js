@@ -13,7 +13,7 @@ function App() {
 
   const proxy = "https://cors-anywhere.herokuapp.com/";
   const history= useHistory();
-  console.log(history);
+
   //when user searches for a movie, fetch data and set movieList
   const searchItem = async (e) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ function App() {
 
   //set search while  typing
   const handleChange = (e) =>{
-      console.log(e.target.value);
+
       setSearch(e.target.value);
   };
 
