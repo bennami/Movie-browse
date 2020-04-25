@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import List from "../Components/List";
+import Home from "../Components/introhome";
 
 function Popular() {
 
@@ -14,15 +15,16 @@ function Popular() {
         }
         fetchData();
     }, []);
-
+    console.log(TrendingTodayMovies);
 
     return(
-        <div className={'popular-container'}>
-            <div className={"section-banner"}>
+        <div>
+            <Home movieList={TrendingTodayMovies}/>
 
-            </div>
+
         <h1>Trending right now</h1>
         <List movieList={TrendingTodayMovies}/>
+
         </div>
     )
 

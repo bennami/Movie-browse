@@ -16,7 +16,7 @@ body{
     background-color: #2c2c2c;
     color: whitesmoke;
     margin: auto;
-    overflow-x: hidden ;
+   overflow-x: hidden ;
 }
 body h1{
     text-align: left;
@@ -146,4 +146,48 @@ a{
 }
 }
 
+/*horizontal scroll*/
 
+.wrapper{
+    display: grid;
+    grid-template-columns:repeat(1,100%) ;
+}
+
+.wrapper section{
+
+    width: 100%;
+
+    position: relative;
+    display: flex;
+    margin: 20px 0;
+    overflow-x: scroll;
+}
+
+section::-webkit-scrollbar{
+    display: none;
+}
+.item{
+    padding: 0 2px;
+    display: flex;
+}
+
+
+section a{
+    position: absolute;
+    color: whitesmoke;
+    text-decoration: none;
+    font-size: 6rem;
+    background: rgb(0,0,0);
+    width: 80px;
+    padding: 20px;
+    text-align: center;
+    z-index: 1;
+}
+section a:nth-of-type(1){
+    top:0;bottom: 0;left:0;
+    background: linear-gradient(-90deg, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);
+}
+section a:nth-of-type(2){
+    top:0;bottom: 0; right:0;
+    background: linear-gradient(90deg, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);
+}
