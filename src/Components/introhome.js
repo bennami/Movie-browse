@@ -2,6 +2,7 @@ import React from "react"
 
 function Home(props){
 
+
         return (
             <div className={'wrapper container'}>
                 <h1>Trending right now</h1>

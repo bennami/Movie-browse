@@ -3,6 +3,7 @@ import SearchBar from "./Components/searchbar";
 import Nav from "./Components/nav";
 import Routes from "./routes";
 import {useHistory} from "react-router-dom";
+
 import './App.css';
 
 

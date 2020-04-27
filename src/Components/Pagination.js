@@ -17,7 +17,7 @@ function Pagination(props) {
             arrayOfPageLinks.push(arr.slice(i, val + i));
         }
     }
-    chunkArray(pageLinks,10);
+    chunkArray(pageLinks,5);
 
     //show next set of pages, stop at last page.you could also setPagesLink to 0 to go back to the beginning of your pages
     const Next = ()=>{
@@ -42,9 +42,10 @@ function Pagination(props) {
         <div className={"container"}>
             <div className="row">
                 <ul className={"pagination"}>
-                    <button onClick={Previous}>previous</button>
+                    {pagesLink <= 0? '': <button onClick={Previous}>...</button> }
+
                     {arrayOfPageLinks[pagesLink]}
-                    <button onClick={Next}>next</button>
+                    <button onClick={Next}>...</button>
 
                 </ul>
             </div>

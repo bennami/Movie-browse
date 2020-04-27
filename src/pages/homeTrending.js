@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import List from "../Components/List";
 import Home from "../Components/introhome";
 import Pagination from "../Components/Pagination";
+import '../assets/css/slider.scss'
 
 function Popular() {
 
