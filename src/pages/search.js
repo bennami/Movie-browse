@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import List from "../Components/List";
 import {useParams} from "react-router-dom";
 import Pagination from "../Components/Pagination";
+import apiCalls from "../Components/getMovieProfile";
 
 function Search() {
 
@@ -12,7 +13,7 @@ function Search() {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState();
-    const [pagesLink, setPagesLink] =useState(0);
+    const [pagesLink] =useState(0);
 
     const proxy = "https://cors-anywhere.herokuapp.com/";
 
@@ -44,7 +45,7 @@ function Search() {
 
         <div>
             <h3>Results for: {search}</h3>
-            <List movieList={movieList}/>
+            <List movieList={movieList} viewMovieInfo={apiCalls.getProfile()}/>
             <div className={"pagination-with-btn"}>
 
             {totalResults > 20 ? <Pagination pagesLink={pagesLink} pages={totalPages} currentpages={currentPage}  nextPage={nextPage} currentPage={currentPage}/> : ""}

@@ -7,7 +7,6 @@ function Nav() {
     //const apiKey =  process.env.REACT_APP_API;
     const [search, setSearch]  = useState('');
     const  [movieList,  setMovieList]  = useState([]);
-
     const proxy = "https://cors-anywhere.herokuapp.com/";
     const history= useHistory();
 

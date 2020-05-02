@@ -12,6 +12,7 @@ function App() {
 
       return (
           <div className="App">
+              <img className={"d-block w-100 active "} src={`https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg}`} alt={"hey"}/>
               <Nav/>
               <Routes/>
           </div>
