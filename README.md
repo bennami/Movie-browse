@@ -12,12 +12,13 @@ a website where you can browse through a huge library of movies, provided by [th
   - make a nice carousel on homepage.[made a horizontal scrolling one, still not happy with it]
   - on hover card movie show title and a % rating
   - animations 
+  -  everything movie profile
   
-- browse through all movies on search(pagination) [works!]  
+- browse through all movies on search(pagination) [works!, no next yet only dots]  
 - make it responsive
 - react routing to navigate through pages [works!]
-- add page per movie and its routing
-- replace List component with search result instead of creating new one[ended up just reusing component on search route]
+- add page per movie and its routing [movie profile for home check! need to lift state to use that on search and other components]
+- replace List component with search result instead of creating new one [ended up just reusing component on search route]
 - make a login to save favourite movies and stuff
 
 
