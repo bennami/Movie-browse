@@ -1,8 +1,6 @@
 import React from "react"
 
-function Home(props){
-
-
+function TrendingScroll(props){
         return (
             <div className={'wrapper container'}>
                 <h1>Trending right now</h1>
@@ -17,7 +15,6 @@ function Home(props){
 
 
         )
-
 }
 
-export default Home;
+export default TrendingScroll;

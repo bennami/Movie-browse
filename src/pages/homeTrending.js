@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from "react";
 import List from "../Components/List";
-import Home from "../Components/introhome";
+import TrendingScroll from "../Components/trendingScroll";
 import Pagination from "../Components/Pagination";
 import apiCalls from "../Components/getMovieProfile";
 import MovieProfile from './movieProfile';
 import '../assets/css/slider.scss'
+import Landing from "../Components/landingPage";
+import Carousel from "../Components/carousel";
 
 function Popular() {
 
@@ -55,10 +57,23 @@ function Popular() {
 
     return(
         <div>
+
+
+
             {currentMovie === null
              ?
             <>
-            <Home movieList={TrendingTodayMovies}/>
+            {/*{
+               TrendingTodayMovies.map((movie, i) => {
+
+                        return <div className="carousel-item">
+                            <img className={"d-block w-100 "} src={`https://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`} alt={'hey'} key={i}/>
+                        </div>
+               })
+            }*/}
+            <Carousel movie={TrendingTodayMovies}/>
+        {/*    <Landing movieList={TrendingTodayMovies}/>*/}
+            <TrendingScroll movieList={TrendingTodayMovies}/>
             <h1>Browse all popular movies</h1>
             <List movieList={popularMovies} viewMovieInfo={viewMovieInfo}/>
             {totalResults > 20 ? <Pagination pagesLink={pagesLink} pages={totalPages} currentpages={currentPage}  nextPage={nextPage} currentPage={currentPage}/> : ""}
