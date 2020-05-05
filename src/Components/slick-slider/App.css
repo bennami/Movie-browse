@@ -30,3 +30,30 @@ div{
 }.slides .dots{
    z-index: 4000;
  }
+
+ .carousel-item{
+   width: 100%;
+   height: 100vh;
+   background-repeat: no-repeat;
+   background-size: cover;
+   display: flex;
+   justify-items: center;
+   justify-content: center;
+   flex-direction: column;
+   text-align: center;
+   backdrop-filter: opacity(0.4);
+
+ }
+
+.carousel-item h1, h3{
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  text-shadow: 2px 2px 3px #000000;
+  color: whitesmoke;
+
+}
+
+ion-icon {
+  color: white;
+}

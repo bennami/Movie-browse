@@ -5,6 +5,8 @@
   background-repeat: repeat;
   width: 100vw;
   height: 100vh;
+  align-content: center;
+  text-align: center;
   margin: 0 auto;
   padding: 10px;
   position: relative;
@@ -14,9 +16,7 @@
   justify-content: space-evenly;
 }
 .container-profile .content {
-  text-align: left;
   background-color: rgba(0, 0, 0, 0.6);
-  padding: 1rem;
   border-radius: 10px;
   width: 80%;
   display: grid;
@@ -26,6 +26,7 @@
   justify-self: center;
   justify-content: center;
   padding: 3rem 2rem;
+  height: 80vh;
 }
 .container-profile .content .cross {
   cursor: pointer;

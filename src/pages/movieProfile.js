@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import "../utils"
 import './movieProfile.scss'
 
 function MovieProfile(props) {
@@ -31,18 +32,21 @@ const [genre, setGenre] =useState();
             >
 
                 <div className={'content'}>
+                    <ion-icon size="large" name="close-outline" onClick={props.closeMovieInfo} style={{color: "whitesmoke", cursor: "pointer"}}/>
 
                 <div className={"profile-img"}>
                    <img src={`https://image.tmdb.org/t/p/w500/${props.currentMovie.poster_path}`} alt={props.currentMovie.title}/>
                 </div>
                 <div className="profile-text">
-                    <p className={"cross"}  onClick={props.closeMovieInfo} style={{cursor:"pointer"}}>X</p>
+
                     <h2>{props.currentMovie.title}</h2>
 
                     <div className={'sub-title'}>
                     <p><small>{props.currentMovie.vote_average === 0 ? "": `Rating: ${props.currentMovie.vote_average}` } </small></p>
                     <p> <small>Release date: {props.currentMovie.release_date.substr(0,4)} </small></p>
-                    <p> <small> trailer </small></p>
+                    <p> <small> {
+
+                    }trailer </small></p>
                     </div>
                     <br/>
                     <p>

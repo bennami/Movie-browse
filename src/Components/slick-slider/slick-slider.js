@@ -25,7 +25,8 @@ function SlickSlider() {
         slidesToShow: 1,
         autoplay: true,
         arrows: true,
-        className: 'slides'
+        className: 'slides',
+        lazyLoad: true,
     };
 
     return (
@@ -33,8 +34,14 @@ function SlickSlider() {
             <Slider {...settings}>
                 {
                     TrendingTodayMovies.map((movie, i) => {
-                        return <div className="carousel-item" key={i}>
-                            <img  style={{width:"100%"}} src={`https://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`} alt={'hey'} key={i}/>
+                        return <div key={i}>
+                           <div className="carousel-item" key={i} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${movie.backdrop_path})`}}>
+                               <div className={'slider-text'}>
+                               <h1>Movie DB</h1>
+                               <h3>browse through the biggest movie library</h3>
+                                   <ion-icon name="arrow-down"></ion-icon>
+                               </div>
+                            </div>
                         </div>
                     })
                 }

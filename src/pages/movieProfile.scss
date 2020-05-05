@@ -5,7 +5,8 @@
   background-repeat: repeat;
   width: 100vw;
   height: 100vh;
-
+  align-content: center;
+  text-align: center;
   margin: 0 auto;
   padding: 10px;
   position: relative;
@@ -15,11 +16,17 @@
   }
 
   .content{
-    text-align: left;
     background-color: rgba(0,0,0,0.6);
-    padding: 1rem;
     border-radius: 10px;
     width: 80%;
+    display: grid;
+    z-index: 10;
+    grid-template-columns: repeat( auto-fit,minmax(400px,1fr));
+    margin: 0 auto;
+    justify-self: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    height: 80vh;
     .cross{
       cursor: pointer;
       display: flex;
@@ -35,40 +42,22 @@
         color: #00fc87;
       }
     }
-
-    display: grid;
-    z-index: 10;
-    grid-template-columns: repeat( auto-fit,minmax(400px,1fr));
-    margin: 0 auto;
-    justify-self: center;
-    justify-content: center;
-    padding: 3rem 2rem;
   }
   .profile-text, .profile-img{
     margin-top: 0;
     height: 80%;
     width: 90%;
     align-items: center;
-
-
     img{
 
       border-radius: 10px;
       width: 50%;
       margin: auto;
       display: flex;
-
-
     }
 
   }
 
-
-
-  .profile-img{
-
-
-  }
   .profile-text{
 
     text-align: left;
