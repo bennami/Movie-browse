@@ -1,6 +1,6 @@
 import React from "react";
 import "./../assets/css/slider.scss"
-import 'bootstrap/dist/css/bootstrap.css';
+/*import 'bootstrap/dist/css/bootstrap.css';*/
 
 function Carousel(props) {
 

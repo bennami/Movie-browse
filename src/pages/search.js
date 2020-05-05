@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
-import List from "../Components/List";
+import List from "../Components/commons/List";
 import {useParams} from "react-router-dom";
-import Pagination from "../Components/Pagination";
-import apiCalls from "../Components/getMovieProfile";
+import Pagination from "../Components/commons/Pagination";
+import MovieProfile from "./movieProfile";
 
 function Search() {
 
@@ -10,10 +10,12 @@ function Search() {
     const [search, setSearch] = useState('');
     const {name} = useParams();
     const [totalResults, setTotalResults] = useState();
+    const [movieGenres, setMovieGenres] =useState([]);
 
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState();
     const [pagesLink] =useState(0);
+    const [currentMovie, setCurrentMovie] = useState(null);
 
     const proxy = "https://cors-anywhere.herokuapp.com/";
 
@@ -40,19 +42,35 @@ function Search() {
     };
 
 
+    const viewMovieInfo = (id) =>{
+        const filteredMovie = movieList.filter(movie => movie.id === id);
+        const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0]: null;
+        setCurrentMovie(newCurrentMovie);
+    };
+
+    const  closeMovieInfo = () => {
+        setCurrentMovie( null);
+    };
+
 
     return(
 
         <div>
+            {currentMovie === null
+             ?
+            <>
             <h3>Results for: {search}</h3>
-            <List movieList={movieList} viewMovieInfo={apiCalls.getProfile()}/>
+            <List movieList={movieList} viewMovieInfo={viewMovieInfo}/>
             <div className={"pagination-with-btn"}>
-
-            {totalResults > 20 ? <Pagination pagesLink={pagesLink} pages={totalPages} currentpages={currentPage}  nextPage={nextPage} currentPage={currentPage}/> : ""}
-
+            <Pagination pagesLink={pagesLink} pages={totalPages} currentpages={currentPage}  nextPage={nextPage} currentPage={currentPage}/>
             </div>
-        </div>
+            </>
+            :
+            <MovieProfile viewMovieInfo={viewMovieInfo} genre={movieGenres} currentMovie={currentMovie} closeMovieInfo={closeMovieInfo}/>
+            }
+            </div>
     )
+
 }
 
 export default Search;

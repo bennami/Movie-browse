@@ -243,15 +243,14 @@ li:hover{
 
 }
 
-.container-profile{
-    display: grid;
-    grid-gap: 2rem;
-    grid-template-columns: repeat( auto-fit,minmax(100px,1fr));
-    width: 90%;
-    margin: 2vh auto;
-}
 
-.profile-text{
 
+.carousel{
+    display: flex;
+
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 

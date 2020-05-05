@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import SearchBar from "./Components/searchbar";
-import Nav from "./Components/nav";
+import SearchBar from "./Components/commons/searchbar";
+import Nav from "./Components/commons/nav";
 import Routes from "./routes";
 import {useHistory} from "react-router-dom";
 
