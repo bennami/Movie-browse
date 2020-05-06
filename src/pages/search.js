@@ -7,7 +7,7 @@ import MovieProfile from "./movieProfile/movieProfile";
 
 function Search() {
 
-    const [movieList, setMovieList] = useState(['hey']);
+    const [movieList, setMovieList] = useState([]);
     const [search, setSearch] = useState('');
     const {name} = useParams();
     const [totalResults, setTotalResults] = useState();
@@ -20,10 +20,9 @@ function Search() {
     useEffect(() => {
         async function fetchData() {
             //fetch stream of data
-            const response1 = await fetch(`${PROXY}https://api.themoviedb.org/3/search/movie/?api_key=${API_KEY}&query=${name}&page=${currentPage}`);
+            const response1 = await fetch(`${PROXY}https://api.themoviedb.org/3/search/movie/${API_KEY}&query=${name}&page=${currentPage}`);
             //convert to json
             const data = await response1.json();
-
             //set json object into moviesList array, every time there is a new search this will refresh itself
             setMovieList(data.results);
             setSearch(name);

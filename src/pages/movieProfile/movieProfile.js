@@ -17,8 +17,10 @@ function MovieProfile(props) {
                  style={{backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${backdrop_path})`}}
             >
                 <div className={'content'}>
-                    <div className={"profile-img"}>
+                    <div className={"icon"} style={{display:"flex"}}>
                         <ion-icon size="large" name="close-outline" onClick={props.closeMovieInfo} style={{color: "whitesmoke", cursor: "pointer"}}/>
+                    </div>
+                    <div className={"profile-img"}>
                         <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt={title}/>
                     </div>
                     <div className="profile-text">

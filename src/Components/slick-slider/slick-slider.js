@@ -8,6 +8,7 @@ function SlickSlider() {
 
     const [TrendingTodayMovies, setTrending] = useState([]);
     const proxy = "https://cors-anywhere.herokuapp.com/";
+
     //on load, load List with popular movies
     useEffect(() => {
         async function fetchData() {
@@ -16,7 +17,8 @@ function SlickSlider() {
             setTrending(trending.results);
         }
         fetchData();
-    }, []);
+    }, [TrendingTodayMovies]);
+
     const settings = {
         dots: false,
         fade: true,
@@ -39,7 +41,7 @@ function SlickSlider() {
                                <div className={'slider-text'}>
                                <h1>Movie DB</h1>
                                <h3>browse through the biggest movie library</h3>
-                                   <ion-icon size={"large"} name="arrow-down"></ion-icon>
+                                   <ion-icon size={"large"} name="arrow-down"/>
                                </div>
                             </div>
                         </div>
