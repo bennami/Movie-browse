@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react';
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import Slider from "react-slick";
-import './App.css';
+import './slick-slider.css';
 
 function SlickSlider() {
 
@@ -39,7 +39,7 @@ function SlickSlider() {
                                <div className={'slider-text'}>
                                <h1>Movie DB</h1>
                                <h3>browse through the biggest movie library</h3>
-                                   <ion-icon name="arrow-down"></ion-icon>
+                                   <ion-icon size={"large"} name="arrow-down"></ion-icon>
                                </div>
                             </div>
                         </div>

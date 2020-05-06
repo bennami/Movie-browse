@@ -10,3 +10,4 @@ export function getMovieTrailer() {
         setMovieTrailer( response.data.results[0].key );
     });
 }
+console.log(movieTrailer)
