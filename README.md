@@ -21,7 +21,7 @@ a website where you can browse through a huge library of movies, provided by [th
 - replace List component with search result instead of creating new one [ended up just reusing component on search route]
 - make a login to save favourite movies and stuff
 - REDUXXXX
-
+- implement the spinner on fetch load cuz  weird
 
 
 
