@@ -5,7 +5,7 @@ function SearchBar(props) {
 
   return(
       <div  className={'search'}>
-          <form action={<Link to={'/search'}>search</Link>} onSubmit={props.handleSubmit} method={"GET"}>
+          <form action={<Link to={'/search'}>search</Link>} onSubmit={props.handleSubmit}>
           <input onChange={props.handleChange}  type="text" placeholder={'search for a movie'}/>
           <button type={'submit'} onClick={props.handleSubmit} ><Link to={'/search'}>search</Link></button>
       </form>

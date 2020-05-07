@@ -5,7 +5,8 @@ import './movieProfile.scss'
 function MovieProfile(props) {
 
     const {vote_average, release_date, backdrop_path, overview, poster_path, genre_ids, title} = props.currentMovie;
-   /* const [genre, setGenre] = useState();
+
+    /* const [genre, setGenre] = useState();
     function isGenre() {
         return props.genre.id === genre_ids[0]
 
