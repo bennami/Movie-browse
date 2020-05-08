@@ -3,22 +3,10 @@ import List from "../Components/commons/List";
 import Pagination from "../Components/commons/Pagination";
 import MovieProfile from './movieProfile/movieProfile';
 import SlickSlider from "../Components/slick-slider/slick-slider";
-import {PROXY, API_KEY} from "../utils";
+import {PROXY, API_KEY,BASE_URL} from "../utils";
 import "./App.scss"
 
 function HomePage() {
-
-
-    const [emma , setEmma]  = useState( {
-        age:24,
-        hair:"white",
-    });
-
-    setEmma({age:25, ...emma});
-
-    console.log(emma);
-
-
     const [TrendingTodayMovies, setTrending] = useState([]);
     const [popularMovies, setPopular] = useState([]);
     const [totalResults, setTotalResults] = useState();
@@ -32,24 +20,23 @@ function HomePage() {
     //on load, fetch trending, popular and movieGenres
     useEffect(() => {
         async function fetchData() {
-            const response = await fetch (`${PROXY}https://api.themoviedb.org/3/trending/all/day${API_KEY}`);
+            const response = await fetch (`${PROXY}${BASE_URL}/trending/all/day${API_KEY}`);
             const trending = await response.json();
             setTrending(trending.results);
         }
         fetchData();
 
         async function fetchMovieGenres() {
-            const response = await fetch (`${PROXY}https://api.themoviedb.org/3/genre/movie/list${API_KEY}&language=en-US`);
+            const response = await fetch (`${PROXY}${BASE_URL}/genre/movie/list${API_KEY}&language=en-US`);
             const genres = await response.json();
             setMovieGenres(genres);
-
         }
         fetchMovieGenres();
     }, []);
 
     useEffect(() => {
         async function fetchData() {
-            const response = await fetch (`${PROXY}https://api.themoviedb.org/3/movie/popular?api_key=67b347978ffe14fc5d6f8a664a1829f2&language=en-US&page=${currentPage}`);
+            const response = await fetch (`${PROXY}${BASE_URL}/movie/popular${API_KEY}&language=en-US&page=${currentPage}`);
             const popular = await response.json();
             setPopular(popular.results);
             setTotalPages(popular.total_pages);
@@ -79,7 +66,7 @@ function HomePage() {
             {currentMovie === null
              ?
             <>
-                <SlickSlider/>
+                {/*<SlickSlider/>*/}
                 <h1>Browse all popular movies</h1>
                 <List
                     movieList={popularMovies}
@@ -104,7 +91,6 @@ function HomePage() {
     )
 
 }
-
 export default HomePage;
 
 

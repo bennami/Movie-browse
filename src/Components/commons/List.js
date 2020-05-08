@@ -1,27 +1,22 @@
 import React from "react";
 import Card from "../Card.js"
+import {IMG_BASE_200} from "../../utils";
 
-function List(props) {
-
-     return(
-
-         <div  className={'list'}>
-               {
-                  props.movieList.map((movie, i) =>{
-
-                     return <Card
-                                key={i}
-                                img={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
-                                title={movie.original_title}
-                                description={movie.overview}
-                                viewMovieInfo={props.viewMovieInfo}
-                                movieId={movie.id}
-                            />
-
-                  })
-               }
-         </div>
-     )
-}
+const List =({movieList,viewMovieInfo}) =>(
+    <div  className={'list'}>
+       {
+         movieList.map((movie, i) =>{
+             return <Card
+                        key={i}
+                        img={`${IMG_BASE_200}${movie.poster_path}`}
+                        title={movie.original_title}
+                        description={movie.overview}
+                        viewMovieInfo={viewMovieInfo}
+                        movieId={movie.id}
+                    />
+             })
+       }
+    </div>
+)
 
 export default List;

@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import "../../utils"
+import React from 'react';
+import {IMG_BASE_1280} from "../../utils";
 import './movieProfile.scss'
 
 function MovieProfile(props) {
@@ -15,7 +15,7 @@ function MovieProfile(props) {
     return (
         <>
             <div className={"container-profile bg"}
-                 style={{backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${backdrop_path})`}}
+                 style={{backgroundImage: `url(${IMG_BASE_1280}${backdrop_path})`}}
             >
                 <div className={'content'}>
                     <div className={"icon"} style={{display:"flex"}}>

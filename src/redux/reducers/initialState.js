@@ -1,5 +1,7 @@
 export default {
-    TrendingMovies: [],
+    searchInput:'',
+    currentPage: 1,
+    trendingMovies: [],
     PopularMovies: [],
     currentMovieProfile:[],
     searchResults:[],

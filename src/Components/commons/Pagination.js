@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 function Pagination(props) {
 
-    const [pagesLink, setPagesLink] =useState(0);
+    const [pagesLink, setPagesLink]= useState(0);
     const pageLinks=[];
     const arrayOfPageLinks=[];
 
@@ -42,9 +42,16 @@ function Pagination(props) {
         <div className={"container"}>
             <div className="row">
                 <ul className={"pagination"}>
-                    {pagesLink <= 0? '': <button onClick={Previous}>...</button> }
-
+                    {pagesLink <= 0
+                        ? ''
+                        :
+                        <>
+                        <button onClick={Previous}>...</button>
+                        <button>prev</button>
+                        </>
+                    }
                     {arrayOfPageLinks[pagesLink]}
+                    <button onClick={()=>{props.nextPage(props.currentPage)}}>next</button>
                     <button onClick={Next}>...</button>
 
                 </ul>
