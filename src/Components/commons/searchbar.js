@@ -10,13 +10,11 @@ function SearchBar(props) {
 
     const [searchInput, setSearchInput] =  useState();
     const [searchResults,  setSearchResults]  = useState([]);
-    const proxy = "https://cors-anywhere.herokuapp.com/";
     const history= useHistory();
 
     //when user searches for a movie, fetch data and set movieList
     const searchItem = async (e) => {
         e.preventDefault();
-
         if(searchInput === ""){
             alert("please enter a movie title")
         }else{

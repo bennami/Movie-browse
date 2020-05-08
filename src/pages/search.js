@@ -4,6 +4,7 @@ import {useParams} from "react-router-dom";
 import {API_KEY,PROXY,nextPage} from "../utils";
 import Pagination from "../Components/commons/Pagination";
 import MovieProfile from "./movieProfile/movieProfile";
+import Spinner from "../Components/commons/spinner/Spinner";
 
 function Search() {
 
@@ -18,6 +19,7 @@ function Search() {
 
     useEffect(() => {
         async function fetchData() {
+            setMovieList(null)
             //fetch stream of data
             const response = await fetch(`${PROXY}https://api.themoviedb.org/3/search/movie/${API_KEY}&query=${name}&page=${currentPage}`);
             //convert to json
@@ -41,7 +43,9 @@ function Search() {
         setCurrentMovie( null);
     };
 
-
+    const nextPage = (currentPage) => {
+        setCurrentPage(currentPage);
+    };
     return(
 
         <div>
@@ -49,15 +53,26 @@ function Search() {
              ?
             <>
             <h3>Results for: {search}</h3>
-            <List movieList={movieList} viewMovieInfo={viewMovieInfo}/>
-            <div className={"pagination-with-btn"}>
-            <Pagination pagesLink={pagesLink} pages={totalPages} currentpages={currentPage}  nextPage={nextPage} currentPage={currentPage}/>
-            </div>
+                {
+                    movieList === null
+                    ?
+                        <Spinner/>
+                    :
+                    <>
+                    <List movieList={movieList} viewMovieInfo={viewMovieInfo}/>
+                    <div className={"pagination-with-btn"}>
+                    <Pagination pagesLink={pagesLink} pages={totalPages} currentpages={currentPage}  nextPage={nextPage} currentPage={currentPage}/>
+                    </div>
+                    </>
+                }
+
             </>
             :
             <MovieProfile viewMovieInfo={viewMovieInfo} genre={movieGenres} currentMovie={currentMovie} closeMovieInfo={closeMovieInfo}/>
             }
-            </div>
+
+
+       </div>
     )
 
 }

@@ -51,7 +51,7 @@ function Pagination(props) {
                         </>
                     }
                     {arrayOfPageLinks[pagesLink]}
-                    <button onClick={()=>{props.nextPage(props.currentPage)}}>next</button>
+                    <button onClick={props.nextPage}>next</button>
                     <button onClick={Next}>...</button>
 
                 </ul>
