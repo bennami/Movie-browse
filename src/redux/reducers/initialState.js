@@ -2,8 +2,9 @@ export default {
     searchInput:'',
     currentPage: 1,
     trendingMovies: [],
-    PopularMovies: [],
+    popularMovies: [],
     currentMovieProfile:[],
     searchResults:[],
-    apiCallsInProgress: 0
+    apiCallsInProgress: 0,
+    currentMovie:{}
 };

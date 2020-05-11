@@ -15,6 +15,7 @@ const Routes = () =>{
             <Route exact path="/Movie-browse" component={Homepage}/>
             <Route exact path="/top5"/>
             <Route exact path="/search/:name" component={Search}/>
+            <Route path="/movieProfile/:currentMovie" component={MovieProfile}/>
             <Route component={PageNotFound}/>
         </Switch>
     )

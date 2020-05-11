@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from "react";
+import {useHistory} from 'react-router-dom';
+import {connect} from "react-redux";
 import List from "../Components/commons/List";
 import Pagination from "../Components/commons/Pagination";
 import MovieProfile from './movieProfile/movieProfile';
 import SlickSlider from "../Components/slick-slider/slick-slider";
 import {PROXY, API_KEY,BASE_URL} from "../utils";
 import "./App.scss"
+/*import * as homepageActions from "../redux/actions/homePageActions"*/
 
 function HomePage() {
     const [TrendingTodayMovies, setTrending] = useState([]);
@@ -15,6 +18,7 @@ function HomePage() {
     const [pagesLink] = useState(0);
     const [currentMovie, setCurrentMovie] = useState(null);
     const [movieGenres, setMovieGenres] = useState([]);
+    const history= useHistory();
 
 
     //on load, fetch trending, popular and movieGenres
@@ -53,7 +57,8 @@ function HomePage() {
     const viewMovieInfo = (id) =>{
         const filteredMovie = popularMovies.filter(movie => movie.id === id);
         const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0]: null;
-        setCurrentMovie(newCurrentMovie);
+        setCurrentMovie(currentMovie);
+        history.push(`/movieProfile/${newCurrentMovie}`);
 
     };
 
@@ -91,7 +96,12 @@ function HomePage() {
     )
 
 }
-export default HomePage;
+function mapStateToProps(state, ownProps) {
+    return{
+        popularMovies: state.popularMovies
+    };
+}
+export default connect(mapStateToProps)(HomePage);
 
 
 

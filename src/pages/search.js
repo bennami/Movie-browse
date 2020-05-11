@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import List from "../Components/commons/List";
-import {useParams} from "react-router-dom";
+import {useParams,useHistory} from "react-router-dom";
 import {API_KEY,PROXY,nextPage} from "../utils";
 import Pagination from "../Components/commons/Pagination";
 import MovieProfile from "./movieProfile/movieProfile";
@@ -16,6 +16,7 @@ function Search() {
     const [totalPages, setTotalPages] = useState();
     const [pagesLink] = useState(0);
     const [currentMovie, setCurrentMovie] = useState(null)
+    const history = useHistory();
 
     useEffect(() => {
         async function fetchData() {
@@ -37,6 +38,7 @@ function Search() {
         const filteredMovie = movieList.filter(movie => movie.id === id);
         const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0]: null;
         setCurrentMovie(newCurrentMovie);
+        history.push(`/movieProfile/${currentMovie}`);
     };
 
     const  closeMovieInfo = () => {
@@ -68,7 +70,11 @@ function Search() {
 
             </>
             :
-            <MovieProfile viewMovieInfo={viewMovieInfo} genre={movieGenres} currentMovie={currentMovie} closeMovieInfo={closeMovieInfo}/>
+            <MovieProfile
+                viewMovieInfo={viewMovieInfo}
+                genre={movieGenres}
+                currentMovie={currentMovie}
+                closeMovieInfo={closeMovieInfo}/>
             }
 
 

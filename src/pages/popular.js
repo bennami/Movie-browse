@@ -12,8 +12,6 @@ function Popular() {
             const response = await fetch (`${proxy}https://api.themoviedb.org/3/movie/popular?api_key=67b347978ffe14fc5d6f8a664a1829f2&language=en-US&page=1
  `);
 
-
-
             const popular = await response.json();
             setPopular(popular.results);
         }
