@@ -6,10 +6,12 @@ import {API_KEY,PROXY,nextPage} from "../utils";
 import Pagination from "../Components/commons/Pagination";
 import MovieProfile from "./movieProfile/movieProfile";
 import Spinner from "../Components/commons/spinner/Spinner";
-import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
-import mapDispatchToProps from "react-redux/lib/connect/mapDispatchToProps";
+import PropTypes from "prop-types";
+import {bindActionCreators} from "redux";
+import * as homePageAction from "../redux/actions/homePageActions";
 
-function Search() {
+
+function Search({searchInput}) {
 
     const [movieList, setMovieList] = useState([]);
     const [search, setSearch] = useState('');
@@ -54,6 +56,7 @@ function Search() {
     return(
 
         <div>
+            <h1>{searchInput}</h1>
             {currentMovie === null
              ?
             <>
@@ -84,6 +87,23 @@ function Search() {
        </div>
     )
 
+}
+Search.prototypes = {
+    searchInput:PropTypes.string.isRequired,
+    actions: PropTypes.object.isRequired
+}
+
+function mapStateToProps(state) {
+    return{
+        searchInput: state.searchInput,
+        searchResults: state.searchResults
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return{
+        actions: bindActionCreators(homePageAction,dispatch)
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

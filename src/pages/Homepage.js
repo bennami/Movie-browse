@@ -107,7 +107,6 @@ console.log(popularMovies);
 
             {
 
-                props.popularMovies.map(movie =>(<div key={movie.id}> <p>{movie.title}</p></div>))
             }
 
 
