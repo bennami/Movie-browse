@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from "react";
+import {connect} from "react-redux";
 import List from "../Components/commons/List";
 import {useParams,useHistory} from "react-router-dom";
 import {API_KEY,PROXY,nextPage} from "../utils";
 import Pagination from "../Components/commons/Pagination";
 import MovieProfile from "./movieProfile/movieProfile";
 import Spinner from "../Components/commons/spinner/Spinner";
+import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
+import mapDispatchToProps from "react-redux/lib/connect/mapDispatchToProps";
 
 function Search() {
 
@@ -83,4 +86,4 @@ function Search() {
 
 }
 
-export default Search;
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

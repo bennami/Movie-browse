@@ -1,32 +1,68 @@
 import React, {useEffect, useState} from "react";
 import {useHistory} from 'react-router-dom';
 import {connect} from "react-redux";
+import PropTypes from "prop-types"
 import List from "../Components/commons/List";
 import Pagination from "../Components/commons/Pagination";
 import MovieProfile from './movieProfile/movieProfile';
+import Spinner from "../Components/commons/spinner/Spinner";
 import SlickSlider from "../Components/slick-slider/slick-slider";
 import {PROXY, API_KEY,BASE_URL} from "../utils";
 import "./App.scss"
-/*import * as homepageActions from "../redux/actions/homePageActions"*/
+import * as homePageAction from "../redux/actions/homePageActions";
+import {bindActionCreators} from "redux";
 
-function HomePage() {
-    const [TrendingTodayMovies, setTrending] = useState([]);
-    const [popularMovies, setPopular] = useState([]);
-    const [totalResults, setTotalResults] = useState();
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState();
-    const [pagesLink] = useState(0);
-    const [currentMovie, setCurrentMovie] = useState(null);
-    const [movieGenres, setMovieGenres] = useState([]);
+function HomePage({
+    loadPopularMovies,
+    loadTrendingMovies,
+    popularMovies,
+    trendingMovies,
+    results,
+    ...props
+    }) {
+
     const history= useHistory();
 
+    useEffect( ()=>{
 
-    //on load, fetch trending, popular and movieGenres
+        props.actions.loadPopularMovies().catch(error => {
+            alert("loading popular" + error)
+
+        })
+
+        props.actions.loadTrendingMovies().catch(error => {
+            alert("loading popular" + error)
+        })
+
+    },[])
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState();
+    const [currentMovie, setCurrentMovie] = useState(null);
+console.log(popularMovies);
+/*    //loads courses and authors on load
+    useEffect( ()=>{
+        if (trendingMovies.length === 0) {
+            loadTrendingMovies().catch(error => {
+                alert("Loading trending" + error);
+            });
+            loadPopularMovies().catch(error => {
+                alert("loading popular"+error)
+            });
+        }else {
+            setTrendingMovies( trendingMovies );
+            setPopularMovies(popularMovies);
+        }
+        console.log(trendingMovies)
+        console.log(popularMovies)
+    },[trendingMovies,popularMovies]);*/
+
+   /* //on load, fetch trending, popular and movieGenres
     useEffect(() => {
         async function fetchData() {
             const response = await fetch (`${PROXY}${BASE_URL}/trending/all/day${API_KEY}`);
             const trending = await response.json();
-            setTrending(trending.results);
+            setTrendingMovies(trending.results);
         }
         fetchData();
 
@@ -36,9 +72,9 @@ function HomePage() {
             setMovieGenres(genres);
         }
         fetchMovieGenres();
-    }, []);
+    }, []);*/
 
-    useEffect(() => {
+  /* useEffect(() => {
         async function fetchData() {
             const response = await fetch (`${PROXY}${BASE_URL}/movie/popular${API_KEY}&language=en-US&page=${currentPage}`);
             const popular = await response.json();
@@ -47,7 +83,7 @@ function HomePage() {
             setTotalResults(popular.total_results);
         }
         fetchData();
-    }, [currentPage]);
+    }, [currentPage]);*/
 
 
     const nextPage = (currentPage) => {
@@ -55,7 +91,7 @@ function HomePage() {
     };
 
     const viewMovieInfo = (id) =>{
-        const filteredMovie = popularMovies.filter(movie => movie.id === id);
+        const filteredMovie = props.popularMovies.filter(movie => movie.id === id);
         const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0]: null;
         setCurrentMovie(currentMovie);
         history.push(`/movieProfile/${newCurrentMovie}`);
@@ -68,40 +104,71 @@ function HomePage() {
 
     return(
         <div>
-            {currentMovie === null
-             ?
-            <>
-                {/*<SlickSlider/>*/}
-                <h1>Browse all popular movies</h1>
-                <List
-                    movieList={popularMovies}
-                    viewMovieInfo={viewMovieInfo}
-                />
-                <Pagination
-                     pagesLink={pagesLink}
-                     pages={totalPages}
-                     currentpages={currentPage}
-                     nextPage={nextPage}
-                     currentPage={currentPage}
-                />
-            </>
-            :
-                <MovieProfile
-                    viewMovieInfo={viewMovieInfo}
-                    genre={movieGenres}
-                    currentMovie={currentMovie}
-                    closeMovieInfo={closeMovieInfo}/>
+
+            {
+
+                props.popularMovies.map(movie =>(<div key={movie.id}> <p>{movie.title}</p></div>))
             }
+
+
+          {/* <List
+                movieList={props.popularMovies.results}
+                viewMovieInfo={viewMovieInfo}
+            />*/}
+          {/*  {currentMovie === null
+                    ?
+                    <>
+                        <SlickSlider/>
+                        <h1>Browse all popular movies</h1>
+                        <List
+                            movieList={popularMovies}
+                            viewMovieInfo={viewMovieInfo}
+                        />
+                        <Pagination
+                            pagesLink={pagesLink}
+                            pages={totalPages}
+                            currentpages={currentPage}
+                            nextPage={nextPage}
+                            currentPage={currentPage}
+                        />
+                    </>
+                    :
+                    <MovieProfile
+                        viewMovieInfo={viewMovieInfo}
+                        genre={movieGenres}
+                        currentMovie={currentMovie}
+                        closeMovieInfo={closeMovieInfo}/>
+            }*/}
+
         </div>
     )
 
 }
+
+HomePage.prototypes ={
+    loadPopularMovies: PropTypes.func.isRequired,
+    loadTrendingMovies: PropTypes.func.isRequired,
+    popularMovies: PropTypes.array.isRequired,
+    trendingMovies: PropTypes.array.isRequired,
+    searchInput:PropTypes.string.isRequired,
+    results:PropTypes.array.isRequired,
+    actions: PropTypes.object.isRequired,
+}
 function mapStateToProps(state, ownProps) {
     return{
-        popularMovies: state.popularMovies
+        trendingMovies: state.trendingMovies,
+        popularMovies: state.popularMovies,
+        searchInput: state.searchInput,
+        searchResults: state.searchResults
     };
 }
-export default connect(mapStateToProps)(HomePage);
+
+function mapDispatchToProps(dispatch) {
+return{
+   actions: bindActionCreators(homePageAction,dispatch)
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(HomePage);
 
 
 

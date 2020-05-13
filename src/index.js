@@ -9,8 +9,7 @@ import configureStore from "./redux/configureStore";
 //provider is a higher order component that provides  your redux data to child components
 import {Provider as ReduxProvider} from 'react-redux'
 
-
-let  store =  configureStore();
+let  store = configureStore();
 
 ReactDOM.render(
     <ReduxProvider store={store}>

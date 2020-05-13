@@ -1,7 +1,7 @@
 import { handleResponse, handleError } from "./apiUtils";
-import {API_KEY, BASE_URL,PROXY} from "../utils";
+import {API_KEY,BASE_URL,PROXY} from "../utils";
 
-export function loadTrendyMovies() {
+export function loadTrendingMovies() {
     return fetch(`${PROXY}${BASE_URL}/trending/all/day${API_KEY}`)
         .then(handleResponse)
         .catch(handleError);
@@ -13,10 +13,12 @@ export function loadSearch(name,currentPage) {
         .then(handleResponse)
         .catch(handleError);
 }
-export function getPopularMovies(currentPage) {
-    return fetch(`${PROXY}${BASE_URL}/movie/popular/all/day${API_KEY}&page=${currentPage}`)
-        .then(handleResponse)
-        .catch(handleError);
+
+//remove curent page for now
+export function loadPopularMovies() {
+        return  fetch (`${PROXY}${BASE_URL}/movie/popular${API_KEY}&language=en-US&page=${"1"}`)
+            .then(handleResponse)
+            .catch(handleError);
 }
 
 export function getGenreMovies() {

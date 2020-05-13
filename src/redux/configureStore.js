@@ -1,5 +1,5 @@
 import {createStore, applyMiddleware, compose} from "redux";
-import rootReducer from "./reducers";
+import rootReducer from "./reducers/rootReducer";
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant'
 import thunk from "redux-thunk";
 
@@ -15,5 +15,5 @@ export default function configureStore(initialState) {
     );
 }
 //configureStore takes in initial state as parameter so we have some data
-//middleware  is  a way to enhance redux with extra functioonality, 3rd parameter for create store  accepts the middlewarefunction
+//middleware  is  a way to enhance redux with extra functionality, 3rd parameter for create store  accepts the middlewarefunction
 //reduxImmutableStateInvariant() will warn you if you accidentally mutate  any state directly inside the store

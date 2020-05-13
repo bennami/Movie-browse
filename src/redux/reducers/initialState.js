@@ -1,10 +1,10 @@
 export default {
     searchInput:'',
     currentPage: 1,
-    trendingMovies: [],
-    popularMovies: [],
-    currentMovieProfile:[],
-    searchResults:[],
+    currentMovieProfile:null,
     apiCallsInProgress: 0,
-    currentMovie:{}
+    currentMovie:[],
+    searchResults:[],
+    loading: false,
+
 };
