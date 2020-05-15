@@ -10,13 +10,12 @@ export function loadTrendingMovies() {
 }
 
 export function loadSearchResults(name,currentPage) {
-
     return fetch(`${PROXY}${BASE_URL}search/movie/${API_KEY}&query=${name}&page=${currentPage}`)
         .then(handleResponse)
         .catch(handleError);
 }
 
-//remove curent page for now
+
 export function loadPopularMovies() {
         return  fetch (`${PROXY}${BASE_URL}/movie/popular${API_KEY}&language=en-US&page=${"1"}`)
             .then(handleResponse)
@@ -27,12 +26,6 @@ export function getGenreMovies() {
     return fetch(BASE_URL)
         .then(handleResponse)
         .catch(handleError);
-}
-
-export function fetchPopular() {
-    return fetch(`${PROXY}${BASE_URL}/movie/popular${API_KEY}&language=en-US&page=${"1"}`)
-        .then(res=> res.json())
-        .catch(handleError)
 }
 
 

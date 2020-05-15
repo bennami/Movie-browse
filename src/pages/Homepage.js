@@ -40,10 +40,7 @@ function HomePage({
 
     console.log(movies)
 
-
-
-
-
+   //this way works, but not  using the state as a prop
    const popular = useSelector(state => state.homePageReducer.popularMovies)
     console.log(popular)
 

@@ -1,7 +1,6 @@
 export async function handleResponse(response) {
     if (response.ok){
-        console.log('fetch success')
-        console.log(response.json);
+        console.log('fetch success')GIT
         return response.json();}
     if (response.status === 400) {
         // So, a server-side validation error occurred.
