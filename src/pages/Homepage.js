@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import {useHistory} from 'react-router-dom';
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import apiStatusReducer from "../redux/reducers/apiStatusReducer";
@@ -23,10 +22,6 @@ function HomePage({
     ...props
     }) {
 
-    //console.log(props)
-    const history= useHistory();
-    const [movies, setMovies]=useState({...popularMovies})
-
     useEffect( ()=>{
 
          loadPopularMovies().catch(error => {
@@ -34,54 +29,20 @@ function HomePage({
 
         })
 
-
-
         loadTrendingMovies().catch(error => {
             alert("loading popular" + error)
         })
 
-    },[loadPopularMovies,props.actions])
-
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState();
-    const [currentMovie, setCurrentMovie] = useState(null);
+    },[loadPopularMovies, loadTrendingMovies])
 
 
+    const [movies]=useState({...popularMovies})
+
+    console.log(movies)
 
 
 
-   /* //on load, fetch trending, popular and movieGenres
-    useEffect(() => {
-        async function fetchData() {
-            const response = await fetch (`${PROXY}${BASE_URL}/trending/all/day${API_KEY}`);
-            const trending = await response.json();
-            setTrendingMovies(trending.results);
-        }
-        fetchData();
 
-        async function fetchMovieGenres() {
-            const response = await fetch (`${PROXY}${BASE_URL}/genre/movie/list${API_KEY}&language=en-US`);
-            const genres = await response.json();
-            setMovieGenres(genres);
-        }
-        fetchMovieGenres();
-    }, []);*/
-
-    const nextPage = (currentPage) => {
-        setCurrentPage(currentPage);
-    };
-
-    const viewMovieInfo = (id) =>{
-        const filteredMovie = props.popularMovies.filter(movie => movie.id === id);
-        const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0]: null;
-        setCurrentMovie(currentMovie);
-        history.push(`/movieProfile/${newCurrentMovie}`);
-
-    };
-
-   const  closeMovieInfo = () => {
-        setCurrentMovie( null);
-    };
 
    const popular = useSelector(state => state.homePageReducer.popularMovies)
     console.log(popular)
@@ -130,16 +91,13 @@ HomePage.prototypes ={
     loadTrendingMovies: PropTypes.func.isRequired,
     popularMovies: PropTypes.array.isRequired,
     trendingMovies: PropTypes.object.isRequired,
-    searchInput:PropTypes.string.isRequired,
-    results:PropTypes.array.isRequired,
     apiStatusReducer:PropTypes.number.isRequired
 }
 function mapStateToProps(state, ownProps) {
     return{
         trendingMovies: state.trendingMovies,
         popularMovies: state.popularMovies,
-        searchInput: state.searchInput,
-        searchResults: state.searchResults
+
     };
 }
 
