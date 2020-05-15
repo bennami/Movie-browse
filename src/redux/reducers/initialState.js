@@ -1,10 +1,9 @@
 export default {
     searchInput:'',
     currentPage: 1,
-    currentMovieProfile:null,
+    currentMovieProfile:  null,
     apiCallsInProgress: 0,
     currentMovie:[],
-    searchResults:[],
     loading: false,
 
 };

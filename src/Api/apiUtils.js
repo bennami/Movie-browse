@@ -10,12 +10,12 @@ export async function handleResponse(response) {
         console.log(error);
         throw new Error('404 error');
     }
-    throw new Error("Network response was not ok.");
+    throw new Error("response failed");
 }
 
-// In a real app, would likely call an error logging service.
+
 export function handleError(error) {
-    // eslint-disable-next-line no-console
+
     console.error("API call failed. " + error);
     throw error;
 }

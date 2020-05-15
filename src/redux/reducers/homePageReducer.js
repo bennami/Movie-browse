@@ -10,7 +10,9 @@ export default function homePageReducer(state = initialState, action) {
         case types.LOAD_POPULAR_MOVIES_SUCCESS:
             return {...state, popularMovies: action.popularMovies.results};
         case types.SEARCH_INPUT:
-            return {...state,  searchInput: action.searchInput}
+            return {...state,  searchInput: action.searchInput};
+        case types.SEARCH_RESULTS_SUCCESS:
+            return {...state, searchResults: action.searchResults.results}
         default:
             return state;
 

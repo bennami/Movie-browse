@@ -11,19 +11,31 @@ import {bindActionCreators} from "redux";
 import * as homePageAction from "../redux/actions/homePageActions";
 
 
-function Search({searchInput}) {
+function Search({searchInput,currentPage,...props}) {
 
     const [movieList, setMovieList] = useState([]);
     const [search, setSearch] = useState('');
     const {name} = useParams();
     const [movieGenres, setMovieGenres] =useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPagel, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState();
     const [pagesLink] = useState(0);
     const [currentMovie, setCurrentMovie] = useState(null)
     const history = useHistory();
 
-    useEffect(() => {
+    useEffect(()=>{
+        props.actions.loadSearchMovieResults(searchInput,currentPage).catch(error => {
+            alert("loading popular" + error)
+
+        })
+
+
+
+    },[])
+
+
+
+    /*useEffect(() => {
         async function fetchData() {
             setMovieList(null)
             //fetch stream of data
@@ -37,7 +49,7 @@ function Search({searchInput}) {
 
         }
         fetchData();
-    }, [name,currentPage]);
+    }, [name,currentPagel]);*/
 
     const viewMovieInfo = (id) =>{
         const filteredMovie = movieList.filter(movie => movie.id === id);
@@ -89,7 +101,9 @@ function Search({searchInput}) {
 
 }
 Search.prototypes = {
+    loadSearchMovieResults: PropTypes.func.isRequired,
     searchInput:PropTypes.string.isRequired,
+    currentPage:PropTypes.number.isRequired,
     actions: PropTypes.object.isRequired
 }
 

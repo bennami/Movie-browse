@@ -12,11 +12,13 @@ import {Provider as ReduxProvider} from 'react-redux'
 let  store = configureStore();
 
 ReactDOM.render(
-    <ReduxProvider store={store}>
+
       <HashRouter>
+          <ReduxProvider store={store}>
             <App />
+          </ReduxProvider>
       </HashRouter>
-    </ReduxProvider>
+
   ,
   document.getElementById('root')
 );

@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {useHistory} from 'react-router-dom';
 import {connect} from "react-redux";
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
+import apiStatusReducer from "../redux/reducers/apiStatusReducer";
 import List from "../Components/commons/List";
 import Pagination from "../Components/commons/Pagination";
 import MovieProfile from './movieProfile/movieProfile';
@@ -10,7 +11,8 @@ import SlickSlider from "../Components/slick-slider/slick-slider";
 import {PROXY, API_KEY,BASE_URL} from "../utils";
 import "./App.scss"
 import * as homePageAction from "../redux/actions/homePageActions";
-import {bindActionCreators} from "redux";
+import {useSelector} from "react-redux";
+
 
 function HomePage({
     loadPopularMovies,
@@ -21,41 +23,32 @@ function HomePage({
     ...props
     }) {
 
+    //console.log(props)
     const history= useHistory();
+    const [movies, setMovies]=useState({...popularMovies})
 
     useEffect( ()=>{
 
-        props.actions.loadPopularMovies().catch(error => {
+         loadPopularMovies().catch(error => {
             alert("loading popular" + error)
 
         })
 
-        props.actions.loadTrendingMovies().catch(error => {
+
+
+        loadTrendingMovies().catch(error => {
             alert("loading popular" + error)
         })
 
-    },[])
+    },[loadPopularMovies,props.actions])
 
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState();
     const [currentMovie, setCurrentMovie] = useState(null);
-console.log(popularMovies);
-/*    //loads courses and authors on load
-    useEffect( ()=>{
-        if (trendingMovies.length === 0) {
-            loadTrendingMovies().catch(error => {
-                alert("Loading trending" + error);
-            });
-            loadPopularMovies().catch(error => {
-                alert("loading popular"+error)
-            });
-        }else {
-            setTrendingMovies( trendingMovies );
-            setPopularMovies(popularMovies);
-        }
-        console.log(trendingMovies)
-        console.log(popularMovies)
-    },[trendingMovies,popularMovies]);*/
+
+
+
+
 
    /* //on load, fetch trending, popular and movieGenres
     useEffect(() => {
@@ -74,18 +67,6 @@ console.log(popularMovies);
         fetchMovieGenres();
     }, []);*/
 
-  /* useEffect(() => {
-        async function fetchData() {
-            const response = await fetch (`${PROXY}${BASE_URL}/movie/popular${API_KEY}&language=en-US&page=${currentPage}`);
-            const popular = await response.json();
-            setPopular(popular.results);
-            setTotalPages(popular.total_pages);
-            setTotalResults(popular.total_results);
-        }
-        fetchData();
-    }, [currentPage]);*/
-
-
     const nextPage = (currentPage) => {
         setCurrentPage(currentPage);
     };
@@ -102,18 +83,18 @@ console.log(popularMovies);
         setCurrentMovie( null);
     };
 
+   const popular = useSelector(state => state.homePageReducer.popularMovies)
+    console.log(popular)
+
     return(
         <div>
-
-            {
-
-            }
-
-
-          {/* <List
-                movieList={props.popularMovies.results}
+          {/*  <List
+                movieList={popularMovies}
                 viewMovieInfo={viewMovieInfo}
             />*/}
+
+
+
           {/*  {currentMovie === null
                     ?
                     <>
@@ -148,10 +129,10 @@ HomePage.prototypes ={
     loadPopularMovies: PropTypes.func.isRequired,
     loadTrendingMovies: PropTypes.func.isRequired,
     popularMovies: PropTypes.array.isRequired,
-    trendingMovies: PropTypes.array.isRequired,
+    trendingMovies: PropTypes.object.isRequired,
     searchInput:PropTypes.string.isRequired,
     results:PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired,
+    apiStatusReducer:PropTypes.number.isRequired
 }
 function mapStateToProps(state, ownProps) {
     return{
@@ -162,10 +143,9 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-function mapDispatchToProps(dispatch) {
-return{
-   actions: bindActionCreators(homePageAction,dispatch)
-    }
+const mapDispatchToProps={
+   loadPopularMovies: homePageAction.loadPopularMovies,
+   loadTrendingMovies: homePageAction.loadTrendingMovies,
 }
 export default connect(mapStateToProps,mapDispatchToProps)(HomePage);
 

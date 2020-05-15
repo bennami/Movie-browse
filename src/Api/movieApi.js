@@ -1,5 +1,6 @@
 import { handleResponse, handleError } from "./apiUtils";
 import {API_KEY,BASE_URL,PROXY} from "../utils";
+import axios  from "axios"
 
 export function loadTrendingMovies() {
     return fetch(`${PROXY}${BASE_URL}/trending/all/day${API_KEY}`)
@@ -8,7 +9,8 @@ export function loadTrendingMovies() {
 
 }
 
-export function loadSearch(name,currentPage) {
+export function loadSearchResults(name,currentPage) {
+
     return fetch(`${PROXY}${BASE_URL}search/movie/${API_KEY}&query=${name}&page=${currentPage}`)
         .then(handleResponse)
         .catch(handleError);
@@ -26,4 +28,11 @@ export function getGenreMovies() {
         .then(handleResponse)
         .catch(handleError);
 }
+
+export function fetchPopular() {
+    return fetch(`${PROXY}${BASE_URL}/movie/popular${API_KEY}&language=en-US&page=${"1"}`)
+        .then(res=> res.json())
+        .catch(handleError)
+}
+
 
