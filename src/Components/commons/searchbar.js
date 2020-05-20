@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {Link, useHistory} from 'react-router-dom';
 import PropTypes from 'prop-types'
 import * as homePageAction from "../../redux/actions/homePageActions";
-
+import '../../assets/css/searchBar.scss'
 function SearchBar({
     setSearch,
     loadSearchResults,

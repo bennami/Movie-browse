@@ -23,7 +23,7 @@
 }
 .container-profile .content .cross {
   display: flex;
-  justify-content: flex-end;
+  justify-content: end;
 }
 .container-profile .content .info {
   display: grid;

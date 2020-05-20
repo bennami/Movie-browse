@@ -8,6 +8,7 @@ import SlickSlider from "../Components/slick-slider/slick-slider";
 import * as homePageAction from "../redux/actions/homePageActions";
 import "./App.scss"
 
+
 function HomePage({
     loadPopularMovies,
     loadTrendingMovies,
@@ -16,6 +17,7 @@ function HomePage({
     trendingMovies,
     currentMovie,
     }) {
+
 
     useEffect(() => {
         if (popularMovies === undefined ||popularMovies.length === 0) {
