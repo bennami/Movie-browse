@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Link, useHistory} from "react-router-dom";
+import "../../assets/css/navbar.scss"
 import SearchBar from "./searchbar";
 
 

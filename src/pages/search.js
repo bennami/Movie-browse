@@ -62,7 +62,13 @@ function Search() {
             </div>
             </>
             :
-            <MovieProfile viewMovieInfo={viewMovieInfo} genre={movieGenres} currentMovie={currentMovie} closeMovieInfo={closeMovieInfo}/>
+            <MovieProfile
+                viewMovieInfo={viewMovieInfo}
+                genre={movieGenres}
+                currentMovie={currentMovie}
+                closeMovieInfo={closeMovieInfo}
+            />
+
             }
             </div>
     )

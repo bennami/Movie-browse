@@ -22,13 +22,12 @@ function SlickSlider() {
     const settings = {
         dots: false,
         fade: true,
-        infinite: true,
         speed: 200,
         slidesToShow: 1,
         autoplay: true,
         arrows: true,
         className: 'slides',
-        lazyLoad: true,
+
     };
 
     return (

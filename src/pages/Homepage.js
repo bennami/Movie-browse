@@ -5,6 +5,7 @@ import MovieProfile from './movieProfile/movieProfile';
 import SlickSlider from "../Components/slick-slider/slick-slider";
 import {PROXY, API_KEY} from "../utils";
 import "./App.scss"
+import Spinner from "../Components/commons/Spinner";
 
 
 function HomePage() {

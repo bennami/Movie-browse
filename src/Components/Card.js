@@ -8,7 +8,6 @@ const Card  = (props) =>{
                 <p className={"titleMovie"}>{props.title}</p>
            </a>
 
-
     )
 };
 
