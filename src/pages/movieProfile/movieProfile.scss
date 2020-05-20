@@ -1,83 +1,89 @@
-.container-profile{
+.container-profile {
   background-size: cover;
-  background-attachment: fixed;
   background-position: center center;
-  background-repeat: repeat;
+  background-repeat: no-repeat;
   width: 100vw;
-  height: 100vh;
   align-content: center;
   text-align: center;
   margin: 0 auto;
   padding: 10px;
   position: relative;
-    .sub-title{
-      display: flex;
-      justify-content: space-evenly;
-  }
 
-  .content{
-    background-color: rgba(0,0,0,0.6);
+  .content {
+    background-color: rgba(0, 0, 0, 0.6);
     border-radius: 10px;
     width: 80%;
-    display: grid;
     z-index: 10;
-    grid-template-columns: repeat( auto-fit,minmax(400px,1fr));
     margin: 0 auto;
     justify-self: center;
     justify-content: center;
     padding: 3rem 2rem;
-    height: 80vh;
-    .cross{
-      cursor: pointer;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+
+    .cross {
       display: flex;
-      position: absolute;
-      top: 8rem;
-      right: 1rem;
-      font-weight: bold;
-      font-size: 2rem;
+      justify-content: end;
     }
 
-    p{
-      small{
-        color: #00fc87;
+    .info {
+      display: grid;
+      grid-gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      height: 100%;
+
+      .profile-text {
+        margin: auto;
+        text-align: left;
+        padding: 1rem;
+        border-radius: 10px;
+
+        h2 {
+          font-weight: bolder;
+          text-shadow: 2px 2px 3px #000000;
+          font-size: 2rem;
+          margin-bottom: 0.5rem;
+
+        }
+
+        p {
+          text-shadow: 2px 2px 3px #000000;
+        }
+
+        .sub-title {
+          display: flex;
+          justify-content: space-evenly;
+
+          p {
+            small {
+              color: #00fc87;
+            }
+          }
+        }
+      }
+
+      .profile-img {
+        ul {
+          li {
+            list-style: none;
+          }
+        }
+
+        display: flex;
+        justify-content: center;
+        align-content: center;
+
+        img {
+          border-radius: 10px;
+          margin: 2vh auto;
+          padding: 1rem;
+
+        }
       }
     }
   }
-  .profile-text, .profile-img{
-    margin-top: 0;
-    height: 80%;
-   max-width: 90%;
-    align-items: center;
-    img{
-
-      border-radius: 10px;
-      width: 50%;
-      margin: auto;
-      display: flex;
-    }
-
-  }
-
-  .profile-text{
-
-    text-align: left;
-
-    padding: 1rem;
-    border-radius: 10px;
-
-    h2{
-      font-weight: bolder;
-      text-shadow: 2px 2px 3px #000000;
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-
-    }
-    p{
-      text-shadow: 2px 2px 3px #000000;
-    }
-  }
 }
-
 
 
 

@@ -18,13 +18,14 @@ function MovieProfile(props) {
                  style={{backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${backdrop_path})`}}
             >
                 <div className={'content'}>
-                    <div className={"icon"} style={{display:"flex"}}>
+                    <div  className={'cross'}>
                         <ion-icon size="large" name="close-outline" onClick={props.closeMovieInfo} style={{color: "whitesmoke", cursor: "pointer"}}/>
                     </div>
-                    <div className={"profile-img"}>
-                        <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt={title}/>
-                    </div>
-                    <div className="profile-text">
+                    <div className={"info"}>
+                        <div className={"profile-img"}>
+                            <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt={title}/>
+                        </div>
+                        <div className="profile-text">
                         <h2>{title}</h2>
                             <div className={'sub-title'}>
                                 <p><small>{vote_average === 0 ? "": `Rating: ${vote_average}` } </small></p>
@@ -45,6 +46,7 @@ function MovieProfile(props) {
                             }
                         </p>
                         <p>{overview}</p>
+                    </div>
                     </div>
                 </div>
             </div>

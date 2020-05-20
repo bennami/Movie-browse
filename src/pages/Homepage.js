@@ -6,18 +6,8 @@ import SlickSlider from "../Components/slick-slider/slick-slider";
 import {PROXY, API_KEY} from "../utils";
 import "./App.scss"
 
+
 function HomePage() {
-
-
-    const [emma , setEmma]  = useState( {
-        age:24,
-        hair:"white",
-    });
-
-    setEmma({age:25, ...emma});
-
-    console.log(emma);
-
 
     const [TrendingTodayMovies, setTrending] = useState([]);
     const [popularMovies, setPopular] = useState([]);
