@@ -2,7 +2,6 @@
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  width: 100vw;
   align-content: center;
   text-align: center;
   margin: 0 auto;
@@ -62,10 +61,13 @@
 .container-profile .content .info .profile-img ul li {
   list-style: none;
 }
-.container-profile .content .info .profile-img img {
+.container-profile .content .info .profile-img .img-container {
+  width: 100%;
+  height: 100%;
+}
+.container-profile .content .info .profile-img .img-container img {
+  width: 90%;
   border-radius: 10px;
-  margin: 2vh auto;
-  padding: 1rem;
 }
 
 /*# sourceMappingURL=movieProfile.css.map */

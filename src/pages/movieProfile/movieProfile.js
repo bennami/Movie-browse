@@ -1,16 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import "../../utils"
 import './movieProfile.scss'
 
 function MovieProfile(props) {
 
     const {vote_average, release_date, backdrop_path, overview, poster_path, genre_ids, title} = props.currentMovie;
-
-    /* const [genre, setGenre] = useState();
-    function isGenre() {
-        return props.genre.id === genre_ids[0]
-
-    }*/
 
     return (
         <>
@@ -23,7 +17,9 @@ function MovieProfile(props) {
                     </div>
                     <div className={"info"}>
                         <div className={"profile-img"}>
+                            <div className={"img-container"}>
                             <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt={title}/>
+                            </div>
                         </div>
                         <div className="profile-text">
                         <h2>{title}</h2>
