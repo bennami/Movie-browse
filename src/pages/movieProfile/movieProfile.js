@@ -18,8 +18,10 @@ function MovieProfile(props) {
                     <div className={"info"}>
                         <div className={"profile-img"}>
 
+
                             <div className={"img-container"}>
                                 <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt={title}/>
+
                             </div>
                         </div>
                         <div className="profile-text">
