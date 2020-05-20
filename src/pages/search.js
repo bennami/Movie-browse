@@ -65,6 +65,7 @@ console.log(searchInput)
                                 </>
                     }
 
+
                 </>
                 :
                 <MovieProfile
@@ -74,6 +75,7 @@ console.log(searchInput)
                     closeMovieInfo={() => {
                         setMovie([]);
                     }}/>
+
             }
 
         </div>

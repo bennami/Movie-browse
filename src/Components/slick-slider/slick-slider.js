@@ -9,13 +9,17 @@ function SlickSlider({popularMovies}) {
     const settings = {
         dots: false,
         fade: true,
+<<<<<<< HEAD
         infinite: true,
         speed: 150,
+=======
+        speed: 200,
+>>>>>>> fixed weird navbar on safari
         slidesToShow: 1,
         autoplay: true,
         arrows: true,
         className: 'slides',
-        lazyLoad: true,
+
     };
 
     return (

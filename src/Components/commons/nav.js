@@ -1,6 +1,8 @@
-import React from "react";
-import {Link} from "react-router-dom";
-import {LOGO_NAV} from "../../utils";
+
+import React, {useState} from "react";
+import {Link, useHistory} from "react-router-dom";
+import "../../assets/css/navbar.scss"
+
 import SearchBar from "./searchbar";
 
 const Nav =()=> (
