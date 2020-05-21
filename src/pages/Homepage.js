@@ -48,6 +48,7 @@ function HomePage({
 
 
 
+
     return (
         <>
             {
@@ -74,6 +75,7 @@ function HomePage({
                         closeMovieInfo={() => {
                             setMovie([]);
                         }}/>
+
 
             }
         </>

@@ -9,6 +9,7 @@ import * as homePageAction from "../redux/actions/homePageActions";
 
 
 
+
 function Search({
                     setMovie,
                     searchInput,
@@ -75,6 +76,7 @@ console.log(searchInput)
                     closeMovieInfo={() => {
                         setMovie([]);
                     }}/>
+
 
             }
 
