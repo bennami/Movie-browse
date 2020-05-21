@@ -12,11 +12,17 @@ function SlickSlider() {
     //on load, load List with popular movies
     useEffect(() => {
         async function fetchData() {
-            const response = await fetch (`${proxy}https://api.themoviedb.org/3/trending/all/day?api_key=67b347978ffe14fc5d6f8a664a1829f2`);
+            const response = await fetch(`${proxy}https://api.themoviedb.org/3/trending/all/day?api_key=67b347978ffe14fc5d6f8a664a1829f2`);
             const trending = await response.json();
             setTrending(trending.results);
         }
         fetchData();
+          /*  return () => {
+
+
+            };*/
+
+
     }, [TrendingTodayMovies]);
 
     const settings = {
@@ -25,7 +31,7 @@ function SlickSlider() {
         speed: 200,
         slidesToShow: 1,
         autoplay: true,
-        arrows: true,
+        arrows: false,
         className: 'slides',
 
     };

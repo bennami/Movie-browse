@@ -69,6 +69,9 @@ function HomePage() {
         <div>
             {currentMovie === null
              ?
+                popularMovies.length === 0?
+                    <Spinner/>
+                    :
             <>
                 <SlickSlider/>
                 <h1>Browse all popular movies</h1>

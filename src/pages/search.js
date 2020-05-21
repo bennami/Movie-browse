@@ -4,6 +4,7 @@ import {useParams} from "react-router-dom";
 import {API_KEY,PROXY} from "../utils";
 import Pagination from "../Components/commons/Pagination";
 import MovieProfile from "./movieProfile/movieProfile";
+import Spinner from "../Components/commons/Spinner";
 
 function Search() {
 
@@ -54,13 +55,17 @@ function Search() {
         <div>
             {currentMovie === null
              ?
-            <>
-            <h3>Results for: {search}</h3>
-            <List movieList={movieList} viewMovieInfo={viewMovieInfo}/>
-            <div className={"pagination-with-btn"}>
-            <Pagination pagesLink={pagesLink} pages={totalPages} currentpages={currentPage}  nextPage={nextPage} currentPage={currentPage}/>
-            </div>
-            </>
+             movieList.length ==0
+             ?
+             <Spinner/>
+             :
+                <>
+                <h3>Results for: {search}</h3>
+                <List movieList={movieList} viewMovieInfo={viewMovieInfo}/>
+                <div className={"pagination-with-btn"}>
+                <Pagination pagesLink={pagesLink} pages={totalPages} currentpages={currentPage}  nextPage={nextPage} currentPage={currentPage}/>
+                </div>
+                </>
             :
             <MovieProfile
                 viewMovieInfo={viewMovieInfo}
