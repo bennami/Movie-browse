@@ -7,10 +7,11 @@ import Pagination from "../Components/commons/Pagination";
 import MovieProfile from './movieProfile/movieProfile';
 import Spinner from "../Components/commons/spinner/Spinner";
 import SlickSlider from "../Components/slick-slider/slick-slider";
-import {PROXY, API_KEY,BASE_URL} from "../utils";
+import {PROXY, API_KEY, BASE_URL, IMG_BASE_200} from "../utils";
 import "./App.scss"
 import * as homePageAction from "../redux/actions/homePageActions";
 import {useSelector} from "react-redux";
+import Card from "../Components/commons/Card";
 
 
 function HomePage({
@@ -23,64 +24,37 @@ function HomePage({
     }) {
 
     useEffect( ()=>{
+        if(popularMovies === undefined){
+            loadPopularMovies()
+                .catch(error => {
+                    alert("loading popular" + error)
+                })
+        }
+    },[popularMovies,loadPopularMovies])
 
-         loadPopularMovies().catch(error => {
-            alert("loading popular" + error)
-
-        })
-
-        loadTrendingMovies().catch(error => {
-            alert("loading popular" + error)
-        })
-
-    },[loadPopularMovies, loadTrendingMovies])
-
-
-    const [movies]=useState({...popularMovies})
-
-    console.log(movies)
+    console.log(popularMovies)
 
    //this way works, but not  using the state as a prop
-   const popular = useSelector(state => state.homePageReducer.popularMovies)
+    const popular = useSelector(state => state.homePageReducer.popularMovies)
     console.log(popular)
 
     return(
-        <div>
-          {/*  <List
-                movieList={popularMovies}
-                viewMovieInfo={viewMovieInfo}
-            />*/}
+        <>
+           {
+               popularMovies === undefined
+               ?
+                  <Spinner/>
+               :
+
+                   <List
+                       movieList={popularMovies}
+                       viewMovieInfo={''}/>
 
 
 
-          {/*  {currentMovie === null
-                    ?
-                    <>
-                        <SlickSlider/>
-                        <h1>Browse all popular movies</h1>
-                        <List
-                            movieList={popularMovies}
-                            viewMovieInfo={viewMovieInfo}
-                        />
-                        <Pagination
-                            pagesLink={pagesLink}
-                            pages={totalPages}
-                            currentpages={currentPage}
-                            nextPage={nextPage}
-                            currentPage={currentPage}
-                        />
-                    </>
-                    :
-                    <MovieProfile
-                        viewMovieInfo={viewMovieInfo}
-                        genre={movieGenres}
-                        currentMovie={currentMovie}
-                        closeMovieInfo={closeMovieInfo}/>
-            }*/}
-
-        </div>
+            }
+        </>
     )
-
 }
 
 HomePage.prototypes ={
@@ -92,8 +66,8 @@ HomePage.prototypes ={
 }
 function mapStateToProps(state, ownProps) {
     return{
-        trendingMovies: state.trendingMovies,
-        popularMovies: state.popularMovies,
+        trendingMovies: state.homePageReducer.trendingMovies,
+        popularMovies: state.homePageReducer.popularMovies,
 
     };
 }

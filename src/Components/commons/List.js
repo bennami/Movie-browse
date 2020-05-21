@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "./Card.js"
 import {IMG_BASE_200} from "../../utils";
-import { connect } from "react-redux";
+
 
 const List =({movieList,viewMovieInfo}) =>(
     <div  className={'list'}>
@@ -19,11 +19,5 @@ const List =({movieList,viewMovieInfo}) =>(
        }
     </div>
 )
-function mapStateToProps(state) {
-    return{
-        popularMovies: state.popularMovies,
-        trendingMovies: state.trendingMovies
-    };
-}
 
-export default connect(mapStateToProps)(List);
+export default List;

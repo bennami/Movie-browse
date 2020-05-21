@@ -2,7 +2,7 @@ import {createStore, applyMiddleware, compose} from "redux";
 import rootReducer from "./reducers/rootReducer";
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant'
 import thunk from "redux-thunk";
-
+import logger from 'redux-logger'
 export default function configureStore(initialState) {
 
     //this adds support for redux dev tools, this const gives us a funtion that we can call
@@ -11,7 +11,7 @@ export default function configureStore(initialState) {
     return createStore(
         rootReducer,
         initialState,
-        composeEnhancers(applyMiddleware(thunk,reduxImmutableStateInvariant()))
+        composeEnhancers(applyMiddleware(thunk,logger,reduxImmutableStateInvariant()))
     );
 }
 //configureStore takes in initial state as parameter so we have some data
