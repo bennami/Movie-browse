@@ -1,11 +1,6 @@
 import * as types from "./actionTypes";
 import * as HomePageApi from "../../Api/movieApi";
 import {apiCallError, beginApiCall} from "./apiStatus";
-import initialState from "../reducers/initialState";
-import axios from "axios";
-import {API_KEY, BASE_URL, PROXY} from "../../utils";
-import {handleError, handleResponse} from "../../Api/apiUtils";
-
 
 //action creators
 export function loadTrendingMoviesSuccess(trendingMovies) {
@@ -29,9 +24,12 @@ export function searchMoviesResultsSuccess(searchResults) {
 export function loadTrendingMovies() {
     return function (dispatch) {
         dispatch(beginApiCall());
-        return HomePageApi.loadTrendingMovies().then(trendingMovies => {
+        return HomePageApi
+            .loadTrendingMovies()
+            .then(trendingMovies => {
             dispatch(loadTrendingMoviesSuccess(trendingMovies));
-        }).catch(error => {
+        })
+            .catch(error => {
             dispatch(apiCallError(error));
             throw error ;
         });
@@ -41,7 +39,9 @@ export function loadTrendingMovies() {
 export function loadPopularMovies() {
     return function (dispatch) {
         dispatch(beginApiCall());
-        return HomePageApi.loadPopularMovies().then(popularMovies => {
+        return HomePageApi
+            .loadPopularMovies()
+            .then(popularMovies => {
             dispatch(loadPopularMoviesSuccess(popularMovies));
         }).catch(error => {
             dispatch(apiCallError(error));

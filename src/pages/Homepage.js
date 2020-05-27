@@ -7,76 +7,107 @@ import Pagination from "../Components/commons/Pagination";
 import MovieProfile from './movieProfile/movieProfile';
 import Spinner from "../Components/commons/spinner/Spinner";
 import SlickSlider from "../Components/slick-slider/slick-slider";
-import {PROXY, API_KEY, BASE_URL, IMG_BASE_200} from "../utils";
-import "./App.scss"
 import * as homePageAction from "../redux/actions/homePageActions";
-import {useSelector} from "react-redux";
-import Card from "../Components/commons/Card";
+import "./App.scss"
+
+
 
 
 function HomePage({
-    loadPopularMovies,
-    loadTrendingMovies,
-    popularMovies,
-    trendingMovies,
-    results,
-    ...props
-    }) {
+                      loadPopularMovies,
+                      loadTrendingMovies,
+                      popularMovies,
+                      trendingMovies,
+                      results,
+                      ...props
+                  }) {
 
-    useEffect( ()=>{
-        if(popularMovies === undefined){
+    const [currentMovie, setCurrentMovie] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+
+    useEffect(() => {
+        if (popularMovies === undefined) {
             loadPopularMovies()
                 .catch(error => {
                     alert("loading popular" + error)
                 })
         }
-    },[popularMovies,loadPopularMovies])
+        if (trendingMovies === undefined) {
+            loadTrendingMovies()
+                .catch(error => {
+                    alert("loading trending movies" + error)
+                })
+        }
+    }, [trendingMovies, popularMovies, loadTrendingMovies, loadPopularMovies])
 
-    console.log(popularMovies)
+    const nextPage = (currentPage) => {
+        setCurrentPage(currentPage);
+    };
 
-   //this way works, but not  using the state as a prop
-    const popular = useSelector(state => state.homePageReducer.popularMovies)
-    console.log(popular)
+    const viewMovieInfo = (id) => {
+        const filteredMovie = popularMovies.filter(movie => movie.id === id);
+        const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] : null;
+        setCurrentMovie(newCurrentMovie);
 
-    return(
+    };
+
+    const closeMovieInfo = () => {
+        setCurrentMovie(null);
+    };
+
+
+    return (
         <>
-           {
-               popularMovies === undefined
-               ?
-                  <Spinner/>
-               :
-
-                   <List
-                       movieList={popularMovies}
-                       viewMovieInfo={''}/>
-
-
+            {
+                currentMovie === null
+                    ?
+                    popularMovies === undefined  || trendingMovies === undefined
+                        ?
+                        <Spinner/>
+                        :
+                        <>
+                            <SlickSlider
+                            trendingMovies={trendingMovies}/>
+                            <List
+                                movieList={popularMovies}
+                                viewMovieInfo={viewMovieInfo}
+                            />
+                        </>
+                    :
+                    <MovieProfile
+                        viewMovieInfo={viewMovieInfo}
+                        genre={"movieGenres"}
+                        currentMovie={currentMovie}
+                        closeMovieInfo={closeMovieInfo}/>
 
             }
         </>
     )
 }
 
-HomePage.prototypes ={
+HomePage.prototypes = {
     loadPopularMovies: PropTypes.func.isRequired,
     loadTrendingMovies: PropTypes.func.isRequired,
     popularMovies: PropTypes.array.isRequired,
     trendingMovies: PropTypes.object.isRequired,
-    apiStatusReducer:PropTypes.number.isRequired
+    apiStatusReducer: PropTypes.number.isRequired,
+    loading: PropTypes.bool.isRequired
 }
+
 function mapStateToProps(state, ownProps) {
-    return{
+    return {
         trendingMovies: state.homePageReducer.trendingMovies,
         popularMovies: state.homePageReducer.popularMovies,
+        loading: state.apiCallsInProgress > 0
 
     };
 }
 
-const mapDispatchToProps={
-   loadPopularMovies: homePageAction.loadPopularMovies,
-   loadTrendingMovies: homePageAction.loadTrendingMovies,
+const mapDispatchToProps = {
+    loadPopularMovies: homePageAction.loadPopularMovies,
+    loadTrendingMovies: homePageAction.loadTrendingMovies,
 }
-export default connect(mapStateToProps,mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 
 
 

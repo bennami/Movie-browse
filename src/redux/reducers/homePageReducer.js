@@ -19,5 +19,3 @@ export default function homePageReducer(state = initialState, action) {
     }
 }
 
-//  if a variable is not in the initial state:
-// return {...state, {...action.searchInput}
