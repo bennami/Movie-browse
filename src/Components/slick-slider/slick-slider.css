@@ -1,60 +1,59 @@
 .slides .slick-prev,
 .slides .slick-next {
-  position: absolute;
-  top: 40%;
-  z-index: 1;
+    position: absolute;
+    top: 40%;
+    z-index: 1;
 }
 
 .slides {
-  position: center;
+    position: center;
 }
 
 .slides .slick-prev,
 .slides .slick-next {
-  position: absolute;
-  top: 50%;
-  z-index:1;
+    position: absolute;
+    top: 50%;
+    z-index: 1;
 }
 
 .slides .slick-prev {
-  left: 5%;
+    left: 5%;
 }
 
 .slides .slick-next {
-  right: 5%;
+    right: 5%;
 }
 
-
- .carousel-item{
-   width: 100%;
-   height: 95vh;
-   background-repeat: no-repeat;
-   background-size: cover;
-   display: flex;
-   justify-items: center;
-   justify-content: flex-end;
-   flex-direction: column;
-   text-align: center;
-   background-position: center;
-
- }
-
-.carousel-item h1, h3{
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  text-shadow: 2px 2px 3px #000000;
-  color: whitesmoke;
-
+.carousel-item {
+    width: 100%;
+    height: 95vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
+    text-align: center;
+    background-position: center;
 
 }
 
-.slider-text{
-  margin-bottom: 60px;
+.carousel-item h1, h3 {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    text-shadow: 2px 2px 3px #000000;
+    color: whitesmoke;
+
+
+}
+
+.slider-text {
+    margin-bottom: 60px;
 }
 
 ion-icon {
-  color: #00fc87;
+    color: #00fc87;
 }
 
 
