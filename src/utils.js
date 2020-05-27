@@ -1,4 +1,3 @@
-import {useState} from "react";
 
 export const API_KEY = '?api_key=67b347978ffe14fc5d6f8a664a1829f2';
 export const BASE_URL = 'https://api.themoviedb.org/3';

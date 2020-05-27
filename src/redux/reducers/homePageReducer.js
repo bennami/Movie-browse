@@ -12,7 +12,7 @@ export default function homePageReducer(state = initialState, action) {
         case types.SEARCH_INPUT:
             return {...state,  searchInput: action.searchInput};
         case types.SEARCH_RESULTS_SUCCESS:
-            return {...state, searchResults: action.searchResults.results}
+            return {...state, searchResults: action.searchResults.results};
         default:
             return state;
 

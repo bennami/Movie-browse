@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import apiStatusReducer from "../redux/reducers/apiStatusReducer";
 import List from "../Components/commons/List";
 import Pagination from "../Components/commons/Pagination";
 import MovieProfile from './movieProfile/movieProfile';
@@ -10,19 +9,18 @@ import SlickSlider from "../Components/slick-slider/slick-slider";
 import * as homePageAction from "../redux/actions/homePageActions";
 import "./App.scss"
 
-
-
-
 function HomePage({
-                      loadPopularMovies,
-                      loadTrendingMovies,
-                      popularMovies,
-                      trendingMovies,
-                      results,
-                      ...props
-                  }) {
+    loadPopularMovies,
+    loadTrendingMovies,
+    setMovie,
+    popularMovies,
+    trendingMovies,
+    currentMovie,
+    results,
+    ...props
+    }) {
 
-    const [currentMovie, setCurrentMovie] = useState(null);
+
     const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
@@ -38,7 +36,10 @@ function HomePage({
                     alert("loading trending movies" + error)
                 })
         }
-    }, [trendingMovies, popularMovies, loadTrendingMovies, loadPopularMovies])
+       if(currentMovie === undefined){
+         setMovie(null)
+       }
+    }, [setMovie,currentMovie,trendingMovies, popularMovies, loadTrendingMovies, loadPopularMovies])
 
     const nextPage = (currentPage) => {
         setCurrentPage(currentPage);
@@ -47,19 +48,19 @@ function HomePage({
     const viewMovieInfo = (id) => {
         const filteredMovie = popularMovies.filter(movie => movie.id === id);
         const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] : null;
-        setCurrentMovie(newCurrentMovie);
+        setMovie(newCurrentMovie);
 
     };
 
     const closeMovieInfo = () => {
-        setCurrentMovie(null);
+       currentMovie  =  null
     };
 
 
     return (
         <>
             {
-                currentMovie === null
+                currentMovie.length  <= 0
                     ?
                     popularMovies === undefined  || trendingMovies === undefined
                         ?
@@ -88,16 +89,19 @@ function HomePage({
 HomePage.prototypes = {
     loadPopularMovies: PropTypes.func.isRequired,
     loadTrendingMovies: PropTypes.func.isRequired,
+    setMovie:  PropTypes.func.isRequired,
     popularMovies: PropTypes.array.isRequired,
     trendingMovies: PropTypes.object.isRequired,
     apiStatusReducer: PropTypes.number.isRequired,
-    loading: PropTypes.bool.isRequired
+    loading: PropTypes.bool.isRequired,
+    currentMovie:  PropTypes.array.isRequired
 }
 
 function mapStateToProps(state, ownProps) {
     return {
         trendingMovies: state.homePageReducer.trendingMovies,
         popularMovies: state.homePageReducer.popularMovies,
+        currentMovie: state.homePageReducer.currentMovie,
         loading: state.apiCallsInProgress > 0
 
     };
@@ -106,6 +110,7 @@ function mapStateToProps(state, ownProps) {
 const mapDispatchToProps = {
     loadPopularMovies: homePageAction.loadPopularMovies,
     loadTrendingMovies: homePageAction.loadTrendingMovies,
+    setMovie:  homePageAction.setMovie
 }
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 

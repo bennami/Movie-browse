@@ -19,6 +19,9 @@ export function searchMoviesResultsSuccess(searchResults) {
     return {type: types.SEARCH_RESULTS_SUCCESS, searchResults:searchResults};
 }
 
+export function setCurrentMovie(currentMovie) {
+    return {type: types.SET_CURRENT_MOVIE, currentMovie};
+}
 
 //thunks
 export function loadTrendingMovies() {
@@ -55,6 +58,13 @@ export function searchMovie (){
         dispatch(searchInputUser(searchInputUser));
     }
 }
+
+export function setMovie (currentMovie){
+    return function (dispatch) {
+        dispatch(setCurrentMovie(currentMovie));
+    }
+}
+
 
 export function loadSearchMovieResults (name,searchResults){
     return function (dispatch,getState) {
