@@ -25,7 +25,7 @@ function Search({
 
 
     useEffect(() => {
-        if (loadSearchResults === undefined) {
+        if (searchResults === undefined) {
             loadSearchResults(searchInput)
                 .catch(error => {
                     alert("loading popular" + error)
@@ -33,7 +33,7 @@ function Search({
         }
     }, [loadSearchResults,searchInput,searchResults ]);
 
-
+    console.log(searchResults)
     const viewMovieInfo = (id) =>{
         const filteredMovie = searchResults.filter(movie => movie.id === id);
         const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0]: null;
@@ -51,25 +51,18 @@ function Search({
     return(
 
         <div>
-            {searchInput === '' ?
-            <h1>please,search something</h1>
-            :
-
-            currentMovie === null
+            {currentMovie === null
              ?
             <>
-            <h3>Results for: {searchInput}</h3>
+
                 {
                     searchResults === undefined
                     ?
                         <h1>search for something</h1>
-                        :
-                    searchResults.length <=0
-                    ?
-                    <Spinner/>
 
                     :
                     <>
+                    <h3>Results for: {searchInput}</h3>
                     <List movieList={searchResults} viewMovieInfo={viewMovieInfo}/>
                     <div className={"pagination-with-btn"}>
                     <Pagination pagesLink={pagesLink} pages={totalPages} currentpages={currentPage}  nextPage={nextPage} currentPage={currentPage}/>
