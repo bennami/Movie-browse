@@ -6,28 +6,29 @@ import * as homePageAction from "../../redux/actions/homePageActions";
 
 function SearchBar({
     setSearch,
+    loadSearchResults,
     searchInput,
     searchResults,
     currentPage,
     ...props
 }) {
-
     const history= useHistory();
     const[search, setSearchUser]=useState('')
-    //when user searches for a movie, fetch data and set movieList
+
     const searchItem = async (e) => {
         e.preventDefault();
-        if(search === ""){
-            alert("please enter a movie title")
-        }else{
-          setSearch(search,1);
-
-            //alert(search);
-            history.push(`/search/${search}`);
+        if (searchInput === undefined) {
+            if (search === "") {
+                alert("please enter a movie title")
+            } else {
+                setSearch(search);
+            }
         }
-    };
-
-    //set search while typing
+        await loadSearchResults(search).catch(error => {
+            alert("loading search" + error)
+        });
+        history.push(`/search/${search}`);
+    }
     const handleChange = (e) =>{
         setSearchUser(e.target.value);
     };
@@ -46,7 +47,7 @@ function SearchBar({
 SearchBar.prototypes = {
     setSearch:PropTypes.func.isRequired,
     currentPage: PropTypes.number.isRequired,
-    searchMovie: PropTypes.func.isRequired,
+    loadSearchResults: PropTypes.func.isRequired,
     searchInput:PropTypes.string.isRequired,
     searchResults:PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
@@ -63,6 +64,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
     setSearch: homePageAction.setSearch,
-    //searchMovie: homePageAction.searchMovie,
+    loadSearchResults: homePageAction.loadSearchResults
+
 }
 export default connect(mapStateToProps,mapDispatchToProps) (SearchBar);

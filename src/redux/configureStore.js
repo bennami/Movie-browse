@@ -11,7 +11,7 @@ export default function configureStore(initialState) {
     return createStore(
         rootReducer,
         initialState,
-        composeEnhancers(applyMiddleware(thunk,logger,reduxImmutableStateInvariant()))
+        composeEnhancers(applyMiddleware(thunk,reduxImmutableStateInvariant(),logger))
     );
 }
 //configureStore takes in initial state as parameter so we have some data

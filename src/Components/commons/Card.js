@@ -1,17 +1,13 @@
 import React from "react";
-import {useParams} from "react-router-dom";
 
+const Card = ({movieId, img, title, viewMovieInfo}) => {
 
-const Card  = ({movieId,img,title,viewMovieInfo}) =>{
-    const {currentMovie} = useParams();
-    return(
+    return (
 
-            <div  onClick={()=> viewMovieInfo(movieId)}>
-                <div className={'cardMovie'} style={{backgroundImage: `url(${img})`}} />
-                <p className={"titleMovie"}>{title}</p>
-           </div>
-
-
+        <div onClick={() => viewMovieInfo(movieId)}>
+            <div className={'cardMovie'} style={{backgroundImage: `url(${img})`}}/>
+            <p className={"titleMovie"}>{title}</p>
+        </div>
 
     )
 };
