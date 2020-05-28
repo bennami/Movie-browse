@@ -4,7 +4,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import Slider from "react-slick";
 import './slick-slider.css';
 
-function SlickSlider({trendingMovies}) {
+function SlickSlider({popularMovies}) {
 
     const settings = {
         dots: false,
@@ -22,7 +22,7 @@ function SlickSlider({trendingMovies}) {
         <div className="App">
             <Slider {...settings}>
                 {
-                    trendingMovies.map((movie, i) => {
+                    popularMovies.map((movie, i) => {
                         return <div key={i}>
                            <div className="carousel-item" key={i} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${movie.backdrop_path})`}}>
                                <div className={'slider-text'}>

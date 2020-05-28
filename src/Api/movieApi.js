@@ -4,8 +4,8 @@ import {API_KEY,BASE_URL,PROXY} from "../utils";
 
 
 
-export function loadSearchResults(name,currentPage) {
-    return fetch(`${PROXY}${BASE_URL}search/movie/${API_KEY}&query=${name}&page=${currentPage}`)
+export function loadSearchResults(searchInput,currentPage) {
+    return fetch(`${PROXY}${BASE_URL}search/movie/${API_KEY}&query=${searchInput}&page=${currentPage}`)
         .then(handleResponse)
         .catch(handleError);
 }

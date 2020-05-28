@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import List from "../Components/commons/List";
-import Pagination from "../Components/commons/Pagination";
 import MovieProfile from './movieProfile/movieProfile';
 import Spinner from "../Components/commons/spinner/Spinner";
 import SlickSlider from "../Components/slick-slider/slick-slider";
@@ -16,12 +15,7 @@ function HomePage({
     popularMovies,
     trendingMovies,
     currentMovie,
-    results,
-    ...props
     }) {
-
-
-    const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
         if (popularMovies === undefined) {
@@ -36,14 +30,10 @@ function HomePage({
                     alert("loading trending movies" + error)
                 })
         }
-       if(currentMovie === undefined){
-         setMovie(null)
-       }
-    }, [setMovie,currentMovie,trendingMovies, popularMovies, loadTrendingMovies, loadPopularMovies])
 
-    const nextPage = (currentPage) => {
-        setCurrentPage(currentPage);
-    };
+    }, [trendingMovies, popularMovies, loadTrendingMovies, loadPopularMovies])
+
+
 
     const viewMovieInfo = (id) => {
         const filteredMovie = popularMovies.filter(movie => movie.id === id);
@@ -52,15 +42,13 @@ function HomePage({
 
     };
 
-    const closeMovieInfo = () => {
-       currentMovie  =  null
-    };
+
 
 
     return (
         <>
             {
-                currentMovie.length  <= 0
+                currentMovie.length <= 0
                     ?
                     popularMovies === undefined  || trendingMovies === undefined
                         ?
@@ -68,7 +56,8 @@ function HomePage({
                         :
                         <>
                             <SlickSlider
-                            trendingMovies={trendingMovies}/>
+                            popularMovies={popularMovies}/>
+                            <h1>Popular movies</h1>
                             <List
                                 movieList={popularMovies}
                                 viewMovieInfo={viewMovieInfo}
@@ -79,7 +68,9 @@ function HomePage({
                         viewMovieInfo={viewMovieInfo}
                         genre={"movieGenres"}
                         currentMovie={currentMovie}
-                        closeMovieInfo={closeMovieInfo}/>
+                        closeMovieInfo={() => {
+                            setMovie([]);
+                        }}/>
 
             }
         </>

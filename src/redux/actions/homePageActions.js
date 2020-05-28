@@ -1,6 +1,8 @@
 import * as types from "./actionTypes";
 import * as HomePageApi from "../../Api/movieApi";
 import {apiCallError, beginApiCall} from "./apiStatus";
+import {API_KEY, BASE_URL, PROXY} from "../../utils";
+import {handleError, handleResponse} from "../../Api/apiUtils";
 
 //action creators
 export function loadTrendingMoviesSuccess(trendingMovies) {
@@ -11,12 +13,12 @@ export function loadPopularMoviesSuccess(popularMovies) {
     return {type: types.LOAD_POPULAR_MOVIES_SUCCESS, popularMovies};
 }
 
-export function searchInputUser(searchInput) {
+export function setInputUser(searchInput) {
     return {type: types.SEARCH_INPUT, searchInput:searchInput};
 }
 
-export function searchMoviesResultsSuccess(searchResults) {
-    return {type: types.SEARCH_RESULTS_SUCCESS, searchResults:searchResults};
+export function searchMoviesResultsSuccess(searchResults,currentPage) {
+    return {type: types.SEARCH_RESULTS_SUCCESS, searchResults:searchResults,currentPage:currentPage};
 }
 
 export function setCurrentMovie(currentMovie) {
@@ -53,12 +55,40 @@ export function loadPopularMovies() {
     };
 }
 
-export function searchMovie (){
+export function setSearch (searchInput,currentPage){
     return function (dispatch) {
-        dispatch(searchInputUser(searchInputUser));
+        dispatch(setInputUser(searchInput));
+     /*   dispatch(beginApiCall());
+        return HomePageApi.loadSearchResults(searchInput,currentPage)
+            .then(searchResults => {
+                dispatch(searchMoviesResultsSuccess(searchResults));
+            }).catch(error => {
+                dispatch(apiCallError(error));
+                throw error;
+            })*/
     }
 }
 
+export function loadSearchResults(searchInput,currentPage) {
+    return fetch(`${PROXY}${BASE_URL}search/movie/${API_KEY}&query=${searchInput}&page=${currentPage}`)
+        .then(handleResponse)
+        .catch(handleError);
+}
+
+/*export function searchMovie(searchInput,currentPage) {
+    return function (dispatch){
+        dispatch(beginApiCall());
+        return HomePageApi.loadSearchResults(searchInput,currentPage)
+            .then((searchInput,currentPage) => {
+                dispatch(searchMoviesResultsSuccess(searchInput,currentPage));
+            }).catch(error => {
+                dispatch(apiCallError(error));
+                throw error;
+            });
+    }
+
+}
+*/
 export function setMovie (currentMovie){
     return function (dispatch) {
         dispatch(setCurrentMovie(currentMovie));
@@ -66,17 +96,6 @@ export function setMovie (currentMovie){
 }
 
 
-export function loadSearchMovieResults (name,searchResults){
-    return function (dispatch,getState) {
-        const state = getState();
-        dispatch(beginApiCall());
-        return HomePageApi.loadSearchResults().then(searchResults =>{
-            dispatch(searchMoviesResultsSuccess(searchResults));
-        }).catch(error =>{
-            dispatch(apiCallError(error));
-            throw error;
-        });
-    }
-}
+
 
 

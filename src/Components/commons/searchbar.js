@@ -2,28 +2,34 @@ import React, {useState} from "react";
 import {connect} from "react-redux";
 import {Link, useHistory} from 'react-router-dom';
 import PropTypes from 'prop-types'
-import {loadSearch} from "../../Api/movieApi";
-import {bindActionCreators} from "redux";
 import * as homePageAction from "../../redux/actions/homePageActions";
-function SearchBar({searchInputUser,searchResults,...props}) {
+
+function SearchBar({
+    setSearch,
+    searchInput,
+    searchResults,
+    currentPage,
+    ...props
+}) {
 
     const history= useHistory();
-    const[search, setSearch]=useState('')
+    const[search, setSearchUser]=useState('')
     //when user searches for a movie, fetch data and set movieList
     const searchItem = async (e) => {
         e.preventDefault();
         if(search === ""){
             alert("please enter a movie title")
         }else{
-            props.actions.searchInputUser(search)
-            alert(search);
+          setSearch(search,1);
+
+            //alert(search);
             history.push(`/search/${search}`);
         }
     };
 
     //set search while typing
     const handleChange = (e) =>{
-        setSearch(e.target.value);
+        setSearchUser(e.target.value);
     };
 
   return(
@@ -38,7 +44,9 @@ function SearchBar({searchInputUser,searchResults,...props}) {
 
 }
 SearchBar.prototypes = {
-    searchInputUser:PropTypes.func.isRequired,
+    setSearch:PropTypes.func.isRequired,
+    currentPage: PropTypes.number.isRequired,
+    searchMovie: PropTypes.func.isRequired,
     searchInput:PropTypes.string.isRequired,
     searchResults:PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
@@ -46,14 +54,15 @@ SearchBar.prototypes = {
 
 function mapStateToProps(state) {
     return{
+        currentPage:state.currentPage,
         searchInput: state.searchInput,
         searchResults: state.searchResults
     };
 }
 
-function mapDispatchToProps(dispatch) {
-    return{
-        actions: bindActionCreators(homePageAction,dispatch)
-    }
+
+const mapDispatchToProps = {
+    setSearch: homePageAction.setSearch,
+    //searchMovie: homePageAction.searchMovie,
 }
 export default connect(mapStateToProps,mapDispatchToProps) (SearchBar);
