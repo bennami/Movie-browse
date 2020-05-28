@@ -1,6 +1,7 @@
 import React from "react";
 
 
+
 const Card = ({movieId, img, title, viewMovieInfo}) => {
 
     return (
@@ -9,6 +10,7 @@ const Card = ({movieId, img, title, viewMovieInfo}) => {
             <div className={'cardMovie'} style={{backgroundImage: `url(${img})`}}/>
             <p className={"titleMovie"}>{title}</p>
         </div>
+
 
 
     )

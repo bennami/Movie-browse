@@ -1,17 +1,73 @@
-/* Error: expected "{".
- *    ,
- * 99 | >>>>>>> making it look good on chrome and safari
- *    |                                                 ^
- *    '
- *   movieProfile.scss 99:49  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: 'Error: expected "{".\a    \2577 \a 99 \2502  >>>>>>> making it look good on chrome and safari\a    \2502                                                  ^\a    \2575 \a   movieProfile.scss 99:49  root stylesheet';
+.container-profile {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  align-content: center;
+  text-align: center;
+  margin: 0 auto;
+  padding: 10px;
+  position: relative;
 }
+.container-profile .content {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  width: 80%;
+  z-index: 10;
+  margin: 0 auto;
+  justify-self: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+}
+.container-profile .content .cross {
+  display: flex;
+  justify-content: end;
+}
+.container-profile .content .info {
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  height: 100%;
+}
+.container-profile .content .info .profile-text {
+  margin: auto;
+  text-align: left;
+  padding: 1rem;
+  border-radius: 10px;
+}
+.container-profile .content .info .profile-text h2 {
+  font-weight: bolder;
+  text-shadow: 2px 2px 3px #000000;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.container-profile .content .info .profile-text p {
+  text-shadow: 2px 2px 3px #000000;
+}
+.container-profile .content .info .profile-text .sub-title {
+  display: flex;
+  justify-content: space-evenly;
+}
+.container-profile .content .info .profile-text .sub-title p small {
+  color: #00fc87;
+}
+.container-profile .content .info .profile-img {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.container-profile .content .info .profile-img ul li {
+  list-style: none;
+}
+.container-profile .content .info .profile-img .img-container {
+  width: 100%;
+  height: 100%;
+}
+.container-profile .content .info .profile-img .img-container img {
+  width: 90%;
+  border-radius: 10px;
+}
+
+/*# sourceMappingURL=movieProfile.css.map */

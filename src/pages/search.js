@@ -9,7 +9,6 @@ import * as homePageAction from "../redux/actions/homePageActions";
 
 
 
-
 function Search({
                     setMovie,
                     searchInput,
@@ -30,7 +29,6 @@ function Search({
 
     /*useEffect(()=>{
    if(searchInput !=='') {
-
        loadSearchResults(searchInput).catch(error => {
            alert("loading popular" + error)
        })
@@ -38,7 +36,7 @@ function Search({
         }
     },[])*/
 
-console.log(searchInput)
+    console.log(searchInput)
     return (
         <div>
             { currentMovie.length <= 0
@@ -66,7 +64,6 @@ console.log(searchInput)
                                 </>
                     }
 
-
                 </>
                 :
                 <MovieProfile
@@ -76,8 +73,6 @@ console.log(searchInput)
                     closeMovieInfo={() => {
                         setMovie([]);
                     }}/>
-
-
             }
 
         </div>
