@@ -39,7 +39,7 @@ function SearchBar({
         <div className={'search'}>
             <form action={<Link to={'/search'}>search</Link>} onSubmit={searchItem}>
                 <input onChange={handleChange} type="text" value={search} placeholder={'search for a movie'}/>
-                <button type={'submit'}><Link to={'/search'}>search</Link></button>
+                <button type={'submit'} onClick={searchItem}><Link to={'/search'}>search</Link></button>
             </form>
             <p>{props.searchInput}</p>
         </div>
