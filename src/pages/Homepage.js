@@ -18,13 +18,13 @@ function HomePage({
     }) {
 
     useEffect(() => {
-        if (popularMovies === undefined) {
+        if (popularMovies === undefined ||popularMovies.length === 0) {
             loadPopularMovies()
                 .catch(error => {
                     alert("loading popular" + error)
                 })
         }
-        if (trendingMovies === undefined) {
+        if (trendingMovies === undefined || trendingMovies.length ===0) {
             loadTrendingMovies()
                 .catch(error => {
                     alert("loading trending movies" + error)

@@ -11,53 +11,56 @@ function SearchBar({
     searchResults,
     currentPage,
     ...props
-}) {
-    const history= useHistory();
-    const[search, setSearchUser]=useState('')
+    }) {
 
+    const [search, setSearchUser] = useState('');
+    const history = useHistory();
+
+    //search and  redirect to search results
     const searchItem = async (e) => {
         e.preventDefault();
-        if (searchInput === undefined) {
-            if (search === "") {
-                alert("please enter a movie title")
-            } else {
-                setSearch(search);
-            }
+
+        if (search === "") {
+            alert("please enter a movie title")
+        } else {
+            setSearch(search);
+            loadSearchResults(search).catch(error => {
+                alert("loading popular" + error)
+            })
+            history.push(`/search/${search}`);
         }
-        await loadSearchResults(search).catch(error => {
-            alert("loading search" + error)
-        });
-        history.push(`/search/${search}`);
     }
-    const handleChange = (e) =>{
+
+    const handleChange = (e) => {
         setSearchUser(e.target.value);
     };
 
-  return(
-      <div  className={'search'}>
-          <form action={<Link to={'/search'}>search</Link>} onSubmit={searchItem}>
-          <input onChange={handleChange}  type="text"  value={search} placeholder={'search for a movie'} />
-          <button type={'submit'} onClick={searchItem}><Link to={'/search'}>search</Link></button>
-      </form>
-          <p>{props.searchInput}</p>
-      </div>
-  )
+    return (
+        <div className={'search'}>
+            <form action={<Link to={'/search'}>search</Link>} onSubmit={searchItem}>
+                <input onChange={handleChange} type="text" value={search} placeholder={'search for a movie'}/>
+                <button type={'submit'}><Link to={'/search'}>search</Link></button>
+            </form>
+            <p>{props.searchInput}</p>
+        </div>
+    )
 
 }
+
 SearchBar.prototypes = {
-    setSearch:PropTypes.func.isRequired,
+    setSearch: PropTypes.func.isRequired,
     currentPage: PropTypes.number.isRequired,
     loadSearchResults: PropTypes.func.isRequired,
-    searchInput:PropTypes.string.isRequired,
-    searchResults:PropTypes.array.isRequired,
+    searchInput: PropTypes.string.isRequired,
+    searchResults: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
 }
 
 function mapStateToProps(state) {
-    return{
-        currentPage:state.currentPage,
-        searchInput: state.searchInput,
-        searchResults: state.searchResults
+    return {
+        currentPage: state.homePageReducer.currentPage,
+        searchInput: state.homePageReducer.searchInput,
+        searchResults: state.homePageReducer.searchResults
     };
 }
 
@@ -67,4 +70,4 @@ const mapDispatchToProps = {
     loadSearchResults: homePageAction.loadSearchResults
 
 }
-export default connect(mapStateToProps,mapDispatchToProps) (SearchBar);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

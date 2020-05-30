@@ -5,6 +5,6 @@ import searchReducer from "./searchReducer"
 const rootReducer = combineReducers({
     homePageReducer,
     apiStatusReducer,
-    searchReducer
+
 });
 export default rootReducer;
