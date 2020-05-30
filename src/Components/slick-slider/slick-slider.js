@@ -4,18 +4,21 @@ import 'slick-carousel/slick/slick-theme.css'
 import Slider from "react-slick";
 import './slick-slider.css';
 
+
 function SlickSlider({popularMovies}) {
+
 
     const settings = {
         dots: false,
         fade: true,
-        infinite: true,
-        speed: 150,
+
+        speed: 200,
+
         slidesToShow: 1,
         autoplay: true,
-        arrows: true,
+        arrows: false,
         className: 'slides',
-        lazyLoad: true,
+
     };
 
     return (

@@ -1,17 +1,12 @@
 import React from "react";
 
+const Card  = (props) =>{
+    return(
 
-
-const Card = ({movieId, img, title, viewMovieInfo}) => {
-
-    return (
-
-        <div onClick={() => viewMovieInfo(movieId)}>
-            <div className={'cardMovie'} style={{backgroundImage: `url(${img})`}}/>
-            <p className={"titleMovie"}>{title}</p>
-        </div>
-
-
+            <div onClick={()=> props.viewMovieInfo(props.movieId)}>
+                <div className={'cardMovie'} style={{backgroundImage: `url(${props.img})`}} />
+                <p className={"titleMovie"}>{props.title}</p>
+           </div>
 
     )
 };

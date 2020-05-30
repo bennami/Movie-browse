@@ -19,6 +19,7 @@ function MovieProfile(props) {
                         <div className={"profile-img"}>
 
 
+
                             <div className={"img-container"}>
                                 <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt={title}/>
 
@@ -26,6 +27,7 @@ function MovieProfile(props) {
                         </div>
                         <div className="profile-text">
                             <h2>{title}</h2>
+
 
                             <div className={'sub-title'}>
                                 <p><small>{vote_average === 0 ? "": `Rating: ${vote_average}` } </small></p>
@@ -49,7 +51,8 @@ function MovieProfile(props) {
                         </div>
                     </div>
                     </div>
-                </div>
+                    </div>
+
         </>
     );
 }

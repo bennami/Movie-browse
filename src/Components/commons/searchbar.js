@@ -1,3 +1,4 @@
+
 import React, {useState} from "react";
 import {connect} from "react-redux";
 import {Link, useHistory} from 'react-router-dom';
@@ -15,6 +16,7 @@ function SearchBar({
 
     const [search, setSearchUser] = useState('');
     const history = useHistory();
+
 
     //search and  redirect to search results
     const searchItem = async (e) => {

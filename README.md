@@ -10,10 +10,10 @@ a website where you can browse through a huge library of movies, provided by [th
 ### TO DO:
 
 - styling:
-  - make a nice carousel on homepage.[used slick-slider,might try another library since this one uses jquery and there is an    issue where the image wont load  at page load]
+  - make a nice carousel on homepage.[used slick-slider, fixed memory leak with redux state]
   - on hover card movie show title and a % rating
   - animations 
-  - movie profile: add genre, add nice  icons, further styling and add  movie trailer
+  - movie profile: add genre, add nice icons, further styling and add  movie trailer
   
 - browse through all movies on search(pagination) [works!, no next yet only dots]  
 - make it responsive
