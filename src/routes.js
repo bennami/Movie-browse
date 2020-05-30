@@ -10,7 +10,6 @@ const Routes = () =>{
     return(
         <Switch>
             <Route exact path="/" component={Homepage}/>
-           {/* <Route exact path="/:MovieProfile" component={MovieProfile()}/>*/}
             <Route exact path="/popular" component={Popular}/>
             <Route exact path="/Movie-browse" component={Homepage}/>
             <Route exact path="/top5"/>

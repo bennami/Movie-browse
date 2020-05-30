@@ -7,34 +7,33 @@ import Spinner from "../Components/commons/spinner/Spinner";
 import PropTypes from "prop-types";
 import * as homePageAction from "../redux/actions/homePageActions";
 
-
-
 function Search({
                     setMovie,
                     searchInput,
                     searchResults,
                     loadSearchResults,
-                    currentMovie
+                    currentMovie,
+                    setSearch
                 }) {
     const [movieGenres, setMovieGenres] = useState([]);
     const history = useHistory();
-    console.log(searchResults)
-    console.log(currentMovie)
+    const {name} = useParams();
+
+  useEffect(()=>{
+      setSearch(name)
+     if(searchInput !=='') {
+         loadSearchResults(searchInput).catch(error => {
+             alert("loading popular" + error)
+         })
+         history.push(`/search/${searchInput}`);
+     }
+  },[searchInput]);
 
     const viewMovieInfo = (id) => {
         const filteredMovie = searchResults.filter(movie => movie.id === id);
         const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] : null;
         setMovie(newCurrentMovie);
     };
-
-    /*useEffect(()=>{
-   if(searchInput !=='') {
-       loadSearchResults(searchInput).catch(error => {
-           alert("loading popular" + error)
-       })
-       history.push(`/search/${searchInput}`);
-        }
-    },[])*/
 
     console.log(searchInput)
     return (
@@ -47,7 +46,6 @@ function Search({
                         searchResults === undefined
                             ?
                             <>
-                                <h1>search undefined</h1>
                                 <Spinner/>
                             </>
                             :
@@ -81,6 +79,7 @@ function Search({
 
 Search.prototypes = {
     loadSearchResults: PropTypes.func.isRequired,
+    setSearch:PropTypes.func.isRequired,
     searchInput: PropTypes.string.isRequired,
     searchResults: PropTypes.array.isRequired,
     currentMovie: PropTypes.array.isRequired,
@@ -99,6 +98,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
     loadSearchResults: homePageAction.loadSearchResults,
+    setSearch: homePageAction.setSearch,
     setMovie: homePageAction.setMovie
 }
 
