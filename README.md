@@ -11,15 +11,14 @@ a website where you can browse through a huge library of movies, provided by [th
 ### TO DO:
 
 - styling:
-  - make a nice carousel on homepage.[used slick-slider, fixed memory leak with redux state]
-  - on hover card movie show title and a % rating
   - animations 
-  - movie profile: add genre, add nice icons, further styling and add  movie trailer
-  - add pagination back
-  - fix link search
+  - movie profile: add genre, add nice icons, further styling 
+  - make movie  profile routing
+
 - make a login to save favourite movies and stuff
 - implement the spinner on fetch load when u change page cuz  weird
-
+- fix link search
+- add pagination back
 
 
 
