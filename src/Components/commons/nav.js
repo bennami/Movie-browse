@@ -15,7 +15,7 @@ function Nav ({setMovie}) {
          <div className={"nav-links"}>
              <img src={LOGO_NAV} alt=""/>
              <ul>
-             <li onClick={emptyMovie}><Link to={'/'}>home</Link></li>
+             <li onClick={emptyMovie}><Link to={'/home'}>home</Link></li>
              <li onClick={emptyMovie}><Link to={'/login'}>login</Link></li>
              <li onClick={emptyMovie} className={"hide"}><i >search</i></li>
              </ul>

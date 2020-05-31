@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import {useHistory, useParams} from "react-router-dom";
 import * as homePageAction from "../../redux/actions/homePageActions";
 import List from "../../Components/commons/List";
 import MovieProfile from '../movieProfile/movieProfile';
@@ -12,7 +13,8 @@ import Pagination from "../../Components/commons/pagination/Pagination";
 function HomePage({
     loadPopularMovies,
     loadTrendingMovies,
-    totalPages,
+    loadGenres,
+    genres,
     setMovie,
     popularMovies,
     trendingMovies,
@@ -20,7 +22,7 @@ function HomePage({
     currentPage,
     setCurrentPage
     }) {
-
+const history = useHistory();
     useEffect(() => {
         if (popularMovies === undefined ||popularMovies.length === 0) {
             loadPopularMovies(currentPage)
@@ -35,12 +37,23 @@ function HomePage({
                 })
         }
 
-    }, [trendingMovies, popularMovies, loadTrendingMovies, loadPopularMovies,currentPage]);
+        if(genres === undefined){
+            loadGenres()
+                .catch(error => {
+                    alert("loading trending movies" + error)
+                })
+        }
+
+    }, [genres,loadGenres,trendingMovies, popularMovies, loadTrendingMovies, loadPopularMovies,currentPage]);
 
     const viewMovieInfo = (id) => {
-        const filteredMovie = popularMovies.filter(movie => movie.id === id);
-        const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] : null;
-        setMovie(newCurrentMovie);
+            const filteredMovie = popularMovies.filter(movie => movie.id === id);
+            const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] : null;
+            if(currentMovie.length  === 0){
+                setMovie(newCurrentMovie);
+                //history.push(`/home/${currentMovie.title}`);
+            }
+
 
     };
 
@@ -87,6 +100,7 @@ function HomePage({
 HomePage.prototypes = {
     loadPopularMovies: PropTypes.func.isRequired,
     loadTrendingMovies: PropTypes.func.isRequired,
+    loadGenres: PropTypes.func.isRequired,
     setMovie:  PropTypes.func.isRequired,
     popularMovies: PropTypes.array.isRequired,
     trendingMovies: PropTypes.object.isRequired,
@@ -111,6 +125,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
     loadPopularMovies: homePageAction.loadPopularMovies,
     loadTrendingMovies: homePageAction.loadTrendingMovies,
+    loadGenres: homePageAction.loadGenres,
     setMovie:  homePageAction.setMovie
 }
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

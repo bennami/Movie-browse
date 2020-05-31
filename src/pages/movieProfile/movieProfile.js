@@ -41,9 +41,6 @@ const [trailer,setTrailer]=useState(false);
            <div className={"container-profile bg"}
                 style={{backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${backdrop_path})`}}
            >
-
-
-
                     <div className={'content'}>
                             {
                                 trailer
@@ -56,7 +53,9 @@ const [trailer,setTrailer]=useState(false);
 
                                     />
 
-                                    :''}
+                                    :
+                                    ''
+                            }
                         <div  className={'cross'}>
                             <ion-icon size="large" name="close-outline" onClick={closeMovieInfo} style={{color: "whitesmoke", cursor: "pointer"}}/>
                         </div>
@@ -83,12 +82,10 @@ const [trailer,setTrailer]=useState(false);
                                 <p>
                                     {
                                         genre_ids.map(id => {
-                                            if (id === genre.id) {
-                                                console.log(genre.name);
-                                                return genre.name
-                                            } else {
-                                                return ""
-                                            }
+
+                                                console.log(id);
+
+
                                         })
                                     }
                                 </p>
@@ -107,11 +104,13 @@ const [trailer,setTrailer]=useState(false);
 MovieProfile.prototypes = {
     trailer: PropTypes.array.isRequired,
     searchTrailer: PropTypes.func.isRequired,
+    currentMovie :PropTypes.array.isRequired
 }
 
 function mapStateToProps(state,ownProps) {
     return {
         trailer: state.homePageReducer.trailer,
+        currentMovie: state.homePageReducer.currentMovie
     };
 }
 

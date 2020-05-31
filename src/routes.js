@@ -10,8 +10,10 @@ const Routes = () =>{
     return(
         <Switch>
             <Route exact path="/" component={Homepage}/>
-            <Route exact path="/popular" component={Popular}/>
+            <Route exact path="/home" component={Homepage}/>
+            <Route  path="/home/:currentMovie"  component={MovieProfile}/>
             <Route exact path="/Movie-browse" component={Homepage}/>
+            <Route exact path="/popular" component={Popular}/>
             <Route exact path="/top5"/>
             <Route path="/search/:name" component={Search}/>
             <Route path="/movieProfile/:currentMovie" component={MovieProfile}/>

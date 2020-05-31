@@ -29,8 +29,8 @@ export function loadTrailer(id) {
 }
 
 
-export function getGenreMovies() {
-    return fetch(BASE_URL)
+export function loadGenresMovies() {
+    return fetch(`${BASE_URL}/genre/movie/list${API_KEY}&language=en-US`)
         .then(handleResponse)
         .catch(handleError);
 }

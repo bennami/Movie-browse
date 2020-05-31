@@ -32,6 +32,9 @@ export function setCurrentPageSuccess(currentPage) {
 
 }
 
+export function searchGenresSuccess(genres) {
+    return {type: types.SEARCH_GENRE_SUCCESS,genres}
+}
 //thunks
 export function loadTrendingMovies() {
     return function (dispatch) {
@@ -58,6 +61,20 @@ export function loadPopularMovies(currentPage) {
             dispatch(apiCallError(error));
             throw error;
         });
+    };
+}
+
+export function loadGenres() {
+    return function (dispatch) {
+        dispatch(beginApiCall());
+        return HomePageApi
+            .loadGenresMovies()
+            .then(genres => {
+                dispatch(searchGenresSuccess(genres));
+            }).catch(error => {
+                dispatch(apiCallError(error));
+                throw error;
+            });
     };
 }
 
