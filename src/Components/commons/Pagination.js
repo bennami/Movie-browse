@@ -1,17 +1,23 @@
-import React, {useState} from "react";
-function Pagination(props) {
+import React, {useEffect, useState} from "react";
+import {connect} from "react-redux";
+import PropTypes from "prop-types";
+import * as homePageAction from "../../redux/actions/homePageActions";
+import {setCurrentPage} from "../../redux/actions/homePageActions";
+
+function Pagination({totalPages,currentPage,props}) {
 
     const [pagesLink, setPagesLink]= useState(0);
     const pageLinks=[];
     const arrayOfPageLinks=[];
 
     //for every page, create li with its corresponding number, if page is the current page add .active class
-    for(let i =1; i <= props.pages; i++){
-        let active = props.currentPage === i ? 'active': '';
-            pageLinks.push(<li className={` ${active}`} key={i} onClick={()=>{props.nextPage(i)}}>{i}</li>)
+
+    for(let i =1; i <= totalPages; i++){
+        let active = currentPage === i ? 'active': '';
+            pageLinks.push(<li className={` ${active}`} key={i} onClick={()=>{nextPage(i)}}>{i}</li>)
     }
 
-    //slice array of links in smaller arrays of ten, so that you can  display 10 pages at the time
+    //slice array of links in smaller arrays of ten, so that you can  display 5 pages at the time
     function chunkArray(arr,val) {
         for(let i =0; i <= arr.length; i += val){
             arrayOfPageLinks.push(arr.slice(i, val + i));
@@ -26,6 +32,11 @@ function Pagination(props) {
         }else{
             setPagesLink(pagesLink+1);
         }
+    };
+
+
+    const nextPage = ()=>{
+       setCurrentPage(currentPage++);
     };
 
     //same as next, but backwards
@@ -51,7 +62,7 @@ function Pagination(props) {
                         </>
                     }
                     {arrayOfPageLinks[pagesLink]}
-                    <button onClick={props.nextPage}>next</button>
+                    <button onClick={nextPage}>next</button>
                     <button onClick={Next}>...</button>
 
                 </ul>
@@ -60,4 +71,22 @@ function Pagination(props) {
     )
 
 }
-export default Pagination
+
+Pagination.prototypes = {
+    setCurrentPage: PropTypes.func.isRequired,
+    currentPage: PropTypes.number.isRequired,
+    currentMovie:  PropTypes.array.isRequired,
+}
+
+function mapStateToProps(state) {
+    return {
+       totalPages: state.homePageReducer.totalPages,
+       currentPage: state.homePageReducer.currentPage
+
+    };
+}
+
+const mapDispatchToProps = {
+    setCurrentPage: homePageAction.setCurrentPage
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Pagination);

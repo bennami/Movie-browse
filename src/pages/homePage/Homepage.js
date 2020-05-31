@@ -1,16 +1,18 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import * as homePageAction from "../../redux/actions/homePageActions";
 import List from "../../Components/commons/List";
 import MovieProfile from '../movieProfile/movieProfile';
 import SlickSlider from "../../Components/slick-slider/slick-slider";
-import * as homePageAction from "../../redux/actions/homePageActions";
 import "../App.scss"
 import Spinner from "../../Components/commons/spinner/Spinner";
+import Pagination from "../../Components/commons/Pagination";
 
 function HomePage({
     loadPopularMovies,
     loadTrendingMovies,
+    totalPages,
     setMovie,
     popularMovies,
     trendingMovies,
@@ -59,6 +61,7 @@ function HomePage({
                                 movieList={popularMovies}
                                 viewMovieInfo={viewMovieInfo}
                             />
+                            <Pagination/>
                         </>
                     :
                     <MovieProfile
@@ -79,7 +82,8 @@ HomePage.prototypes = {
     trendingMovies: PropTypes.object.isRequired,
     apiStatusReducer: PropTypes.number.isRequired,
     loading: PropTypes.bool.isRequired,
-    currentMovie:  PropTypes.array.isRequired
+    currentMovie:  PropTypes.array.isRequired,
+    totalPages: PropTypes.number.isRequired,
 }
 
 function mapStateToProps(state) {

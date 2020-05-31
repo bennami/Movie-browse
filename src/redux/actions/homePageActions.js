@@ -22,8 +22,14 @@ export function setInputUser(searchInput) {
 export function searchMoviesResultsSuccess(searchResults) {
     return {type: types.SEARCH_RESULTS_SUCCESS,searchResults:searchResults};
 }
+
 export function searchTrailerSuccess(trailer) {
     return {type: types.SEARCH_TRAILER_SUCCESS,trailer}
+}
+
+export function setCurrentPageSuccess(currentPage) {
+    return{type: types.SET_CURRENT_PAGE,currentPage}
+
 }
 
 //thunks
@@ -94,6 +100,12 @@ export function searchTrailer(id) {
                     throw error;
                 });
     };
+}
+
+export function setCurrentPage (currentPage){
+    return function (dispatch) {
+        dispatch(setCurrentPageSuccess(currentPage));
+    }
 }
 
 
