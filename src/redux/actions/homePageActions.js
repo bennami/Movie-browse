@@ -15,6 +15,17 @@ export function setCurrentMovie(currentMovie) {
     return {type: types.SET_CURRENT_MOVIE, currentMovie};
 }
 
+export function setInputUser(searchInput) {
+    return {type: types.SEARCH_INPUT, payload:searchInput};
+}
+
+export function searchMoviesResultsSuccess(searchResults) {
+    return {type: types.SEARCH_RESULTS_SUCCESS,searchResults:searchResults};
+}
+export function searchTrailerSuccess(trailer) {
+    return {type: types.SEARCH_TRAILER_SUCCESS,trailer}
+}
+
 //thunks
 export function loadTrendingMovies() {
     return function (dispatch) {
@@ -50,16 +61,6 @@ export function setMovie (currentMovie){
     }
 }
 
-
-
-export function setInputUser(searchInput) {
-    return {type: types.SEARCH_INPUT, payload:searchInput};
-}
-
-export function searchMoviesResultsSuccess(searchResults) {
-    return {type: types.SEARCH_RESULTS_SUCCESS,searchResults:searchResults};
-}
-
 export function setSearch (searchInput){
     return function (dispatch) {
         dispatch(setInputUser(searchInput));
@@ -77,6 +78,21 @@ export function loadSearchResults(searchInput) {
                 dispatch(apiCallError(error));
                 throw error;
             });
+    };
+}
+
+export function searchTrailer(id) {
+    return function (dispatch) {
+        dispatch(beginApiCall());
+        return HomePageApi.loadTrailer(id)
+            .then(trailer =>{
+                dispatch(searchTrailerSuccess(trailer));
+            })
+            .catch(
+                error => {
+                    dispatch(apiCallError(error));
+                    throw error;
+                });
     };
 }
 

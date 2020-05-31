@@ -1,13 +1,15 @@
-
+.modal-video-movie-wrap{
+  padding-bottom: 0;
+}
 .container-profile {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  align-content: center;
   text-align: center;
   margin: 0 auto;
   padding: 10px;
   position: relative;
+  height: 100vh;
 
   .content {
     background-color: rgba(0, 0, 0, 0.6);
@@ -54,11 +56,16 @@
         .sub-title {
           display: flex;
           justify-content: space-evenly;
+          .trailer:hover{
 
+            cursor: pointer;
+
+          }
           p {
             small {
               color: #00fc87;
             }
+
           }
         }
       }
@@ -88,3 +95,4 @@
     }
   }
 }
+

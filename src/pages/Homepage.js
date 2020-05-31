@@ -6,9 +6,7 @@ import MovieProfile from './movieProfile/movieProfile';
 import SlickSlider from "../Components/slick-slider/slick-slider";
 import * as homePageAction from "../redux/actions/homePageActions";
 import "./App.scss"
-
 import Spinner from "../Components/commons/spinner/Spinner";
-
 
 function HomePage({
     loadPopularMovies,
@@ -18,7 +16,6 @@ function HomePage({
     trendingMovies,
     currentMovie,
     }) {
-
 
     useEffect(() => {
         if (popularMovies === undefined ||popularMovies.length === 0) {
@@ -36,18 +33,12 @@ function HomePage({
 
     }, [trendingMovies, popularMovies, loadTrendingMovies, loadPopularMovies])
 
-
-
     const viewMovieInfo = (id) => {
         const filteredMovie = popularMovies.filter(movie => movie.id === id);
         const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] : null;
         setMovie(newCurrentMovie);
 
     };
-
-
-
-
 
 
     return (
@@ -62,8 +53,9 @@ function HomePage({
                         <>
                             <SlickSlider
                             popularMovies={popularMovies}/>
-                            <h1>Popular movies</h1>
+                            <h1 id="popularSection">Popular movies</h1>
                             <List
+
                                 movieList={popularMovies}
                                 viewMovieInfo={viewMovieInfo}
                             />
@@ -76,9 +68,6 @@ function HomePage({
                         closeMovieInfo={() => {
                             setMovie([]);
                         }}/>
-
-
-
             }
         </>
     )

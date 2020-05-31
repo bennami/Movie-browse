@@ -55,5 +55,8 @@
 ion-icon {
     color: #00fc87;
 }
+ion-icon:hover{
+    cursor: pointer;
+}
 
 

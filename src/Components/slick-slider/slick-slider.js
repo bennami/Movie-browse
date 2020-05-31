@@ -31,7 +31,8 @@ function SlickSlider({popularMovies}) {
                                 <div className={'slider-text'}>
                                     <h1>Movie DB</h1>
                                     <h3>browse through the biggest movie library</h3>
-                                    <ion-icon size={"large"} name="arrow-down"/>
+                                    <a href="#popularSection"><ion-icon size={"large"} name="arrow-down"/>
+                                    </a>
                                 </div>
                             </div>
                         </div>
