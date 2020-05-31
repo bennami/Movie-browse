@@ -47,11 +47,11 @@ export function loadTrendingMovies() {
     };
 }
 
-export function loadPopularMovies() {
+export function loadPopularMovies(currentPage) {
     return function (dispatch) {
         dispatch(beginApiCall());
         return HomePageApi
-            .loadPopularMovies()
+            .loadPopularMovies(currentPage)
             .then(popularMovies => {
             dispatch(loadPopularMoviesSuccess(popularMovies));
         }).catch(error => {
@@ -73,10 +73,10 @@ export function setSearch (searchInput){
     }
 }
 
-export function loadSearchResults(searchInput) {
+export function loadSearchResults(searchInput,currentPage) {
     return function (dispatch) {
         dispatch(beginApiCall());
-       return HomePageApi.searchResults(searchInput)
+       return HomePageApi.searchResults(searchInput,currentPage)
             .then(searchResults => {
                 dispatch(searchMoviesResultsSuccess(searchResults));
             })

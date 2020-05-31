@@ -8,7 +8,7 @@ export default function homePageReducer(state = initialState, action) {
                 ...state,
                 trendingMovies: action.trendingMovies.results,
                 totalPages: action.trendingMovies.total_pages,
-                currentPage: action.trendingMovies.page
+
             };
         case types.SET_CURRENT_MOVIE:
             return {...state, currentMovie: action.currentMovie};
@@ -17,7 +17,7 @@ export default function homePageReducer(state = initialState, action) {
                 ...state,
                 popularMovies: action.popularMovies.results,
                 totalPages: action.popularMovies.total_pages,
-                currentPage: action.popularMovies.page
+
             };
         case types.SEARCH_INPUT:
             return {...state, searchInput: action.payload};
@@ -26,8 +26,9 @@ export default function homePageReducer(state = initialState, action) {
                 ...state,
                 searchResults: action.searchResults.results,
                 totalPages: action.searchResults.total_pages,
-                currentPage: action.searchResults.page
             };
+        case types.SET_CURRENT_PAGE:
+            return {...state,currentPage: action.currentPage}
         default:
             return state;
     }

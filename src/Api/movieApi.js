@@ -1,8 +1,8 @@
 import { handleResponse, handleError } from "./apiUtils";
 import {API_KEY, BASE_URL, PROXY, VIDEO_LINK} from "../utils";
 
-export function searchResults(searchInput) {
-    return fetch(`${BASE_URL}/search/movie${API_KEY}&query=${searchInput}&page=1`)
+export function searchResults(searchInput,currentPage) {
+    return fetch(`${BASE_URL}/search/movie${API_KEY}&query=${searchInput}&page=${currentPage}`)
         .then(handleResponse)
         .catch(handleError);
 }
@@ -14,8 +14,8 @@ export function loadTrendingMovies() {
 
 }
 
-export function loadPopularMovies() {
-        return  fetch (`${BASE_URL}/movie/popular${API_KEY}&language=en-US&page=1`)
+export function loadPopularMovies(currentPage) {
+        return  fetch (`${BASE_URL}/movie/popular${API_KEY}&language=en-US&page=${currentPage}`)
             .then(handleResponse)
             .catch(handleError);
 }

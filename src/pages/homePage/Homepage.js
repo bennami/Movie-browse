@@ -7,7 +7,7 @@ import MovieProfile from '../movieProfile/movieProfile';
 import SlickSlider from "../../Components/slick-slider/slick-slider";
 import "../App.scss"
 import Spinner from "../../Components/commons/spinner/Spinner";
-import Pagination from "../../Components/commons/Pagination";
+import Pagination from "../../Components/commons/pagination/Pagination";
 
 function HomePage({
     loadPopularMovies,
@@ -17,11 +17,13 @@ function HomePage({
     popularMovies,
     trendingMovies,
     currentMovie,
+    currentPage,
+    setCurrentPage
     }) {
 
     useEffect(() => {
         if (popularMovies === undefined ||popularMovies.length === 0) {
-            loadPopularMovies()
+            loadPopularMovies(currentPage)
                 .catch(error => {
                     alert("loading popular" + error)
                 })
@@ -33,7 +35,7 @@ function HomePage({
                 })
         }
 
-    }, [trendingMovies, popularMovies, loadTrendingMovies, loadPopularMovies]);
+    }, [trendingMovies, popularMovies, loadTrendingMovies, loadPopularMovies,currentPage]);
 
     const viewMovieInfo = (id) => {
         const filteredMovie = popularMovies.filter(movie => movie.id === id);
@@ -42,7 +44,15 @@ function HomePage({
 
     };
 
+ /*   function nextPage() {
+    loadPopularMovies(currentPage)
+    }*/
 
+    function clickedNumber(current){
+        console.log(current);
+        setCurrentPage(current);
+        loadPopularMovies(currentPage);
+    }
     return (
         <>
             {
@@ -83,6 +93,7 @@ HomePage.prototypes = {
     apiStatusReducer: PropTypes.number.isRequired,
     loading: PropTypes.bool.isRequired,
     currentMovie:  PropTypes.array.isRequired,
+    currentPage: PropTypes.number.isRequired,
     totalPages: PropTypes.number.isRequired,
 }
 
@@ -91,6 +102,7 @@ function mapStateToProps(state) {
         trendingMovies: state.homePageReducer.trendingMovies,
         popularMovies: state.homePageReducer.popularMovies,
         currentMovie: state.homePageReducer.currentMovie,
+        currentPage: state.homePageReducer.currentPage,
         loading: state.apiCallsInProgress > 0
 
     };

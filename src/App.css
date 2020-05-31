@@ -49,55 +49,6 @@ h1,h3  {
 }
 }
 
-/*pagination*/
-.pagination{
-    display: flex;
-    width: 40%;
-    justify-content: center;
-    margin: 1rem auto;
-    align-items: baseline;
-}
-.pagination li{
-    list-style-type: none;
-    cursor: pointer;
-    padding: 1rem;
-
-}
-
-li:hover{
-    color: #00fc87;
-    font-size: larger;
-    font-weight: bolder;
-}
-
-.active{
-    color: #00fc87;
-    font-size: larger;
-    font-weight: bolder;
-}
-
-.pagination-with-btn{
-    display: flex;
-    width: 40%;
-    margin:  auto;
-    align-self: center;
-}
- .pagination button{
-    border-radius: 5px;
-    border: none;
-    padding: 1rem;
-    color: whitesmoke;
-    cursor: pointer;
-    font-size: 1.5rem;
-    background-color: transparent;
-    margin-left: -5px;
-    margin-right: -5px;
-}
-
-.pagination button:hover{
-    color: #00fc87;
-
-}
 .carousel{
     display: flex;
 

@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import * as homePageAction from "../../redux/actions/homePageActions";
-import {setCurrentPage} from "../../redux/actions/homePageActions";
-
-function Pagination({totalPages,currentPage,props}) {
+import * as homePageAction from "../../../redux/actions/homePageActions";
+import {setCurrentPage} from "../../../redux/actions/homePageActions";
+import "./pagination.scss"
+function Pagination({totalPages,currentPage,loadPopularMovies,setCurrentPage}) {
 
     const [pagesLink, setPagesLink]= useState(0);
     const pageLinks=[];
@@ -14,7 +14,7 @@ function Pagination({totalPages,currentPage,props}) {
 
     for(let i =1; i <= totalPages; i++){
         let active = currentPage === i ? 'active': '';
-            pageLinks.push(<li className={` ${active}`} key={i} onClick={()=>{nextPage(i)}}>{i}</li>)
+            pageLinks.push(<li className={` ${active}`} key={i} onClick={()=>{clickedNumber(i)}}>{i}</li>)
     }
 
     //slice array of links in smaller arrays of ten, so that you can  display 5 pages at the time
@@ -34,9 +34,15 @@ function Pagination({totalPages,currentPage,props}) {
         }
     };
 
+    function clickedNumber(current){
+        console.log(current);
+        setCurrentPage(current);
+        loadPopularMovies(currentPage);
+    }
 
     const nextPage = ()=>{
-       setCurrentPage(currentPage++);
+       setCurrentPage(currentPage+1);
+       loadPopularMovies(currentPage);
     };
 
     //same as next, but backwards
@@ -57,12 +63,12 @@ function Pagination({totalPages,currentPage,props}) {
                         ? ''
                         :
                         <>
-                        <button onClick={Previous}>...</button>
+
                         <button>prev</button>
                         </>
                     }
                     {arrayOfPageLinks[pagesLink]}
-                    <button onClick={nextPage}>next</button>
+
                     <button onClick={Next}>...</button>
 
                 </ul>
@@ -74,6 +80,7 @@ function Pagination({totalPages,currentPage,props}) {
 
 Pagination.prototypes = {
     setCurrentPage: PropTypes.func.isRequired,
+    loadPopularMovies: PropTypes.func.isRequired,
     currentPage: PropTypes.number.isRequired,
     currentMovie:  PropTypes.array.isRequired,
 }
@@ -87,6 +94,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-    setCurrentPage: homePageAction.setCurrentPage
+    setCurrentPage: homePageAction.setCurrentPage,
+    loadPopularMovies: homePageAction.loadPopularMovies,
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Pagination);
