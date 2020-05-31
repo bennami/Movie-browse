@@ -17,7 +17,6 @@ function SearchBar({
     const [search, setSearchUser] = useState('');
     const history = useHistory();
 
-
     //search and  redirect to search results
     const searchItem = async (e) => {
         e.preventDefault();

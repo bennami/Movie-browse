@@ -15,19 +15,19 @@ function Search({
                     currentMovie,
                     setSearch
                 }) {
-    const [movieGenres, setMovieGenres] = useState([]);
+    const [movieGenres] = useState([]);
     const history = useHistory();
     const {name} = useParams();
 
-  useEffect(()=>{
-      setSearch(name)
-     if(searchInput !=='') {
-         loadSearchResults(searchInput).catch(error => {
-             alert("loading popular" + error)
-         })
-         history.push(`/search/${searchInput}`);
-     }
-  },[searchInput]);
+      useEffect(()=>{
+          setSearch(name)
+         if(searchInput !=='') {
+             loadSearchResults(searchInput).catch(error => {
+                 alert("loading search results failed" + error)
+             })
+             history.push(`/search/${searchInput}`);
+         }
+      },[searchInput]);
 
     const viewMovieInfo = (id) => {
         const filteredMovie = searchResults.filter(movie => movie.id === id);
@@ -35,7 +35,6 @@ function Search({
         setMovie(newCurrentMovie);
     };
 
-    console.log(searchInput)
     return (
         <div>
             { currentMovie.length <= 0
@@ -94,12 +93,9 @@ function mapStateToProps(state) {
         currentMovie: state.homePageReducer.currentMovie
     };
 }
-
-
 const mapDispatchToProps = {
     loadSearchResults: homePageAction.loadSearchResults,
     setSearch: homePageAction.setSearch,
     setMovie: homePageAction.setMovie
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

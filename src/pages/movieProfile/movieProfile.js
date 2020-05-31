@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import "../../utils";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
@@ -10,9 +10,6 @@ import ModalVideo from "react-modal-video";
 import 'react-modal-video/scss/modal-video.scss';
 
 function MovieProfile({closeMovieInfo,currentMovie,genre,searchTrailer}) {
-
-
-
 
     const {vote_average, id, release_date, backdrop_path, overview, poster_path, genre_ids, title} = currentMovie;
 

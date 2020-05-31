@@ -2,7 +2,7 @@ import React from "react";
 import {Switch, Route} from 'react-router-dom';
 import Search from "../src/pages/search"
 import Popular from "../src/pages/popular"
-import Homepage from "./pages/Homepage"
+import Homepage from "./pages/homePage/Homepage"
 import PageNotFound from "./pages/PageNotFound"
 import MovieProfile from "./pages/movieProfile/movieProfile";
 

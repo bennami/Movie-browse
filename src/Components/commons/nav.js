@@ -7,7 +7,6 @@ import PropTypes from "prop-types";
 import SearchBar from "./searchbar";
 import * as homePageAction from "../../redux/actions/homePageActions";
 
-
 function Nav ({setMovie}) {
     function emptyMovie(){setMovie([]);}
     return(
