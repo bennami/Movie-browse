@@ -11,6 +11,7 @@ function SearchBar({
     searchInput,
     searchResults,
     currentPage,
+    setMovie,
     ...props
     }) {
 
@@ -26,6 +27,7 @@ function SearchBar({
             alert("please enter a movie title")
         } else {
             setSearch(search);
+            setMovie([]);
             loadSearchResults(search).catch(error => {
                 alert("loading popular" + error)
             })
@@ -51,6 +53,7 @@ function SearchBar({
 
 SearchBar.prototypes = {
     setSearch: PropTypes.func.isRequired,
+    setMovie: PropTypes.func.isRequired,
     currentPage: PropTypes.number.isRequired,
     loadSearchResults: PropTypes.func.isRequired,
     searchInput: PropTypes.string.isRequired,
@@ -69,6 +72,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
     setSearch: homePageAction.setSearch,
+    setMovie: homePageAction.setMovie,
     loadSearchResults: homePageAction.loadSearchResults
 
 }
