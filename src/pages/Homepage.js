@@ -31,7 +31,7 @@ function HomePage({
                 })
         }
 
-    }, [trendingMovies, popularMovies, loadTrendingMovies, loadPopularMovies])
+    }, [trendingMovies, popularMovies, loadTrendingMovies, loadPopularMovies]);
 
     const viewMovieInfo = (id) => {
         const filteredMovie = popularMovies.filter(movie => movie.id === id);
@@ -65,9 +65,7 @@ function HomePage({
                         viewMovieInfo={viewMovieInfo}
                         genre={"movieGenres"}
                         currentMovie={currentMovie}
-                        closeMovieInfo={() => {
-                            setMovie([]);
-                        }}/>
+                        closeMovieInfo={() => {setMovie([])}}/>
             }
         </>
     )

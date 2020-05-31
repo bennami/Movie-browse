@@ -11,6 +11,9 @@ import 'react-modal-video/scss/modal-video.scss';
 
 function MovieProfile({closeMovieInfo,currentMovie,genre,searchTrailer}) {
 
+
+
+
     const {vote_average, id, release_date, backdrop_path, overview, poster_path, genre_ids, title} = currentMovie;
 
 const [mov,setMov] = useState('');
