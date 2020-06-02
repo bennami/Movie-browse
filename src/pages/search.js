@@ -6,13 +6,16 @@ import MovieProfile from "./movieProfile/movieProfile";
 import Spinner from "../Components/commons/spinner/Spinner";
 import PropTypes from "prop-types";
 import * as homePageAction from "../redux/actions/homePageActions";
+import Pagination from "../Components/commons/pagination/Pagination";
 
 function Search({
                     setMovie,
                     searchInput,
                     searchResults,
                     loadSearchResults,
+                    setCurrentPage,
                     currentMovie,
+                    currentPage,
                     setSearch
                 }) {
     const [movieGenres] = useState([]);
@@ -21,19 +24,26 @@ function Search({
 
       useEffect(()=>{
           setSearch(name)
-         if(searchInput !=='') {
-             loadSearchResults(searchInput).catch(error => {
+         if(searchInput !=='' ||currentPage !==1) {
+             loadSearchResults(searchInput,currentPage).catch(error => {
                  alert("loading search results failed" + error)
              })
              history.push(`/search/${searchInput}`);
          }
-      },[searchInput]);
+      },[searchInput,currentPage,name,loadSearchResults,history,setSearch]);
 
     const viewMovieInfo = (id) => {
         const filteredMovie = searchResults.filter(movie => movie.id === id);
         const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] : null;
         setMovie(newCurrentMovie);
     };
+
+    function clickedNumber(current){
+        console.log(current);
+        setCurrentPage(current);
+        loadSearchResults(searchInput,currentPage);  
+        //history.push(`/search/${searchInput}`);
+    }
 
     return (
         <div>
@@ -55,9 +65,7 @@ function Search({
                                 <>
                                     <h3>Results for: {searchInput}</h3>
                                     <List movieList={searchResults} viewMovieInfo={viewMovieInfo}/>
-                                    <div className={"pagination-with-btn"}>
-
-                                    </div>
+                                    <Pagination clickedNumber={clickedNumber}/>
                                 </>
                     }
 
@@ -78,6 +86,7 @@ function Search({
 
 Search.prototypes = {
     loadSearchResults: PropTypes.func.isRequired,
+    setCurrentPage: PropTypes.func.isRequired,
     setSearch:PropTypes.func.isRequired,
     searchInput: PropTypes.string.isRequired,
     searchResults: PropTypes.array.isRequired,
@@ -90,12 +99,14 @@ function mapStateToProps(state) {
     return {
         searchInput: state.homePageReducer.searchInput,
         searchResults: state.homePageReducer.searchResults,
-        currentMovie: state.homePageReducer.currentMovie
+        currentMovie: state.homePageReducer.currentMovie,
+        currentPage: state.homePageReducer.currentPage
     };
 }
 const mapDispatchToProps = {
     loadSearchResults: homePageAction.loadSearchResults,
     setSearch: homePageAction.setSearch,
-    setMovie: homePageAction.setMovie
+    setMovie: homePageAction.setMovie,
+    setCurrentPage: homePageAction.setCurrentPage
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

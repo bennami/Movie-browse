@@ -22,15 +22,15 @@ function HomePage({
     currentPage,
     setCurrentPage
     }) {
-const history = useHistory();
+//const history = useHistory();
     useEffect(() => {
-        if (popularMovies === undefined ||popularMovies.length === 0) {
+        if (popularMovies === undefined ||popularMovies.length === 0 ||currentPage !== 1) {
             loadPopularMovies(currentPage)
                 .catch(error => {
                     alert("loading popular" + error)
                 })
         }
-        if (trendingMovies === undefined || trendingMovies.length ===0) {
+        if (trendingMovies === undefined || trendingMovies.length ===0 ||currentPage !== 1) {
             loadTrendingMovies()
                 .catch(error => {
                     alert("loading trending movies" + error)
@@ -57,15 +57,13 @@ const history = useHistory();
 
     };
 
- /*   function nextPage() {
-    loadPopularMovies(currentPage)
-    }*/
-
     function clickedNumber(current){
         console.log(current);
         setCurrentPage(current);
         loadPopularMovies(currentPage);
+    
     }
+
     return (
         <>
             {
@@ -84,7 +82,7 @@ const history = useHistory();
                                 movieList={popularMovies}
                                 viewMovieInfo={viewMovieInfo}
                             />
-                            <Pagination/>
+                            <Pagination clickedNumber={clickedNumber}/>
                         </>
                     :
                     <MovieProfile
@@ -126,7 +124,8 @@ const mapDispatchToProps = {
     loadPopularMovies: homePageAction.loadPopularMovies,
     loadTrendingMovies: homePageAction.loadTrendingMovies,
     loadGenres: homePageAction.loadGenres,
-    setMovie:  homePageAction.setMovie
+    setMovie:  homePageAction.setMovie,
+    setCurrentPage: homePageAction.setCurrentPage
 }
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import * as homePageAction from "../../../redux/actions/homePageActions";
 import {setCurrentPage} from "../../../redux/actions/homePageActions";
 import "./pagination.scss"
-function Pagination({totalPages,currentPage,loadPopularMovies,setCurrentPage}) {
+function Pagination({totalPages,currentPage,loadPopularMovies,setCurrentPage,clickedNumber}) {
 
     const [pagesLink, setPagesLink]= useState(0);
     const pageLinks=[];
@@ -34,11 +34,7 @@ function Pagination({totalPages,currentPage,loadPopularMovies,setCurrentPage}) {
         }
     };
 
-    function clickedNumber(current){
-        console.log(current);
-        setCurrentPage(current);
-        loadPopularMovies(currentPage);
-    }
+   
 
     const nextPage = ()=>{
        setCurrentPage(currentPage+1);
