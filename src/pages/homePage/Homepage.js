@@ -23,28 +23,31 @@ function HomePage({
     setCurrentPage
     }) {
 //const history = useHistory();
+    useEffect(()=>{
+        if(genres === undefined || genres.length === 0){
+            loadGenres()
+                .catch(error => {
+                    alert("loading trending movies" + error)
+                })
+        }
+    },[genres])
     useEffect(() => {
-        if (popularMovies === undefined ||popularMovies.length === 0 ||currentPage !== 1) {
+        if (popularMovies === undefined ||popularMovies.length === 0 && currentPage !== 1) {
             loadPopularMovies(currentPage)
                 .catch(error => {
                     alert("loading popular" + error)
                 })
         }
-        if (trendingMovies === undefined || trendingMovies.length ===0 ||currentPage !== 1) {
+        if (trendingMovies === undefined || trendingMovies.length ===0 && currentPage !== 1) {
             loadTrendingMovies()
                 .catch(error => {
                     alert("loading trending movies" + error)
                 })
         }
 
-        if(genres === undefined){
-            loadGenres()
-                .catch(error => {
-                    alert("loading trending movies" + error)
-                })
-        }
 
-    }, [genres,loadGenres,trendingMovies, popularMovies, loadTrendingMovies, loadPopularMovies,currentPage]);
+
+    }, [trendingMovies, popularMovies, loadTrendingMovies, loadPopularMovies,currentPage]);
 
     const viewMovieInfo = (id) => {
             const filteredMovie = popularMovies.filter(movie => movie.id === id);
@@ -58,10 +61,12 @@ function HomePage({
     };
 
     function clickedNumber(current){
-        console.log(current);
-        setCurrentPage(current);
-        loadPopularMovies(currentPage);
-    
+        if(current !== currentPage){
+            setCurrentPage(current);
+            loadPopularMovies([]);
+            loadPopularMovies(currentPage);
+        }
+
     }
 
     return (

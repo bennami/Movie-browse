@@ -24,7 +24,7 @@ function Search({
 
       useEffect(()=>{
           setSearch(name)
-         if(searchInput !=='' ||currentPage !==1) {
+         if(searchInput !=='' ||currentPage !==1 && currentPage.length  ===0) {
              loadSearchResults(searchInput,currentPage).catch(error => {
                  alert("loading search results failed" + error)
              })
@@ -39,9 +39,8 @@ function Search({
     };
 
     function clickedNumber(current){
-        console.log(current);
         setCurrentPage(current);
-        loadSearchResults(searchInput,currentPage);  
+        loadSearchResults(searchInput,currentPage);
         //history.push(`/search/${searchInput}`);
     }
 

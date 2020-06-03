@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import * as homePageAction from "../../../redux/actions/homePageActions";
 import {setCurrentPage} from "../../../redux/actions/homePageActions";
 import "./pagination.scss"
+
 function Pagination({totalPages,currentPage,loadPopularMovies,setCurrentPage,clickedNumber}) {
 
     const [pagesLink, setPagesLink]= useState(0);
@@ -34,13 +35,6 @@ function Pagination({totalPages,currentPage,loadPopularMovies,setCurrentPage,cli
         }
     };
 
-   
-
-    const nextPage = ()=>{
-       setCurrentPage(currentPage+1);
-       loadPopularMovies(currentPage);
-    };
-
     //same as next, but backwards
     const Previous = ()=>{
         if(pagesLink > 0){
@@ -55,18 +49,9 @@ function Pagination({totalPages,currentPage,loadPopularMovies,setCurrentPage,cli
         <div className={"container"}>
             <div className="row">
                 <ul className={"pagination"}>
-                    {pagesLink <= 0
-                        ? ''
-                        :
-                        <>
-
-                        <button>prev</button>
-                        </>
-                    }
+                    <button onClick={Previous}>...</button>
                     {arrayOfPageLinks[pagesLink]}
-
                     <button onClick={Next}>...</button>
-
                 </ul>
             </div>
         </div>
