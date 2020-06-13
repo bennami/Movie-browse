@@ -1,5 +1,5 @@
 import { handleResponse, handleError } from "./apiUtils";
-import {API_KEY, BASE_URL, PROXY, VIDEO_LINK} from "../utils";
+import {API_KEY, BASE_URL, VIDEO_LINK} from "../utils";
 
 export function searchResults(searchInput,currentPage) {
     return fetch(`${BASE_URL}/search/movie${API_KEY}&query=${searchInput}&page=${currentPage}`)

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import List from "../Components/commons/List";
+import List from "../Components/commons/listOfMovies/List";
 
 function Popular() {
 

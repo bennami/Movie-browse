@@ -1,11 +1,10 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {useHistory, useParams} from "react-router-dom";
 import * as homePageAction from "../../redux/actions/homePageActions";
-import List from "../../Components/commons/List";
+import List from "../../Components/commons/listOfMovies/List";
 import MovieProfile from '../movieProfile/movieProfile';
-import SlickSlider from "../../Components/slick-slider/slick-slider";
+import SlickSlider from "../../Components/commons/slick-slider/slick-slider";
 import "../App.scss"
 import Spinner from "../../Components/commons/spinner/Spinner";
 import Pagination from "../../Components/commons/pagination/Pagination";
@@ -30,15 +29,15 @@ function HomePage({
                     alert("loading trending movies" + error)
                 })
         }
-    },[genres])
+    },[loadGenres,genres])
     useEffect(() => {
-        if (popularMovies === undefined ||popularMovies.length === 0 && currentPage !== 1) {
+        if (popularMovies === undefined ||popularMovies.length === 0) {
             loadPopularMovies(currentPage)
                 .catch(error => {
                     alert("loading popular" + error)
                 })
         }
-        if (trendingMovies === undefined || trendingMovies.length ===0 && currentPage !== 1) {
+        if (trendingMovies === undefined || trendingMovies.length ===0) {
             loadTrendingMovies()
                 .catch(error => {
                     alert("loading trending movies" + error)
@@ -47,7 +46,7 @@ function HomePage({
 
 
 
-    }, [trendingMovies, popularMovies, loadTrendingMovies, loadPopularMovies,currentPage]);
+    }, [trendingMovies, popularMovies, loadTrendingMovies, loadPopularMovies,currentPage,]);
 
     const viewMovieInfo = (id) => {
             const filteredMovie = popularMovies.filter(movie => movie.id === id);

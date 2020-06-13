@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import * as homePageAction from "../../../redux/actions/homePageActions";
-import {setCurrentPage} from "../../../redux/actions/homePageActions";
 import "./pagination.scss"
 
-function Pagination({totalPages,currentPage,loadPopularMovies,setCurrentPage,clickedNumber}) {
+function Pagination({totalPages,currentPage,clickedNumber}) {
 
     const [pagesLink, setPagesLink]= useState(0);
     const pageLinks=[];
@@ -61,7 +60,6 @@ function Pagination({totalPages,currentPage,loadPopularMovies,setCurrentPage,cli
 
 Pagination.prototypes = {
     setCurrentPage: PropTypes.func.isRequired,
-    loadPopularMovies: PropTypes.func.isRequired,
     currentPage: PropTypes.number.isRequired,
     currentMovie:  PropTypes.array.isRequired,
 }
@@ -76,6 +74,5 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
     setCurrentPage: homePageAction.setCurrentPage,
-    loadPopularMovies: homePageAction.loadPopularMovies,
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Pagination);

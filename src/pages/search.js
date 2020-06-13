@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
-import List from "../Components/commons/List";
+import List from "../Components/commons/listOfMovies/List";
 import {useHistory, useParams} from "react-router-dom";
 import MovieProfile from "./movieProfile/movieProfile";
 import Spinner from "../Components/commons/spinner/Spinner";
@@ -24,7 +24,7 @@ function Search({
 
       useEffect(()=>{
           setSearch(name)
-         if(searchInput !=='' ||currentPage !==1 && currentPage.length  ===0) {
+         if(searchInput !=='' || currentPage !==1 ) {
              loadSearchResults(searchInput,currentPage).catch(error => {
                  alert("loading search results failed" + error)
              })

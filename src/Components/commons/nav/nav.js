@@ -1,11 +1,11 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import "../../assets/css/navbar.scss"
-import {LOGO_NAV} from "../../utils";
+import "../../../assets/css/navbar.scss"
+import {LOGO_NAV} from "../../../utils";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import SearchBar from "./searchbar";
-import * as homePageAction from "../../redux/actions/homePageActions";
+import SearchBar from "./../../commons/searchbar/searchbar";
+import * as homePageAction from "../../../redux/actions/homePageActions";
 
 function Nav ({setMovie}) {
     function emptyMovie(){setMovie([]);}

@@ -1,6 +1,6 @@
 import React from "react";
-import Card from "./card/Card.js"
-import {IMG_BASE_200} from "../../utils";
+import Card from "../card/Card.js"
+import {IMG_BASE_200} from "../../../utils";
 
 const List =({movieList,viewMovieInfo}) =>(
     <div  className={'list'}>
