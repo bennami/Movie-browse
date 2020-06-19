@@ -53,3 +53,29 @@ body, #slider, .wrap, .slide-content{
   margin-right: 30px;
   border-color: transparent transparent transparent whitesmoke;
 }
+
+
+//pagination
+.container{
+  display: flex;
+  margin: 2rem auto;
+  justify-content: center;
+
+.break{
+  display: none;
+}
+    li{
+      padding: 0.5rem;
+      list-style-type: none;
+      a:hover{
+        color: #00fc87;
+      }
+    }
+  li:hover{
+    color: #00fc87;
+    cursor: pointer;
+  }
+
+
+
+}

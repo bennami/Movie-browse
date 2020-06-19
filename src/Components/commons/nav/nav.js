@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import "../../../assets/css/navbar.scss"
+import "./navbar.scss"
 import {LOGO_NAV} from "../../../utils";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";

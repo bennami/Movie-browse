@@ -1,36 +1,48 @@
-.nav{
+.nav {
   display: grid;
-  grid-gap:1rem;
-  grid-template-columns: repeat( auto-fit,minmax(250px,1fr));
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   background-color: #000000;
   padding: 1vh;
 }
-.nav-links{
+
+.nav-links {
   display: flex;
   margin-left: 1rem;
 }
-.nav img{
+
+.nav img {
   width: 35px;
   height: 35px;
   margin-right: 1rem;
 }
 
-.nav ul{
+.nav ul {
   list-style: none;
   display: flex;
 }
 
-.nav ul li{
+.nav ul li {
   padding: 0.5rem;
 }
 
-a{
+a {
   text-decoration: none;
   color: whitesmoke;
   padding-bottom: 3px;
 }
 
-.nav-links a:hover{
+.nav-links a:hover {
   border-bottom: 1px solid white;
   transition: 100ms ease-in-out;
 }
+
+@media (min-width: 950px) {
+  .nav-search {
+    justify-content: flex-end;
+    display: flex;
+    margin-right: 1rem;
+  }
+}
+
+/*# sourceMappingURL=navbar.css.map */

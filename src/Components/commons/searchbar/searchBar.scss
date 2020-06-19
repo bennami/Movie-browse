@@ -1,0 +1,36 @@
+
+
+.search{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.2rem;
+  form{
+    background: #dedede;
+    border-radius: 10px;
+
+    align-items: center;
+    margin: 0.2rem;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+  }
+}
+.search input{
+  border: none;
+  width: max-content;
+  background-color:transparent;
+  color: #6f6f6f;
+}
+
+.search button{
+  background-color: transparent;
+  border: none;
+  color: #000000;
+  cursor: pointer;
+  font-weight: bolder;
+}
+.search button a{
+  color: #000000;
+}
+

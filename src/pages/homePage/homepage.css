@@ -54,4 +54,24 @@ body, #slider, .wrap, .slide-content {
   border-color: transparent transparent transparent whitesmoke;
 }
 
-/*# sourceMappingURL=App.css.map */
+.container {
+  display: flex;
+  margin: 2rem auto;
+  justify-content: center;
+}
+.container .break {
+  display: none;
+}
+.container li {
+  padding: 0.5rem;
+  list-style-type: none;
+}
+.container li a:hover {
+  color: #00fc87;
+}
+.container li:hover {
+  color: #00fc87;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=homepage.css.map */

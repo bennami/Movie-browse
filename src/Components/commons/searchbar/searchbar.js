@@ -3,7 +3,9 @@ import {connect} from "react-redux";
 import {Link, useHistory} from 'react-router-dom';
 import PropTypes from 'prop-types'
 import * as homePageAction from "../../../redux/actions/homePageActions";
-import '../../../assets/css/searchBar.scss'
+import './searchBar.scss';
+import {FaSearch} from "react-icons/all";
+
 function SearchBar({
     setSearch,
     loadSearchResults,
@@ -41,7 +43,7 @@ function SearchBar({
         <div className={'search'}>
             <form action={<Link to={'/search'}>search</Link>} onSubmit={searchItem}>
                 <input onChange={handleChange} type="text" value={search} placeholder={'search for a movie'}/>
-                <button type={'submit'} onClick={searchItem}><Link to={'/search'}>search</Link></button>
+                <button type={'submit'} onClick={searchItem}><Link to={'/search'}><FaSearch /></Link></button>
             </form>
             <p>{props.searchInput}</p>
         </div>

@@ -5,9 +5,10 @@ import * as homePageAction from "../../redux/actions/homePageActions";
 import List from "../../Components/commons/listOfMovies/List";
 import MovieProfile from '../movieProfile/movieProfile';
 import SlickSlider from "../../Components/commons/slick-slider/slick-slider";
-import "../App.scss"
+import "./homepage.scss"
 import Spinner from "../../Components/commons/spinner/Spinner";
 import Pagination from "../../Components/commons/pagination/Pagination";
+import ReactPaginate from 'react-paginate';
 
 function HomePage({
     loadPopularMovies,
@@ -19,7 +20,8 @@ function HomePage({
     trendingMovies,
     currentMovie,
     currentPage,
-    setCurrentPage
+    setCurrentPage,
+    totalPages
     }) {
 //const history = useHistory();
     useEffect(()=>{
@@ -29,8 +31,9 @@ function HomePage({
                     alert("loading trending movies" + error)
                 })
         }
-    },[loadGenres,genres])
+    },[loadGenres,genres,currentPage])
     useEffect(() => {
+
         if (popularMovies === undefined ||popularMovies.length === 0) {
             loadPopularMovies(currentPage)
                 .catch(error => {
@@ -46,7 +49,7 @@ function HomePage({
 
 
 
-    }, [trendingMovies, popularMovies, loadTrendingMovies, loadPopularMovies,currentPage,]);
+    }, [trendingMovies, popularMovies, loadTrendingMovies, loadPopularMovies,currentPage]);
 
     const viewMovieInfo = (id) => {
             const filteredMovie = popularMovies.filter(movie => movie.id === id);
@@ -86,7 +89,15 @@ function HomePage({
                                 movieList={popularMovies}
                                 viewMovieInfo={viewMovieInfo}
                             />
-                            <Pagination clickedNumber={clickedNumber}/>
+                            {/*<Pagination clickedNumber={clickedNumber}/>*/}
+                            <ReactPaginate
+                                pageCount = {totalPages}
+                                pageRangeDisplayed = {4}
+                                marginPagesDisplayed = {0}
+                                onPageChange={clickedNumber}
+                                containerClassName = {'container'}
+                                breakClassName={"break"}
+                            />
                         </>
                     :
                     <MovieProfile
@@ -119,6 +130,7 @@ function mapStateToProps(state) {
         popularMovies: state.homePageReducer.popularMovies,
         currentMovie: state.homePageReducer.currentMovie,
         currentPage: state.homePageReducer.currentPage,
+        totalPages: state.homePageReducer.totalPages,
         loading: state.apiCallsInProgress > 0
 
     };
