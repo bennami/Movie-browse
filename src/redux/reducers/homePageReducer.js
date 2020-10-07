@@ -28,7 +28,7 @@ export default function homePageReducer(state = initialState, action) {
                 totalPages: action.searchResults.total_pages,
             };
         case types.SET_CURRENT_PAGE:
-            return {...state,currentPage: action.currentPage.selected};
+            return {...state,currentPage: action.currentPage};
         case types.SEARCH_GENRE_SUCCESS:
             return {...state, genres: action.genres};
         default:

@@ -10,7 +10,7 @@ import{VIDEO_LINK,API_KEY} from "../../utils";
 import ModalVideo from "react-modal-video";
 import 'react-modal-video/scss/modal-video.scss';
 
-function MovieProfile({closeMovieInfo,currentMovie,genre,searchTrailer}) {
+function MovieProfile({closeMovieInfo,currentMovie,genres,searchTrailer}) {
 
     const {vote_average, id, release_date, backdrop_path, overview, poster_path, genre_ids, title} = currentMovie;
 
@@ -70,14 +70,24 @@ const [trailer,setTrailer]=useState(false);
                                     <li> <small>Year: {release_date.substr(0, 4)} </small></li>
                                 </ul>
                                 <br/>
-                                <p>
-                                    {
-                                        genre_ids.map(id => {
-                                            return console.log(id);
-                                        })
-                                    }
-                                </p>
-                                <p>{overview}</p>
+
+                                    {/*{ */}
+                                    {/*    genre_ids.map(id => {*/}
+                                    {/*       const allGenres = genres.genres*/}
+
+                                    {/*        Object.keys(allGenres).forEach(*/}
+                                    {/*            function(key) {*/}
+                                    {/*            console.log(key,allGenres[key].name)*/}
+                                    {/*            return allGenres[0].name*/}
+                                    {/*        })*/}
+                                    {/*    })*/}
+                                    {/*}*/}
+                               <ul className={"genres"}>
+                                   <li>{genres.genres[0].name}</li>
+                                   <li>{genres.genres[1].name}</li>
+                                   <li>{genres.genres[2].name}</li>
+                               </ul>
+                                <p className={"description"}>{overview}</p>
                                 <ul>
                                     <li className={'trailer-btn'} onClick={checkTrailer}>
                                         trailer
@@ -102,7 +112,8 @@ MovieProfile.prototypes = {
 function mapStateToProps(state) {
     return {
         trailer: state.homePageReducer.trailer,
-        currentMovie: state.homePageReducer.currentMovie
+        currentMovie: state.homePageReducer.currentMovie,
+        genres: state.homePageReducer.genres
     };
 }
 

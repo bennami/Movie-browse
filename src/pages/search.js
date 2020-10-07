@@ -7,6 +7,7 @@ import Spinner from "../Components/commons/spinner/Spinner";
 import PropTypes from "prop-types";
 import * as homePageAction from "../redux/actions/homePageActions";
 import Pagination from "../Components/commons/pagination/Pagination";
+import ReactPaginate from "react-paginate";
 
 function Search({
                     setMovie,
@@ -16,7 +17,8 @@ function Search({
                     setCurrentPage,
                     currentMovie,
                     currentPage,
-                    setSearch
+                    setSearch,
+                    totalPages
                 }) {
     const [movieGenres] = useState([]);
     const history = useHistory();
@@ -39,9 +41,11 @@ function Search({
     };
 
     function clickedNumber(current){
-        setCurrentPage(current);
-        loadSearchResults(searchInput,currentPage);
-        //history.push(`/search/${searchInput}`);
+        current = current.selected+1
+        if(current !== currentPage){
+            setCurrentPage(current);
+            loadSearchResults(currentPage);
+        }
     }
 
     return (
@@ -64,7 +68,14 @@ function Search({
                                 <>
                                     <h3>Results for: {searchInput}</h3>
                                     <List movieList={searchResults} viewMovieInfo={viewMovieInfo}/>
-                                    <Pagination clickedNumber={clickedNumber}/>
+                                    <ReactPaginate
+                                        pageCount = {totalPages}
+                                        pageRangeDisplayed = {4}
+                                        marginPagesDisplayed = {0}
+                                        onPageChange={clickedNumber}
+                                        containerClassName = {'container'}
+                                        breakClassName={"break"}
+                                    />
                                 </>
                     }
 
@@ -99,7 +110,8 @@ function mapStateToProps(state) {
         searchInput: state.homePageReducer.searchInput,
         searchResults: state.homePageReducer.searchResults,
         currentMovie: state.homePageReducer.currentMovie,
-        currentPage: state.homePageReducer.currentPage
+        currentPage: state.homePageReducer.currentPage,
+        totalPages: state.homePageReducer.totalPages
     };
 }
 const mapDispatchToProps = {

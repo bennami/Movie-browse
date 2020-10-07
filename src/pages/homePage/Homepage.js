@@ -7,7 +7,6 @@ import MovieProfile from '../movieProfile/movieProfile';
 import SlickSlider from "../../Components/commons/slick-slider/slick-slider";
 import "./homepage.scss"
 import Spinner from "../../Components/commons/spinner/Spinner";
-import Pagination from "../../Components/commons/pagination/Pagination";
 import ReactPaginate from 'react-paginate';
 
 function HomePage({
@@ -23,7 +22,7 @@ function HomePage({
     setCurrentPage,
     totalPages
     }) {
-//const history = useHistory();
+
     useEffect(()=>{
         if(genres === undefined || genres.length === 0){
             loadGenres()
@@ -36,6 +35,7 @@ function HomePage({
 
         if (popularMovies === undefined ||popularMovies.length === 0) {
             loadPopularMovies(currentPage)
+
                 .catch(error => {
                     alert("loading popular" + error)
                 })
@@ -63,12 +63,13 @@ function HomePage({
     };
 
     function clickedNumber(current){
+        console.log(currentPage)
+        console.log( current.selected+1)
+        current = current.selected+1
         if(current !== currentPage){
             setCurrentPage(current);
-            loadPopularMovies([]);
             loadPopularMovies(currentPage);
         }
-
     }
 
     return (
@@ -85,17 +86,15 @@ function HomePage({
                             popularMovies={popularMovies}/>
                             <h1 id="popularSection">Popular movies</h1>
                             <List
-
                                 movieList={popularMovies}
                                 viewMovieInfo={viewMovieInfo}
                             />
-                            {/*<Pagination clickedNumber={clickedNumber}/>*/}
                             <ReactPaginate
-                                pageCount = {totalPages}
-                                pageRangeDisplayed = {4}
-                                marginPagesDisplayed = {0}
+                                pageCount={totalPages}
+                                pageRangeDisplayed={4}
+                                marginPagesDisplayed={0}
                                 onPageChange={clickedNumber}
-                                containerClassName = {'container'}
+                                containerClassName={'container'}
                                 breakClassName={"break"}
                             />
                         </>

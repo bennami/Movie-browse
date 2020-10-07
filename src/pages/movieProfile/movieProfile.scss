@@ -4,15 +4,17 @@
 
 .container-profile {
   background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   text-align: center;
   margin: 0 auto;
   padding: 10px;
-  position: relative;
-  height: 100vh;
+
+
   .content {
-    position: relative;
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 10px;
     width: 80%;
@@ -21,7 +23,7 @@
     justify-self: center;
     justify-content: center;
     padding: 3rem 2rem;
-    height:min-content;
+
     display: flex;
     flex-direction: column;
     .cross {
@@ -32,18 +34,18 @@
       display: grid;
       grid-gap: 2rem;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      height: 100%;
+      height: 90%;
       .profile-img {
         display: flex;
         justify-content: center;
-        align-content: center;
+          height: 100%;
         .img-container{
           width: 100%;
-          height: 100%;
-          img {
-            width:inherit;
-            border-radius: 10px;
 
+          img {
+
+            border-radius: 10px;
+            width: 100%;
           }
         }
       }
@@ -57,20 +59,21 @@
           text-shadow: 2px 2px 3px #000000;
           font-size: 2rem;
           margin-bottom: 0.5rem;
+          padding-left: 0.5rem;
         }
         ul{
           display: flex;
-          justify-content: space-evenly;
           li{
             text-shadow: 2px 2px 3px #000000;
             list-style: none;
             color: whitesmoke;
             padding: 0.5rem;
           }
+
           .trailer-btn{
               color: #00fc87;
               display: flex;
-              justify-content: center;
+              justify-content: left;
               align-items: center;
               cursor: pointer;
               svg{
@@ -82,14 +85,19 @@
             }
           }
         }
+        .description{
+          padding: 0.5rem;
+          Font-size: clamp(0.5rem, calc(5vw + 0.5rem) , 1rem);
+        }
+        .genres{
+          li{
+            color: #00fc87;
+          }
+
+        }
       }
     }
   }
 }
 
-@media (max-width: 800px) {
-  .container-profile{
-    height: auto;
-  }
 
-}
