@@ -68,6 +68,7 @@ function HomePage({
         current = current.selected+1
         if(current !== currentPage){
             setCurrentPage(current);
+
             loadPopularMovies(currentPage);
         }
     }
