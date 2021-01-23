@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import * as homePageAction from "../../redux/actions/homePageActions";
 import List from "../../Components/commons/listOfMovies/List";
-import MovieProfile from '../movieProfile/movieProfile';
 import SlickSlider from "../../Components/commons/slick-slider/slick-slider";
 import "./homepage.scss"
 import Spinner from "../../Components/commons/spinner/Spinner";
