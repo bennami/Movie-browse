@@ -11,12 +11,10 @@ a website where you can browse through a huge library of movies, provided by [th
 ### TO DO:
 
 - styling:
-  - animations 
-  - movie profile: add genre, add nice icons, further styling 
-  - make movie profile routing, now it just works as a modal
+  - movie profile: bg styling
 
 - make a login to save favourite movies and stuff
-- implement the spinner on fetch load when u change page cuz  weird
+- implement the spinner on fetch load when u change page cuz weird
 - pagination does weird things
 
 
