@@ -8,6 +8,7 @@ import SlickSlider from "../../Components/commons/slick-slider/slick-slider";
 import "./homepage.scss"
 import Spinner from "../../Components/commons/spinner/Spinner";
 import ReactPaginate from 'react-paginate';
+import { useHistory } from "react-router-dom";
 
 function HomePage({
     loadPopularMovies,
@@ -50,16 +51,13 @@ function HomePage({
 
 
     }, [trendingMovies, popularMovies, loadTrendingMovies, loadPopularMovies,currentPage]);
-
+    const history = useHistory();
     const viewMovieInfo = (id) => {
             const filteredMovie = popularMovies.filter(movie => movie.id === id);
             const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] : null;
-            if(currentMovie.length  === 0){
-                setMovie(newCurrentMovie);
-                //history.push(`/home/${currentMovie.title}`);
-            }
-
-
+            // set selected movie to current movie and push data
+            setMovie(newCurrentMovie);
+            history.push(`/home/${newCurrentMovie.title}`);
     };
 
     function clickedNumber(current){
@@ -76,8 +74,7 @@ function HomePage({
     return (
         <>
             {
-                currentMovie.length <= 0
-                    ?
+
                     popularMovies === undefined  || trendingMovies === undefined
                         ?
                         <Spinner/>
@@ -99,12 +96,6 @@ function HomePage({
                                 breakClassName={"break"}
                             />
                         </>
-                    :
-                    <MovieProfile
-                        viewMovieInfo={viewMovieInfo}
-                        genre={"movieGenres"}
-                        currentMovie={currentMovie}
-                        closeMovieInfo={() => {setMovie([])}}/>
             }
         </>
     )

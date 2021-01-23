@@ -38,6 +38,8 @@ function Search({
         const filteredMovie = searchResults.filter(movie => movie.id === id);
         const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] : null;
         setMovie(newCurrentMovie);
+
+        history.push(`/home/${newCurrentMovie.title}`);
     };
 
     function clickedNumber(current){
@@ -50,9 +52,7 @@ function Search({
 
     return (
         <div>
-            { currentMovie.length <= 0
-                ?
-                <>
+            { <>
 
                     {
                         searchResults === undefined
@@ -80,14 +80,7 @@ function Search({
                     }
 
                 </>
-                :
-                <MovieProfile
-                    viewMovieInfo={viewMovieInfo}
-                    genre={movieGenres}
-                    currentMovie={currentMovie}
-                    closeMovieInfo={() => {
-                        setMovie([]);
-                    }}/>
+
             }
 
         </div>
