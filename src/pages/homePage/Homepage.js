@@ -18,7 +18,6 @@ function HomePage({
     setMovie,
     popularMovies,
     trendingMovies,
-    currentMovie,
     currentPage,
     setCurrentPage,
     totalPages

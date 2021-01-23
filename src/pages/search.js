@@ -2,11 +2,9 @@ import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import List from "../Components/commons/listOfMovies/List";
 import {useHistory, useParams} from "react-router-dom";
-import MovieProfile from "./movieProfile/movieProfile";
 import Spinner from "../Components/commons/spinner/Spinner";
 import PropTypes from "prop-types";
 import * as homePageAction from "../redux/actions/homePageActions";
-import Pagination from "../Components/commons/pagination/Pagination";
 import ReactPaginate from "react-paginate";
 
 function Search({
