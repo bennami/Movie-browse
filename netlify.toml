@@ -1,6 +1,6 @@
 [[redirects]]
   from = "/static/*"
-  to = "/public/static"
+  to = "/build/static"
   status = 200
 
 [[redirects]]
