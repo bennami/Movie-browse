@@ -10,9 +10,9 @@ import{VIDEO_LINK,API_KEY} from "../../utils";
 import ModalVideo from "react-modal-video";
 import 'react-modal-video/scss/modal-video.scss';
 
-function MovieProfile({closeMovieInfo,currentMovie,genres,searchTrailer}) {
+function MovieProfile({currentMovie,genres}) {
 
-    const {vote_average, id, release_date, backdrop_path, overview, poster_path, genre_ids, title} = currentMovie;
+    const {vote_average, id, release_date, backdrop_path, overview, poster_path, title} = currentMovie;
 
 const [mov,setMov] = useState('');
 const [trailer,setTrailer]=useState(false);
@@ -28,15 +28,8 @@ const [trailer,setTrailer]=useState(false);
         }
         setTrailer(true);
 
-
-        /* if(trailer=== undefined){
-             searchTrailer(id).catch(error => {
-                 alert("loading popular" + error)
-             });
-         }*/
-
      }
-    console.log(mov)
+
     return (
         <>
            <div className={"container-profile"} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${backdrop_path})`}}>
@@ -51,12 +44,6 @@ const [trailer,setTrailer]=useState(false);
                     />
                     :
                     <div className={'content'}>
-                        <div className={'cross'}>
-                            <ion-icon
-                                size="large" name="close-outline" onClick={closeMovieInfo}
-                                style={{color: "whitesmoke", cursor: "pointer"}}
-                            />
-                        </div>
                         <div className={"info"}>
                             <div className={"profile-img"}>
                                 <div className={"img-container"}>
@@ -70,18 +57,6 @@ const [trailer,setTrailer]=useState(false);
                                     <li> <small>Year: {release_date.substr(0, 4)} </small></li>
                                 </ul>
                                 <br/>
-
-                                    {/*{ */}
-                                    {/*    genre_ids.map(id => {*/}
-                                    {/*       const allGenres = genres.genres*/}
-
-                                    {/*        Object.keys(allGenres).forEach(*/}
-                                    {/*            function(key) {*/}
-                                    {/*            console.log(key,allGenres[key].name)*/}
-                                    {/*            return allGenres[0].name*/}
-                                    {/*        })*/}
-                                    {/*    })*/}
-                                    {/*}*/}
                                <ul className={"genres"}>
                                    <li>{genres.genres[0].name}</li>
                                    <li>{genres.genres[1].name}</li>

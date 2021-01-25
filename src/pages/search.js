@@ -37,7 +37,7 @@ function Search({
         const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] : null;
         setMovie(newCurrentMovie);
 
-        history.push(`/home/${newCurrentMovie.title}`);
+        history.push(`/search/${newCurrentMovie.title}`);
     };
 
     function clickedNumber(current){
