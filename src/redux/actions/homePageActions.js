@@ -28,7 +28,7 @@ export function searchTrailerSuccess(trailer) {
 }
 
 export function setCurrentPageSuccess(currentPage) {
-    return{type: types.SET_CURRENT_PAGE,currentPage}
+    return{type: types.SET_CURRENT_PAGE_SUCCESS,currentPage}
 
 }
 

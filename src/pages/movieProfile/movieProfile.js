@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "../../utils";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
@@ -17,6 +17,7 @@ function MovieProfile({currentMovie,genres}) {
 const [mov,setMov] = useState('');
 const [trailer,setTrailer]=useState(false);
 
+
    async function checkTrailer(){
         if(mov === ''){
             const url = `${VIDEO_LINK}${id}/videos${API_KEY}`;
@@ -27,7 +28,6 @@ const [trailer,setTrailer]=useState(false);
 
         }
         setTrailer(true);
-
      }
 
     return (

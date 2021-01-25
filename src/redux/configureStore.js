@@ -3,16 +3,20 @@ import rootReducer from "./reducers/rootReducer";
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant'
 import thunk from "redux-thunk";
 import logger from 'redux-logger'
-export default function configureStore(initialState) {
+export default function configureStore(initialState,) {
 
-    //this adds support for redux dev tools, this const gives us a funtion that we can call
-    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+   //this adds support for redux dev tools, this const gives us a funtion that we can call
+   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-    return createStore(
+   const store = createStore(
         rootReducer,
         initialState,
+
         composeEnhancers(applyMiddleware(thunk,reduxImmutableStateInvariant()))
     );
+
+   return store
+
 }
 //configureStore takes in initial state as parameter so we have some data
 //middleware  is  a way to enhance redux with extra functionality, 3rd parameter for create store  accepts the middlewarefunction

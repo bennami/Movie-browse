@@ -30,6 +30,7 @@ function HomePage({
                 })
         }
     },[loadGenres,genres,currentPage])
+
     useEffect(() => {
 
         if (popularMovies === undefined ||popularMovies.length === 0) {
@@ -55,18 +56,18 @@ function HomePage({
             const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] : null;
             // set selected movie to current movie and push data
             setMovie(newCurrentMovie);
-            history.push(`/home/${newCurrentMovie.title}`);
+            history.push(`/popularMovies/${newCurrentMovie.title}`);
     };
 
     function clickedNumber(current){
         console.log(currentPage)
         console.log( current.selected+1)
         current = current.selected+1
-        if(current !== currentPage){
-            setCurrentPage(current);
 
-            loadPopularMovies(currentPage);
-        }
+            setCurrentPage(current);
+            loadPopularMovies(current);
+            loadTrendingMovies(current);
+
     }
 
     return (

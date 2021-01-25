@@ -37,15 +37,13 @@ function Search({
         const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] : null;
         setMovie(newCurrentMovie);
 
-        history.push(`/search/${newCurrentMovie.title}`);
+        history.push(`/searchResult/${newCurrentMovie.title}`);
     };
 
     function clickedNumber(current){
-        current = current.selected+1
-        if(current !== currentPage){
+            current = current.selected+1
             setCurrentPage(current);
-            loadSearchResults(currentPage);
-        }
+            loadSearchResults(current);
     }
 
     return (

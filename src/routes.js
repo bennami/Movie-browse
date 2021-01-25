@@ -11,12 +11,11 @@ const Routes = () =>{
         <Switch>
             <Route exact path="/" component={Homepage}/>
             <Route exact path="/home" component={Homepage}/>
-            <Route  path="/home/:currentMovie"  component={MovieProfile}/>
+            <Route  path="/popularMovies/:currentMovie" component={MovieProfile}/>
             <Route exact path="/Movie-browse" component={Homepage}/>
             <Route exact path="/popular" component={Popular}/>
-            <Route exact path="/top5"/>
             <Route path="/search/:name" component={Search}/>
-            <Route path="/movieProfile/:currentMovie" component={MovieProfile}/>
+            <Route path="/searchResult/:currentMovie" component={MovieProfile}/>
             <Route component={PageNotFound}/>
         </Switch>
     )
