@@ -2,7 +2,7 @@
 
 ## Moviedb React, react-router and Redux
 
- [Check out the website! still on the works](https://bennami.github.io/Movie-browse/).
+ [Check out the website! still on the works](https://moviedbs.netlify.app/).
  
  ![preview](https://raw.githubusercontent.com/bennami/Movie-browse/master/preview.png)
 
